@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Clinic"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             xmlns:localV="clr-namespace:Clinic.Validaciones"
+             x:Class="Clinic.Views.AddUser">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout  BackgroundColor="#E5E5E5" Padding="5">
+                <StackLayout BackgroundColor="White" Padding="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="registerpencil" WidthRequest="30" VerticalOptions="Start" />
+                        <Label Text="Registrar usuario" TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Información de la cita" FontSize="Medium" TextColor="Black" FontAttributes="Italic" VerticalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Frame Padding="20,25,20,20" BackgroundColor="White" CornerRadius="5" Margin="0, 15, 0, 0">
+                    <StackLayout>
+                        <Label x:Name="id_empleado" IsVisible="False"/>
+                        <material:MaterialTextField  BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"   x:Name="correo" IsEnabled="False" />
+
+
+                        <Label Text="Nombre de usuario" FontSize="Default"/>
+                        <material:MaterialTextField Placeholder="Username" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False" x:Name="us">
+                        </material:MaterialTextField>
+
+                        <Label Text="Contraseña" FontSize="Default"/>
+                        <material:MaterialTextField Placeholder="Contraseña" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Password" FloatingPlaceholderEnabled="False" x:Name="pass"/>
+
+                        <Label Text="Tipo de Usuario" FontSize="Default"/>
+                        <Picker x:Name="t_user"/>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Margin="10">
+                    <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Agregar" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Clicked="Button_Clicked"  />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Clinic.Validaciones"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             x:Class="Clinic.Views.Add_Waiting_List">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Label Text="Nombre Completo" FontSize="Default" TextColor="Black" VerticalOptions="Center" />
+            <material:MaterialTextField Placeholder="Ingrese los nombres del doctor" BackgroundColor="#DCDCDC" InputType="Text"  TintColor="#008ca5" FloatingPlaceholderEnabled="False"  x:Name="nombre" >
+                <material:MaterialTextField.Behaviors>
+                    <local:TextValidator/>
+                </material:MaterialTextField.Behaviors >
+            </material:MaterialTextField>
+            <Label Text="Consultorio" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+            <material:MaterialTextField Placeholder="Ingrese el número de consultorio" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="number" MaxLength="2">
+                <material:MaterialTextField.Behaviors>
+                    <local:NumeroValidator/>
+                </material:MaterialTextField.Behaviors >
+            </material:MaterialTextField>
+
+            <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="CenterAndExpand" VerticalOptions="Center" Text="Crear Lista" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Clicked="Button_Clicked"  IsEnabled="True" x:Name="btnRegistrar" />
+
+        </StackLayout>
+
+    </ContentPage.Content>
+</ContentPage>

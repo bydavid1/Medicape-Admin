@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+            BackgroundColor="#e2e2e2"
+             x:Class="Clinic.Views.ViewPatient">
+
+    
+    <ContentPage Title="Personal">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Order="Primary" IconImageSource="edit_pen" Activated="ToolbarItem_Activated"/>
+            <ToolbarItem Order="Primary" IconImageSource="refresh" Activated="ToolbarItem_Activated_1"/>
+        </ContentPage.ToolbarItems>
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout Padding="5, 15, 5, 5">
+                    <Frame Padding="0" BackgroundColor="#cce7d2">
+                        <StackLayout Padding="5" Orientation="Horizontal">
+                            <Image Source="information" WidthRequest="25" HeightRequest="25"/>
+                            <Label Text="Parte de esta informacion puede ser vista por el paciente desde la app" TextColor="#658187"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="Informacion personal" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White">
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Image Source="account" WidthRequest="70" HeightRequest="70" HorizontalOptions="Center"/>
+                            <Label Text="{Binding nombres}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_name" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="{Binding fecha_Nac}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_fecha" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="{Binding sexo}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_sexo" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="{Binding estado}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_estado" FontFamily="{StaticResource BoldFont}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="Documentos" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White">
+                        <StackLayout HorizontalOptions="StartAndExpand">
+                            <StackLayout Orientation="Horizontal">
+                                <Label FontSize="Medium" FontAttributes="Italic" Text="DUI: "/>
+                                <Label Text="{Binding dui}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_dui" FontFamily="{StaticResource BoldFont}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="Contacto" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White">
+                        <StackLayout>
+                            <Label Text="Direccion:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding direccion}" FontSize="Large" x:Name="_direccion" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Municipio:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding municipio}" FontSize="Large" x:Name="_municipio" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Departamento:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding departamento}" FontSize="Large" x:Name="_departamento" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Telefono:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding telefono}" FontSize="Large" x:Name="_telefono" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Correo:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding correo}" FontSize="Large" x:Name="_correo" FontFamily="{StaticResource BoldFont}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+    
+    <ContentPage Title="Expediente" Padding="5">
+        <ContentPage.Content>
+            <ScrollView>
+            <StackLayout Padding="5, 5, 5, 5">
+                    <Frame Padding="0" BackgroundColor="#f8ecc7">
+                        <StackLayout Padding="5" Orientation="Horizontal">
+                            <Image Source="information" WidthRequest="25" HeightRequest="25"/>
+                            <Label Text="Esta informacion es privada por lo cual no puede ser vista desde la app" TextColor="#658187"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="Consultas" FontSize="Medium" FontAttributes="Italic"/>
+                    <ListView x:Name="mylist" ItemTapped="Mylist_ItemTapped" HasUnevenRows="True">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                                <ViewCell>
+                                    <Frame>
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Image Source="calendar" WidthRequest="15" HeightRequest="15"/>
+                                                    <Label Text="{Binding fecha}" FontSize="Small" />
+                                                </StackLayout>
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand">
+                                                <Image Source="clock" WidthRequest="15" HeightRequest="15" HorizontalOptions="Center"/>
+                                                <Label Text="{Binding hora}" FontSize="Small" HorizontalOptions="Center"/>
+                                            </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </ViewCell>
+                            </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                    <Label Text="No se encontraron consultas" IsVisible="False" HorizontalOptions="CenterAndExpand" x:Name="messagee"/>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Control">
+        <ContentPage.Content>
+            <ScrollView>
+            <StackLayout Padding="5, 15, 5, 0">
+                    <Frame Padding="0" BackgroundColor="#cae5eb">
+                        <StackLayout Padding="5" Orientation="Horizontal">
+                            <Image Source="information" WidthRequest="25" HeightRequest="25"/>
+                            <Label Text="Esta informacion puede ser vista por el paciente desde la app" TextColor="#658187"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="Ultimo control" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White" Margin="0, 0, 0 , 10" Padding="0">
+                        <StackLayout>
+                            <Grid Padding="0, 10, 0, 10">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="3*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                    <RowDefinition Height="35"/>
+                                </Grid.RowDefinitions>
+
+
+                                <Image Source="ruler" WidthRequest="10" HeightRequest="10" Grid.Column="0" Grid.Row="0"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Altura" Grid.Column="1" Grid.Row="0"/>
+
+                                <Label FontFamily="{StaticResource BoldFont}"  FontSize="15" x:Name="height" Grid.Column="2" Grid.Row="0"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Mts" Grid.Column="3" Grid.Row="0"/>
+
+
+                                <Image Source="libra" WidthRequest="8" HeightRequest="8" Grid.Column="0" Grid.Row="1"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Peso" Grid.Column="1" Grid.Row="1"/>
+
+                                <Label FontFamily="{StaticResource BoldFont}"  FontSize="15" x:Name="weight" Grid.Column="2" Grid.Row="1"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Kg" Grid.Column="3" Grid.Row="1"/>
+
+
+                                <Image Source="thermometer" WidthRequest="10" HeightRequest="10" Grid.Column="0" Grid.Row="2"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Temperatura" Grid.Column="1" Grid.Row="2"/>
+
+                                <Label FontFamily="{StaticResource BoldFont}"  FontSize="15" x:Name="temp" Grid.Column="2" Grid.Row="2"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="ºC" Grid.Column="3" Grid.Row="2"/>
+
+
+                                <Image Source="blood_pressure" WidthRequest="10" HeightRequest="10" Grid.Column="0" Grid.Row="3"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Presion Arterial" Grid.Column="1" Grid.Row="3"/>
+
+                                <Label FontFamily="{StaticResource BoldFont}"  FontSize="15" x:Name="b_pres" Grid.Column="2" Grid.Row="3"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="mmHg" Grid.Column="3" Grid.Row="3"/>
+
+
+                                <Image Source="health_check" WidthRequest="10" HeightRequest="10" Grid.Column="0" Grid.Row="4"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Frec. Cardiaca" Grid.Column="1" Grid.Row="4"/>
+
+                                <Label FontFamily="{StaticResource BoldFont}"  FontSize="15" x:Name="fc" Grid.Column="2" Grid.Row="4"/>
+
+                                <Label FontFamily="{StaticResource NormalFont}"  FontSize="15" Text="Fc" Grid.Column="3" Grid.Row="4"/>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Clinic"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             xmlns:localV="clr-namespace:Clinic.Validaciones"
+             x:Class="Clinic.Views.AddMedicament">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout  BackgroundColor="#E5E5E5" Padding="5">
+                <StackLayout BackgroundColor="White" Padding="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="registerpencil" WidthRequest="30" VerticalOptions="Start" />
+                        <Label Text="Registrar medicamento" TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Información de la cita" FontSize="Medium" TextColor="Black" FontAttributes="Italic" VerticalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Frame Padding="20,25,20,20" BackgroundColor="White" CornerRadius="5" Margin="0, 15, 0, 0">
+                    <StackLayout>
+
+                        <Label Text="Medicamento" FontSize="Default" TextColor="Black" VerticalOptions="Center" />
+                        <material:MaterialTextField Placeholder="Nombre del medicamento" BackgroundColor="#DCDCDC" InputType="Text"  TintColor="#008ca5" FloatingPlaceholderEnabled="False"  x:Name="nombre" >
+                        </material:MaterialTextField>
+
+                        <Label Text="Codigo" FontSize="Default" TextColor="Black" VerticalOptions="Center" />
+                        <material:MaterialTextField Placeholder="Codigo del medicamento" BackgroundColor="#DCDCDC" InputType="Text"  TintColor="#008ca5" FloatingPlaceholderEnabled="False"  x:Name="codigo" >
+                        </material:MaterialTextField>
+
+                        <Label Text="Cantidad" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <material:MaterialTextField Placeholder="Ingrese la cantidad" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="cant">
+                        </material:MaterialTextField>
+
+                        <Label Text="Precio" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <material:MaterialTextField Placeholder="Ingrese la cantidad" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="price">
+                        </material:MaterialTextField>
+
+                        <Label Text="Fecha" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <DatePicker x:Name="fecha"></DatePicker>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Margin="10">
+                    <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Agregar" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Clicked="Button_Clicked"  />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

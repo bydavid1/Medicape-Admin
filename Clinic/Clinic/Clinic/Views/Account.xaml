@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Clinic.Views.Account">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <Frame CornerRadius="5" BorderColor="#e7edf2" BackgroundColor="White">
+                <StackLayout Orientation="Horizontal">
+                    <StackLayout>
+                        <Image Source="user_entry" WidthRequest="40" HeightRequest="40" VerticalOptions="CenterAndExpand"/>
+                    </StackLayout>
+                    <StackLayout HorizontalOptions="CenterAndExpand">
+                        <Label Text="{Binding username}" FontFamily="{StaticResource BoldFont}" FontSize="Large" x:Name="user"/>
+                        <Label Text="{Binding nombres}" FontFamily="{StaticResource BoldFont}" FontSize="Large" x:Name="nombres"/>
+                        <Label Text="{Binding apellidos}" FontFamily="{StaticResource NormalFont}" FontSize="Medium" x:Name="apellidos"/>
+                        <Label Text="{Binding especialidad}" FontFamily="{StaticResource NormalFont}" FontSize="Medium" x:Name="especialidad"/>
+                    </StackLayout>
+                </StackLayout>
+            </Frame>
+            <StackLayout x:Name="container">
+                <Button Text="Editar Horario" Clicked="Button_Clicked"/>
+                <ListView>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <StackLayout Orientation="Horizontal">
+                                    <Image Source="calendar" HeightRequest="25" WidthRequest="25"/>
+                                    <Label Text="{Binding inicio}"/>
+                                    <Label Text="{Binding final}"/>
+                                    <Label Text="{Binding estado}"/>
+                                </StackLayout>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

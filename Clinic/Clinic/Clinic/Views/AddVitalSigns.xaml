@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Clinic"
+             mc:Ignorable="d"
+             Padding="7"
+             x:Class="Clinic.Views.AddVitalSigns">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout  BackgroundColor="#E5E5E5" Padding="5">
+                <StackLayout BackgroundColor="White" Padding="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="registerpencil" WidthRequest="30" VerticalOptions="Start" />
+                        <Label Text="Registrar control de signos vitales" TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Información de la cita" FontSize="Medium" TextColor="Black" FontAttributes="Italic" VerticalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Frame Padding="20,25,20,20" BackgroundColor="White" CornerRadius="5" Margin="0, 15, 0, 0">
+                    <StackLayout>
+                        <Label x:Name="id_paciente" IsVisible="False"/>
+                        <Label Text="Altura" FontSize="Default"/>
+                        <local:CustomEntry Placeholder="Altura Cm" x:Name="alt" Keyboard="Numeric"></local:CustomEntry>
+                        <Label Text="Peso" FontSize="Default"/>
+                        <local:CustomEntry Placeholder="Peso Kg" x:Name="pes" Keyboard="Numeric"></local:CustomEntry>
+                        <Label Text="Temperatura" FontSize="Default"/>
+                        <local:CustomEntry Placeholder="Temperatura ºC" x:Name="temp" Keyboard="Numeric"></local:CustomEntry>
+                        <Label Text="Presion Arterial" FontSize="Default"/>
+                        <local:CustomEntry Placeholder="Presion mmHg" x:Name="pres" Keyboard="Numeric"></local:CustomEntry>
+                        <Label Text="Frecuencia cardiaca" FontSize="Default"/>
+                        <local:CustomEntry Placeholder="Frecuencia cardiaca Fc" x:Name="frec" Keyboard="Numeric"></local:CustomEntry>
+                        <Label Text="Pulso" FontSize="Default"/>
+                        <local:CustomEntry Placeholder="Pulso" x:Name="pul" Keyboard="Numeric"></local:CustomEntry>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Margin="10">
+                    <Button Text="Agregar" Clicked="Button_Clicked"  TextColor="White" BackgroundColor="DarkTurquoise" BorderColor="White" BorderWidth="2" Font="Arial" HorizontalOptions="FillAndExpand" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

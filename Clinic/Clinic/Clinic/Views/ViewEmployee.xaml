@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Clinic.Views.ViewEmployee">
+
+    <ContentPage Title="Personal">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem Order="Primary" IconImageSource="edit_pen" Activated="ToolbarItem_Activated"/>
+            <ToolbarItem Order="Primary" IconImageSource="refresh" Activated="ToolbarItem_Activated_1"/>
+        </ContentPage.ToolbarItems>
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout Padding="5, 15, 5, 0">
+                    <Frame Padding="0" BackgroundColor="#f8ecc7" IsVisible="False" x:Name="content">
+                        <StackLayout Padding="5" Orientation="Horizontal">
+                            <Image Source="list_warning" WidthRequest="27" HeightRequest="27"/>
+                            <Label Text="Este empleado tiene documentos pendientes" TextColor="#658187" VerticalOptions="CenterAndExpand"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="Informacion personal" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White">
+                        <StackLayout HorizontalOptions="CenterAndExpand">
+                            <Image Source="account" WidthRequest="70" HeightRequest="70" HorizontalOptions="Center"/>
+                            <Label Text="{Binding nombres}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_name" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="{Binding fecha_Nac}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_fecha" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="{Binding sexo}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_sexo" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="{Binding dui}" FontSize="Large" HorizontalOptions="CenterAndExpand" x:Name="_estado" FontFamily="{StaticResource BoldFont}"/>
+                        </StackLayout>
+                    </Frame>
+                    <Label Text="Documentos" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White">
+                        <StackLayout Padding="5">
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="DUI" FontSize="Medium" FontAttributes="Italic"/>
+                                <Label Text="{Binding dui}" FontSize="Medium"  x:Name="_dui" FontFamily="{StaticResource BoldFont}"/>
+                            </StackLayout>
+                            <StackLayout Orientation="Horizontal">
+                                <Label Text="NIT" FontSize="Medium" FontAttributes="Italic"/>
+                                <Label Text="{Binding nit}" FontSize="Medium"  x:Name="_nit" FontFamily="{StaticResource BoldFont}"/>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Profesional">
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout Padding="5, 15, 5, 0">
+                    <Label Text="Informacion profesional" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White">
+                        <StackLayout>
+                            <Label Text="Especialidad:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding especialidad}" FontSize="Large" x:Name="_especialidad" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Antecendentes:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding antecedentes}" FontSize="Large" x:Name="_antecedentes" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Solvencia:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding solvencia}" FontSize="Large" x:Name="_solvencia" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Constancia de titulo:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding constancia_Titulo}" FontSize="Large" x:Name="_titulado" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Certificado de salud:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding certificado_Salud}" FontSize="Large" x:Name="_certificado" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Fecha de contratacion:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding fecha_Contratacion}" FontSize="Large" x:Name="_fecha_contratacion" FontFamily="{StaticResource BoldFont}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+
+    <ContentPage Title="Contacto">
+        <ContentPage.Content>
+            <ScrollView>
+                <StackLayout Padding="5, 15, 5, 0">
+                    <Label Text="Informacion de contacto" FontSize="Medium" FontAttributes="Italic"/>
+                    <Frame CornerRadius="5" BackgroundColor="White">
+                        <StackLayout>
+                            <Label Text="Direccion:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding direccion}" FontSize="Large" x:Name="_direccion" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Municipio:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding municipio}" FontSize="Large" x:Name="_municipio" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Departamento:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding departamento}" FontSize="Large" x:Name="_departamento" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Telefono:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding telefono}" FontSize="Large" x:Name="_telefono" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Celular:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding celular}" FontSize="Large" x:Name="_celular" FontFamily="{StaticResource BoldFont}"/>
+                            <Label Text="Correo:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
+                            <Label Text="{Binding correo}" FontSize="Large" x:Name="_correo" FontFamily="{StaticResource BoldFont}"/>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </ScrollView>
+        </ContentPage.Content>
+    </ContentPage>
+</TabbedPage>

@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<MasterDetailPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:custom="clr-namespace:Clinic"
+             Title="Masters"
+             x:Class="Clinic.Views.MainPage">
+
+    <MasterDetailPage.Resources>
+        <ResourceDictionary>
+            <custom:SelectedToColorConverter x:Key="ColorConverter"/>
+        </ResourceDictionary>
+    </MasterDetailPage.Resources>
+
+    <MasterDetailPage.Master>
+        <ContentPage BackgroundColor="White" Title="master">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackLayout BackgroundColor="#00cbc5" HeightRequest="120" Orientation="Horizontal" Padding="10">
+                    <Image Source="account" WidthRequest="60" HeightRequest="60"/>
+                    <Label FontSize="Medium" TextColor="White" x:Name="user_Name"
+                           Margin="10,0,0,0" VerticalOptions="Center" FontFamily="{StaticResource BoldFont}"/>
+                </StackLayout>
+                <Grid Grid.Row="1" Grid.Column="0">
+                    <ListView SeparatorVisibility="None" ItemsSource="{Binding MenuItems}" 
+                          SelectedItem="{Binding SelectedMenu,Mode=TwoWay}" Margin="5,8,5,5">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2" Height="45">
+                                    <Grid VerticalOptions="Center">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Source="{Binding MenuIcon}" HeightRequest="20" WidthRequest="20" Grid.Row="0" 
+                                           Grid.Column="0" VerticalOptions="Center" Margin="15,0,0,0"/>
+                                        <Label Text="{Binding MenuName}" TextColor="{Binding Selected,Mode=TwoWay,Converter={StaticResource ColorConverter}}" Margin="10,0,0,0"
+                                           LineBreakMode="TailTruncation" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" FontFamily="{StaticResource NormalFont}" FontSize="17"/>
+                                    </Grid>
+                                </custom:CustomViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </Grid>
+        </ContentPage>
+    </MasterDetailPage.Master>
+
+    <MasterDetailPage.Detail>
+        <ContentPage>
+            <StackLayout>
+
+            </StackLayout>
+        </ContentPage>
+    </MasterDetailPage.Detail>
+
+</MasterDetailPage>

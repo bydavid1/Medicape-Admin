@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Clinic.Views.Login"
+             xmlns:local = "clr-namespace:Clinic"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             BackgroundImage="back.png">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="15">
+                <StackLayout>
+                    <Image Source="doctor" WidthRequest="125" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,0"/>
+                    <material:MaterialLabel Text="MediCape" FontFamily="Arial" FontAttributes="Bold" FontSize="35" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                </StackLayout>
+                <material:MaterialCard  CornerRadius="6" Elevation="4"  HorizontalOptions="FillAndExpand" Padding="0" Margin="0,10,0,0" VerticalOptions="Center" >
+                    <StackLayout>
+                        <StackLayout HeightRequest="25" BackgroundColor="#15ccc8" Orientation="Horizontal" Padding="10">
+                            <material:MaterialLabel Text="Inicio Sesion"  TextColor="White" FontAttributes="Bold"  />
+
+                        </StackLayout>
+                        <StackLayout Padding="20">
+                            <material:MaterialTextField  Placeholder="Username"  BackgroundColor="#eaeaea" InputType="Text"  TintColor="#15ccc8" FloatingPlaceholderEnabled="False" LeadingIcon="us" LeadingIconTintColor="#696969" PlaceholderColor="#c8c8c8" x:Name="user"/>
+                            <material:MaterialTextField  Placeholder="Password"  BackgroundColor="#eaeaea" InputType="Password"  TintColor="#15ccc8" FloatingPlaceholderEnabled="False" LeadingIcon="lock" LeadingIconTintColor="#696969"  PlaceholderColor="#c8c8c8" x:Name="password" />
+
+                            <Button Text="LOGIN" TextColor="White" FontAttributes="Bold" CornerRadius="23" HeightRequest="46" BackgroundColor="#15ccc8" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="25,0,25,0" Clicked="Button_Clicked"></Button>
+
+                            <material:MaterialLabel Text="Forgot password?" TextDecorations="Underline" TextColor="#99000000" HorizontalOptions="Center" />
+                        </StackLayout>
+                    </StackLayout>
+
+
+                </material:MaterialCard>
+            </StackLayout>
+
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

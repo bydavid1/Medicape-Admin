@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Clinic.Views.Patients"
+             BackgroundColor="#e2e2e2">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
+                    <Image Source="people_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" />
+                    <Label Text="Lista de pacientes registrados" FontSize="Medium"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
+                    <Button BackgroundColor="#008ca5" TextColor="white"  Text="Agregar paciente" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="Micro" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
+                </StackLayout>
+                <StackLayout>
+                    <StackLayout Orientation="Horizontal" Padding="3" HorizontalOptions="CenterAndExpand">
+                        <Frame Padding="0" CornerRadius="3" OutlineColor="DarkGray" HasShadow="True">
+                            <SearchBar Placeholder="Buscar paciente" TextChanged="Query_Search"  x:Name="query" BackgroundColor="White" HeightRequest="20" WidthRequest="300"/>
+                        </Frame>
+                        <Picker Title="Filtros" x:Name="options"/>
+                    </StackLayout>
+                    <Frame HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="5" Margin="0,5,0,5" BorderColor="#008ca5">
+                        <StackLayout>
+                            <StackLayout HeightRequest="25" BackgroundColor="#008ca5" Orientation="Horizontal" Padding="8">
+                                <Label Text="Pacientes" FontFamily="{StaticResource NormalFont}" TextColor="White" FontSize="18" VerticalOptions="CenterAndExpand"/>
+                            </StackLayout>
+                            <StackLayout VerticalOptions="EndAndExpand">
+                                <Label Text="No hay resultados" HorizontalOptions="Center" IsVisible="False" x:Name="message2" Margin="0, 10, 0, 10"/>
+                                <Label Text="No se encontraron pacientes" HorizontalOptions="Center" IsVisible="False" x:Name="message" Margin="0, 10, 0, 10"/>
+                                <ListView x:Name="mylist" RowHeight="60" ItemTapped="Mylist_ItemTapped" IsPullToRefreshEnabled="true" HasUnevenRows="True">
+                                    <ListView.ItemTemplate>
+                                        <DataTemplate>
+                                            <ViewCell>
+                                                <StackLayout>
+                                                    <StackLayout Orientation="Horizontal" Padding="3">
+                                                        <Image Source="usuario" HeightRequest="25" WidthRequest="25"/>
+                                                        <StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="{Binding nombres} " LineBreakMode="MiddleTruncation" FontAttributes="Bold" FontSize="Medium"/>
+                                                                <Label Text="{Binding apellidos}" LineBreakMode="MiddleTruncation" FontAttributes="Bold" FontSize="Medium"/>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="Fecha de nacimiento: "/>
+                                                                <Label Text="{Binding fecha_Nac}"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                        <StackLayout HorizontalOptions="EndAndExpand">
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="DUI: "/>
+                                                                <Label Text="{Binding dui}"/>
+                                                            </StackLayout>
+                                                            <StackLayout Orientation="Horizontal">
+                                                                <Label Text="Sexo: "/>
+                                                                <Label Text="{Binding sexo}"/>
+                                                            </StackLayout>
+                                                        </StackLayout>
+                                                    </StackLayout>
+                                                </StackLayout>
+                                            </ViewCell>
+                                        </DataTemplate>
+                                    </ListView.ItemTemplate>
+                                </ListView>
+                            </StackLayout>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

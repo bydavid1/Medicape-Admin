@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:localV="clr-namespace:Clinic.Validaciones"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms" x:Class="Clinic.Views.AddPatients">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout BackgroundColor="#E5E5E5">
+                <StackLayout BackgroundColor="White" Padding="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="registerpencil" WidthRequest="30" VerticalOptions="Start" />
+                        <Label Text="Registrar paciente" TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Información Personal" FontSize="Medium" TextColor="Black" FontAttributes="Italic" VerticalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Frame Padding="20,25,20,20" BackgroundColor="White" CornerRadius="5" Margin="0, 15, 0, 0">
+                    <StackLayout>
+
+                        <Label Text="Nombres" FontSize="Default" TextColor="Black" VerticalOptions="Center" />
+                        <material:MaterialTextField Placeholder="Ingrese los nombres" BackgroundColor="#DCDCDC" InputType="Text"  TintColor="#008ca5" FloatingPlaceholderEnabled="False"  x:Name="p_nombre" >
+                            <material:MaterialTextField.Behaviors>
+                                <localV:TextValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <Label Text="Apellidos" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <material:MaterialTextField Placeholder="Ingrese los apellidos" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"  x:Name="p_apellido">
+                            <material:MaterialTextField.Behaviors>
+                                <localV:TextValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <Label Text="Fecha de nacimiento" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <DatePicker x:Name="p_nac" >
+
+                        </DatePicker>
+
+                        <Label Text="Sexo" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <Picker x:Name="p_sexo"/>
+
+                        <Label Text="Estado Civil" FontSize="Default" TextColor="Black" VerticalOptions="Start"/>
+                        <Picker Title="Soltero"  x:Name="p_estado"/>
+
+                        <Label Text="DUI" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <material:MaterialTextField Placeholder="Ingrese el número de DUI" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="p_dui" MaxLength="9">
+                            <material:MaterialTextField.Behaviors>
+                                <localV:NumeroValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <Label Text="Teléfono" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <material:MaterialTextField Placeholder="Ingrese el número de telefono" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="p_telefono" MaxLength="8">
+                            <material:MaterialTextField.Behaviors>
+                                <localV:NumeroValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <Label Text="Correo" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <material:MaterialTextField Placeholder="Ingrese correo electronico" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Email" FloatingPlaceholderEnabled="False"  x:Name="p_correo" ErrorText="Email invalido" HasError="False">
+                            <material:MaterialTextField.Behaviors>
+                                <localV:ValidateEmail />
+                            </material:MaterialTextField.Behaviors>
+                        </material:MaterialTextField>
+
+                        <Label Text="Departamento" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
+                        <material:MaterialTextField Placeholder="Eje:Santa Ana" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"  x:Name="p_departamento">
+                            <material:MaterialTextField.Behaviors>
+                                <localV:TextValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <Label Text="Municipio" FontSize="Default" TextColor="Black" VerticalOptions="Start"/>
+                        <material:MaterialTextField Placeholder="Eje: Metapan" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"  x:Name="p_municipio">
+                            <material:MaterialTextField.Behaviors>
+                                <localV:TextValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <Label Text="Dirección" FontSize="Default" TextColor="Black" VerticalOptions="Start"/>
+                        <material:MaterialTextField Placeholder="Eje: Metapan" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"  x:Name="p_direccion">
+                        </material:MaterialTextField>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Margin="10">
+
+                    <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Registrar" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Clicked="Button_Clicked" IsEnabled="True" x:Name="btnRegistrar" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             xmlns:localV="clr-namespace:Clinic.Validaciones"
+             mc:Ignorable="d"
+             x:Class="Clinic.Views.AddTips">
+    <ContentPage.Content>
+        <StackLayout Padding="10">
+            <material:MaterialTextField Placeholder="Titulo" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"   x:Name="title">
+            </material:MaterialTextField>
+            <Editor Placeholder="Descripcion" x:Name="description" HeightRequest="80"/>
+            <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Publicar" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Clicked="Button_Clicked"  />
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

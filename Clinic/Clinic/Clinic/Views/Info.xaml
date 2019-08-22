@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="Clinic.Views.Info">
+    <ContentPage.Content>
+        <StackLayout Padding="20">
+            <Label FontFamily="{StaticResource Niconne}" Text="Medicape" TextColor="#008ca5" FontSize="45" HorizontalOptions="CenterAndExpand"/>
+            <Label Margin="20" FontSize="Large" FontFamily="{StaticResource NormalFont}" Text="Digitalizando tu mundo" TextColor="#008ca5"  HorizontalOptions="CenterAndExpand"/>
+            <Label Margin="20" FontSize="Medium" FontFamily="{StaticResource NormalFont}" Text="Desarrollado por:" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Glenda García" FontSize="Medium" FontFamily="{StaticResource BoldFont}" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Vladimir Humberto Valdes" FontSize="Medium" FontFamily="{StaticResource BoldFont}" HorizontalOptions="CenterAndExpand"/>
+            <Label Text="Byron David Martinez Jimenez" FontSize="Medium" FontFamily="{StaticResource BoldFont}" HorizontalOptions="CenterAndExpand"/>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

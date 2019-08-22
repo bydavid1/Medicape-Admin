@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:local="clr-namespace:Clinic"
+             xmlns:localV="clr-namespace:Clinic.Validaciones"
+             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             x:Class="Clinic.Views.AddConsult">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Order="Primary" IconImageSource="plus" Activated="ToolbarItem_Activated" x:Name="ADD"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout  BackgroundColor="#E5E5E5" Padding="5">
+                <StackLayout BackgroundColor="White" Padding="10">
+                    <StackLayout Orientation="Horizontal">
+                        <Image Source="registerpencil" WidthRequest="30" VerticalOptions="Start" />
+                        <Label Text="Registrar consulta" TextColor="Black" FontSize="Large" FontAttributes="Bold" VerticalOptions="StartAndExpand" />
+                    </StackLayout>
+                    <StackLayout>
+                        <Label Text="Información de la cita" FontSize="Medium" TextColor="Black" FontAttributes="Italic" VerticalOptions="Start" />
+                    </StackLayout>
+                </StackLayout>
+                <Frame Padding="20,25,20,20" BackgroundColor="White" CornerRadius="5" Margin="0, 15, 0, 0">
+                    <StackLayout>
+                        <Label x:Name="id_paciente"/>
+
+
+                        <material:MaterialTextField Placeholder="Ingrese los nombres" BackgroundColor="#DCDCDC" InputType="Text"  TintColor="#008ca5" FloatingPlaceholderEnabled="False"  x:Name="p_nombre" IsEnabled="False"/>
+                        <material:MaterialTextField Placeholder="Ingrese los apellidos" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"  x:Name="p_apellido" IsEnabled="False"/>
+                        <material:MaterialTextField Placeholder="Doctor" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False" x:Name="doctor">
+
+                            <material:MaterialTextField.Behaviors>
+                                <localV:TextValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <material:MaterialTextField Placeholder="Consultorio" BackgroundColor="#DCDCDC" InputType="Numeric"  TintColor="#008ca5" FloatingPlaceholderEnabled="False"  x:Name="consultorio" MaxLength="2">
+                            <material:MaterialTextField.Behaviors>
+                                <localV:NumeroValidator/>
+                            </material:MaterialTextField.Behaviors >
+                        </material:MaterialTextField>
+
+                        <Editor Placeholder="Diagnostico" WidthRequest="50" x:Name="diag"/>
+                        <Editor Placeholder="Tratamiento" WidthRequest="50" x:Name="trat"/>
+                        <Editor Placeholder="Observaciones" WidthRequest="50" x:Name="obs"/>
+                        <Editor Placeholder="Receta medica" WidthRequest="50" x:Name="rec"/>
+                        <Editor Placeholder="Examenes" WidthRequest="50" x:Name="exam"/>
+                    </StackLayout>
+                </Frame>
+                <StackLayout Margin="10">
+                    <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="FillAndExpand"  Text="Agregar" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Clicked="Button_Clicked" IsEnabled="True" x:Name="btnRegistrar" />
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
