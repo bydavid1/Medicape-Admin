@@ -18,14 +18,9 @@ namespace Clinic.Views
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class Employees : ContentPage
 	{
-        Connection get = new Connection();
-        private string baseurl;
         public Employees ()
 		{
             InitializeComponent ();
-            options.Items.Add("Buscar por nombre");
-            options.Items.Add("Buscar por apellido");
-            options.Items.Add("Buscar por DUI");
             BindingContext = new EmployeesViewModel();
         }
 
@@ -41,52 +36,6 @@ namespace Clinic.Views
                 var tapped = (list.SelectedItem as Empleados);
 
                 Navigation.PushAsync(new ViewEmployee(tapped.idempleado));
-            }
-        }
-
-        private async void Query_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            try
-            {
-
-                string searched = query.Text;
-                string selected = Convert.ToString(options.SelectedItem);
-                string op;
-                if (selected == "Buscar por nombre")
-                {
-                    op = "nombres";
-                }
-                else if (selected == "Buscar por apellido")
-                {
-                    op = "apellidos";
-                }
-                else if (selected == "Buscar por dui")
-                {
-                    op = "dui";
-                }
-                else
-                {
-                    op = "nombres";
-                }
-
-                string url = baseurl + "/Api/empleado/custom_search.php?query=" + searched + "&op=" + op;
-
-                HttpClient client = new HttpClient();
-                HttpResponseMessage connect = await client.GetAsync(url);
-
-                if (connect.StatusCode == HttpStatusCode.OK)
-                {
-                    var response = await client.GetStringAsync(url);
-                    var emp = JsonConvert.DeserializeObject<List<Empleados>>(response);
-                }
-                else
-                {
-                }
-            }
-            catch (Exception ex)
-            {
-
-             await DisplayAlert("Error", "" + ex, "Ok");
             }
         }
     }
