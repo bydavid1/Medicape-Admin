@@ -8,9 +8,9 @@
         <ScrollView>
             <StackLayout>
                 <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="White">
-                    <Image Source="people_color" WidthRequest="25" HeightRequest="25" VerticalOptions="Center" />
+                    <Image Source="people_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
                     <Label Text="Lista de empleados registradas" FontSize="14"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
-                    <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Agregar empleado" HeightRequest="18" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
+                    <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Agregar empleado" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Command="{Binding AddEmployee}"/>
                 </StackLayout>
                 <StackLayout Orientation="Horizontal" Padding="3" HorizontalOptions="CenterAndExpand">
                     <Frame Padding="0" CornerRadius="3" OutlineColor="DarkGray" HasShadow="True">
@@ -20,9 +20,8 @@
                 </StackLayout>
                 <StackLayout>
                     <StackLayout VerticalOptions="FillAndExpand">
-                            <Label Text="No hay resultados" HorizontalOptions="Center" IsVisible="False" x:Name="message2" Margin="0, 10, 0, 10"/>
-                            <Label Text="No se encontraron empleados" HorizontalOptions="Center" IsVisible="False" x:Name="message" Margin="0, 10, 0, 10"/>
-                            <ListView x:Name="mylist" RowHeight="60" ItemTapped="Mylist_ItemTapped" IsPullToRefreshEnabled="True" HasUnevenRows="True">
+                        <Image Source="error_connect" IsVisible="{Binding IsVisible, Mode=TwoWay}"/>
+                        <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}" ItemTapped="Mylist_ItemTapped" >
                             <ListView.ItemTemplate>
                                 <DataTemplate>
                                     <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">

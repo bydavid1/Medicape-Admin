@@ -17,7 +17,7 @@
                             <Button BackgroundColor="white" TextColor="#008ca5"  Text="Agregar cita" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="Micro" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
                         </StackLayout>
                         <StackLayout HeightRequest="230">
-                            <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}">
+                            <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
                                         <ViewCell>
