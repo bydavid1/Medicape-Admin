@@ -22,7 +22,7 @@ namespace Clinic.Clases
             Response = new Response();
         }
 
-        public async void Insert(object objeto, string controller)
+        public async Task<bool> Insert(object objeto, string controller)
         {
 
             client.BaseAddress = new Uri(baseurl);
@@ -34,11 +34,11 @@ namespace Clinic.Clases
 
             if (response.IsSuccessStatusCode)
             {
-                control.ShowAlert("Agregado!", "Exito", "Ok");
+                return true;
             }
             else
             {
-                control.ShowAlert("Ocurrio un error al agregar!!", "Error", "Ok");
+                return false;
             }
         }
 
@@ -80,7 +80,7 @@ namespace Clinic.Clases
             {
                 return new Response
                 {
-                    Message = "Sin contenido",
+                    Message = "No se pudo encontrar resultados",
                     IsSuccess = true
                 };
             }

@@ -5,50 +5,51 @@
              xmlns:custom="clr-namespace:Clinic"
              BackgroundColor="#eaeeee">
     <ContentPage.Content>
-        <ScrollView>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="White">
+                <Image Source="people_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
+                <Label Text="Lista de empleados registrados" FontSize="14"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
+                <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Agregar empleado" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
+            </StackLayout>
+            <Frame Padding="0" CornerRadius="3" OutlineColor="DarkGray" HasShadow="True">
+                <SearchBar Placeholder="Buscar empleado" SearchCommand="{Binding SearchCommand}" Text="{Binding Query}" BackgroundColor="White" HeightRequest="40" Margin="5,0,5,0"/>
+            </Frame>
             <StackLayout>
-                <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="White">
-                    <Image Source="people_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
-                    <Label Text="Lista de empleados registradas" FontSize="14"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
-                    <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Agregar empleado" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Command="{Binding AddEmployee}"/>
-                </StackLayout>
-                <Frame Padding="0" CornerRadius="3" OutlineColor="DarkGray" HasShadow="True">
-                        <SearchBar Placeholder="Buscar empleado" SearchCommand="{Binding SearchCommand}" Text="{Binding Query}" BackgroundColor="White" HeightRequest="40" Margin="5,0,5,0"/>
-                    </Frame>
-                    <StackLayout>
-                    <StackLayout VerticalOptions="FillAndExpand">
-                        <Image Source="error_connect" IsVisible="{Binding IsVisible, Mode=TwoWay}"/>
-                        <Image Source="no_result" IsVisible="{Binding NoResults, Mode=TwoWay}"/>
-                        <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}" ItemTapped="Mylist_ItemTapped" IsVisible="{Binding ListVisible, Mode=TwoWay}">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
-                                        <Frame Margin="5,5,5,0" CornerRadius="4" Padding="0">
-                                            <StackLayout Orientation="Horizontal" Padding="5" HorizontalOptions="FillAndExpand">
-                                                <Image Source="usuario" HeightRequest="30" WidthRequest="30"/>
-                                                <StackLayout HorizontalOptions="FillAndExpand" Margin="7,0,0,0">
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <Label Text="{Binding nombres} " LineBreakMode="HeadTruncation"  FontSize="14" TextColor="#000"/>
-                                                        <Label Text="{Binding apellidos}" LineBreakMode="MiddleTruncation"  FontSize="14" TextColor="#000"/>
+                <StackLayout VerticalOptions="FillAndExpand">
+                    <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
+                        <Image Source="error_connect"/>
+                        <Button BackgroundColor="#008ca5" Text="Reconectar" HorizontalOptions="Center" TextColor="White" Command="{Binding Reconnect}"/>
+                    </StackLayout>
+                    <Image Source="no_result" IsVisible="{Binding NoResults, Mode=TwoWay}"/>
+                    <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}" ItemTapped="Mylist_ItemTapped" IsVisible="{Binding ListVisible, Mode=TwoWay}">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
+                                    <Frame Margin="5,5,5,0" CornerRadius="4" Padding="0">
+                                        <StackLayout Orientation="Horizontal" Padding="5" HorizontalOptions="FillAndExpand">
+                                            <Image Source="usuario" HeightRequest="30" WidthRequest="30"/>
+                                            <StackLayout HorizontalOptions="FillAndExpand" Margin="7,0,0,0">
+                                                <StackLayout Orientation="Horizontal">
+                                                    <Label Text="{Binding nombres} " LineBreakMode="HeadTruncation"  FontSize="14" TextColor="#000"/>
+                                                    <Label Text="{Binding apellidos}" LineBreakMode="MiddleTruncation"  FontSize="14" TextColor="#000"/>
+                                                </StackLayout>
+                                                <StackLayout Orientation="Horizontal">
+                                                    <StackLayout HorizontalOptions="StartAndExpand">
+                                                        <Label Text="{Binding fecha_Nac}" FontSize="12"/>
                                                     </StackLayout>
-                                                    <StackLayout Orientation="Horizontal">
-                                                        <StackLayout HorizontalOptions="StartAndExpand">
-                                                            <Label Text="{Binding fecha_Nac}" FontSize="12"/>
-                                                        </StackLayout>
-                                                        <StackLayout HorizontalOptions="EndAndExpand">
-                                                            <Label Text="{Binding especialidad}" FontSize="12"/>
-                                                        </StackLayout>
+                                                    <StackLayout HorizontalOptions="EndAndExpand">
+                                                        <Label Text="{Binding especialidad}" FontSize="12"/>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </StackLayout>
-                                        </Frame>
-                                    </custom:CustomViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        </StackLayout>
-                    </StackLayout>
+                                        </StackLayout>
+                                    </Frame>
+                                </custom:CustomViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
             </StackLayout>
-        </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

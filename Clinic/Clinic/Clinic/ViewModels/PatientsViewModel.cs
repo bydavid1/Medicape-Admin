@@ -1,6 +1,5 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
-using Clinic.Views;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -12,15 +11,15 @@ using XF.Material.Forms.UI.Dialogs;
 
 namespace Clinic.ViewModels
 {
-    public class EmployeesViewModel : BaseViewModel
+    public class PatientsViewModel : BaseViewModel
     {
         Connection get = new Connection();
         User name = new User();
         Functions functions;
 
         #region Propiedades
-        ObservableCollection<Empleados> _Items;
-        public ObservableCollection<Empleados> Items
+        private ObservableCollection<Pacientes> _Items;
+        public ObservableCollection<Pacientes> Items
         {
             get { return _Items; }
             set { SetValue(ref _Items, value); }
@@ -63,13 +62,13 @@ namespace Clinic.ViewModels
         #endregion
 
         #region Constructor
-        public EmployeesViewModel()
+        public PatientsViewModel()
         {
             IsVisible = false;
             ListVisible = true;
             functions = new Functions();
-            getEmployees();
-        } 
+            GetPatients();
+        }
         #endregion
 
         #region Commands
@@ -81,7 +80,7 @@ namespace Clinic.ViewModels
                 {
                     IsRefreshing = true;
 
-                    getEmployees();
+                    GetPatients();
 
                     IsRefreshing = false;
                 });
@@ -93,7 +92,7 @@ namespace Clinic.ViewModels
         {
             get
             {
-                return new RelayCommand(search);
+                return new RelayCommand(Search);
             }
         }
 
@@ -101,7 +100,7 @@ namespace Clinic.ViewModels
         {
             get
             {
-                return new RelayCommand(getEmployees);
+                return new RelayCommand(GetPatients);
             }
         }
 
@@ -111,8 +110,7 @@ namespace Clinic.ViewModels
 
         #region Metodos
 
-
-        public async void getEmployees()
+        private async void GetPatients()
         {
             var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Cargando...");
             bool result = get.TestConnection();
@@ -120,7 +118,7 @@ namespace Clinic.ViewModels
             {
                 IsVisible = false;
                 ListVisible = true;
-                var response = await functions.Read<Empleados>("/Api/empleado/read.php");
+                var response = await functions.Read<Pacientes>("/Api/paciente/read.php");
                 if (!response.IsSuccess)
                 {
                     await loadingDialog.DismissAsync();
@@ -138,8 +136,8 @@ namespace Clinic.ViewModels
                 else
                 {
                     await loadingDialog.DismissAsync();
-                    var list = (List<Empleados>)response.Result;
-                    Items = new ObservableCollection<Empleados>(list);
+                    var list = (List<Pacientes>)response.Result;
+                    Items = new ObservableCollection<Pacientes>(list);
                 }
             }
             else
@@ -150,17 +148,17 @@ namespace Clinic.ViewModels
             }
         }
 
-        private async void search()
+        private async void Search()
         {
             var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Buscando...");
-            var response = await functions.Read<Empleados>("/Api/empleado/search.php?query=" + Query);
+            var response = await functions.Read<Empleados>("/Api/paciente/search.php?query=" + Query);
             if (response.IsSuccess && response.Result != null)
             {
                 await loadingDialog.DismissAsync();
                 NoResults = false;
                 ListVisible = true;
-                var list = (List<Empleados>)response.Result;
-                Items = new ObservableCollection<Empleados>(list);
+                var list = (List<Pacientes>)response.Result;
+                Items = new ObservableCollection<Pacientes>(list);
             }
             else if (response.IsSuccess && response.Result == null)
             {
@@ -172,9 +170,9 @@ namespace Clinic.ViewModels
             {
                 await loadingDialog.DismissAsync();
                 NoResults = false;
-                                   await MaterialDialog.Instance.AlertAsync(message: response.Message,
-                                               title: "Aviso",
-                                               acknowledgementText: "Ok");
+                await MaterialDialog.Instance.AlertAsync(message: response.Message,
+                            title: "Aviso",
+                            acknowledgementText: "Ok");
             }
         } 
         #endregion

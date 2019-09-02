@@ -1,9 +1,11 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
+using GalaSoft.MvvmLight.Command;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XF.Material.Forms.UI.Dialogs;
 
 namespace Clinic.ViewModels
 {
@@ -28,50 +30,90 @@ namespace Clinic.ViewModels
             set { SetValue(ref _isRefreshing, value); }
         }
 
+        private bool _listVisible;
+        public bool ListVisible
+        {
+            get { return _listVisible; }
+            set { SetValue(ref _listVisible, value); }
+        }
+
+        private bool _isVisible = false;
+        public bool IsVisible
+        {
+            get { return _isVisible; }
+            set { SetValue(ref _isVisible, value); }
+        }
+
+        private bool _noresults;
+        public bool NoResults
+        {
+            get { return _noresults; }
+            set { SetValue(ref _noresults, value); }
+        }
+
         public CitasViewModel()
         {
+            IsVisible = false;
             functions = new Functions();
+            GetQuotes();
+        }
+
+        public async void GetQuotes()
+        {
+            var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Cargando...");
             bool result = get.TestConnection();
             if (result == true)
             {
-                IsRefreshing = true;
-                getQuotes();
-                IsRefreshing = false;
-            }
-            else
-            {
-                control.ShowAlert("No se pudo conectar con el servidor", "Error", "Ok");
-            }
-        }
+                string username = name.getName();
+                var response = await functions.GetCurrentId(username);
 
-        public async void getQuotes()
-        {
-            string username = name.getName();
-            var response = await functions.GetCurrentId(username);
-
-            if (!response.IsSuccess)
-            {
-                control.ShowAlert(response.Message, "Error", "Aceptar");
-            }
-            else
-            {
-                var response2 = await functions.Read<Citas>("/Api/citas/custom_read.php?idempleado=" + response.Result);
-                if (!response2.IsSuccess)
+                if (!response.IsSuccess)
                 {
-                    control.ShowAlert(response2.Message, "Error", "Aceptar");
-                }
-                else if(response2.Result == null)
-                {
-                    control.ShowAlert(response2.Message, "Error", "Aceptar");
+                    await loadingDialog.DismissAsync();
+                    control.ShowAlert(response.Message, "Error", "Aceptar");
                 }
                 else
                 {
-                    var list = (List<Citas>)response2.Result;
-                    Items = new ObservableCollection<Citas>(list);
+                    var response2 = await functions.Read<Citas>("/Api/citas/custom_read.php?idempleado=" + response.Result);
+                    if (!response2.IsSuccess)
+                    {
+                        await loadingDialog.DismissAsync();
+                        control.ShowAlert(response2.Message, "Error", "Aceptar");
+                    }
+                    else if (response2.Result == null)
+                    {
+                        await loadingDialog.DismissAsync();
+                        IsVisible = false;
+                        NoResults = true;
+                        ListVisible = false;
+                        control.ShowAlert(response2.Message, "Error", "Aceptar");
+                    }
+                    else
+                    {
+                        IsVisible = false;
+                        NoResults = false;
+                        ListVisible = true;
+                        await loadingDialog.DismissAsync();
+                        var list = (List<Citas>)response2.Result;
+                        Items = new ObservableCollection<Citas>(list);
+                    }
                 }
             }
- 
-         }
+            else
+            {
+                await loadingDialog.DismissAsync();
+                IsVisible = true;
+                ListVisible = false;
+            }
+        }
+
+        public ICommand Reconnect
+        {
+            get
+            {
+                return new RelayCommand(GetQuotes);
+            }
+        }
 
         public ICommand RefreshCommand
         {
@@ -81,7 +123,7 @@ namespace Clinic.ViewModels
                 {
                     IsRefreshing = true;
 
-                     getQuotes();
+                     GetQuotes();
 
                     IsRefreshing = false;
                 });

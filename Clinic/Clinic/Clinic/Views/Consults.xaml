@@ -4,7 +4,7 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-              BackgroundColor="#e2e2e2"
+              BackgroundColor="#eaeeee"
              x:Class="Clinic.Views.Consults">
     <ContentPage.Content>
         <StackLayout>
@@ -12,6 +12,11 @@
                 <Image Source="list_success_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" />
                 <Label Text="Lista de consultas registradas" FontSize="Medium"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
             </StackLayout>
+            <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
+                <Image Source="error_connect"/>
+                <Button BackgroundColor="#008ca5" Text="Reconectar" HorizontalOptions="Center" TextColor="White" Command="{Binding Reconnect}"/>
+            </StackLayout>
+            <Image Source="no_result" IsVisible="{Binding NoResults, Mode=TwoWay}"/>
             <StackLayout Padding="7">
                 <Frame HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="5" Margin="0,10,0,0">
                     <StackLayout>

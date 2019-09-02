@@ -38,5 +38,10 @@ namespace Clinic.Views
                 Navigation.PushAsync(new ViewEmployee(tapped.idempleado));
             }
         }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new AddEmployee());
+        }
     }
 }
