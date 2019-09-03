@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Clinic.Models
 {
-    class Consultas
+   public class Consultas
     {
         public int idconsulta { get; set; }
         public string fecha { get; set; }

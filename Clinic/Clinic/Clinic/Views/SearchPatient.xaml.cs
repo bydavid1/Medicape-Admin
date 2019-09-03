@@ -84,10 +84,6 @@ namespace Clinic.Views
                     create.Insert(empleados, "/Api/item_espera/create.php");
 
                 }
-                else if (origen.Text == "invoice")
-                {
-                    Navigation.PushAsync(new AddInvoice(tapped.idpaciente));
-                }
             }
                
             }

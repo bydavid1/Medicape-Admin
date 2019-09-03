@@ -11,16 +11,15 @@ using XF.Material.Forms.UI.Dialogs;
 
 namespace Clinic.ViewModels
 {
-    public class ConsultsViewModel : BaseViewModel
+    public class UsersViewModels : BaseViewModel
     {
-        MaterialControls control = new MaterialControls();
         Connection get = new Connection();
         User name = new User();
         Functions functions;
 
         #region Propiedades
-        ObservableCollection<Consultas> _Items;
-        public ObservableCollection<Consultas> Items
+        ObservableCollection<Usuario> _Items;
+        public ObservableCollection<Usuario> Items
         {
             get { return _Items; }
             set { SetValue(ref _Items, value); }
@@ -40,6 +39,13 @@ namespace Clinic.ViewModels
             set { SetValue(ref _isVisible, value); }
         }
 
+        private string _query;
+        public string Query
+        {
+            get { return _query; }
+            set { SetValue(ref _query, value); }
+        }
+
         private bool _noresults;
         public bool NoResults
         {
@@ -56,55 +62,44 @@ namespace Clinic.ViewModels
         #endregion
 
         #region Constructor
-        public ConsultsViewModel()
+        public UsersViewModels()
         {
             IsVisible = false;
+            ListVisible = true;
             functions = new Functions();
-            GetConsults();
+            GetUsers();
         }
+
         #endregion
 
-        private async void GetConsults()
+        private async void GetUsers()
         {
             var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Cargando...");
             bool result = get.TestConnection();
             if (result == true)
             {
-                string username = name.getName();
-                var response = await functions.GetCurrentId(username);
-
+                IsVisible = false;
+                ListVisible = true;
+                var response = await functions.Read<Usuario>("/Api/usuario/read.php");
                 if (!response.IsSuccess)
                 {
                     await loadingDialog.DismissAsync();
-                    control.ShowAlert(response.Message, "Error", "Aceptar");
+                    await MaterialDialog.Instance.AlertAsync(message: response.Message,
+                                               title: "Error",
+                                               acknowledgementText: "Ok");
+                }
+                else if (response.Result == null)
+                {
+                    await loadingDialog.DismissAsync();
+                    await MaterialDialog.Instance.AlertAsync(message: response.Message,
+                                               title: "Error",
+                                               acknowledgementText: "Ok");
                 }
                 else
                 {
-                    var response2 = await functions.Read<Consultas>("/Api/consultas/read.php?idempleado=" + response.Result);
-                    if (!response2.IsSuccess)
-                    {
-                        IsVisible = false;
-                        NoResults = true;
-                        await loadingDialog.DismissAsync();
-                        control.ShowAlert(response2.Message, "Error", "Aceptar");
-                    }
-                    else if (response2.IsSuccess && response2.Result == null)
-                    {
-                        await loadingDialog.DismissAsync();
-                        IsVisible = false;
-                        NoResults = true;
-                        ListVisible = false;
-                        control.ShowAlert(response2.Message, "Error", "Aceptar");
-                    }
-                    else
-                    {
-                        IsVisible = false;
-                        NoResults = false;
-                        ListVisible = true;
-                        await loadingDialog.DismissAsync();
-                        var list = (List<Consultas>)response2.Result;
-                        Items = new ObservableCollection<Consultas>(list);
-                    }
+                    await loadingDialog.DismissAsync();
+                    var list = (List<Usuario>)response.Result;
+                    Items = new ObservableCollection<Usuario>(list);
                 }
             }
             else
@@ -115,13 +110,6 @@ namespace Clinic.ViewModels
             }
         }
 
-        public ICommand Reconnect
-        {
-            get
-            {
-                return new RelayCommand(GetConsults);
-            }
-        }
 
         public ICommand RefreshCommand
         {
@@ -131,10 +119,18 @@ namespace Clinic.ViewModels
                 {
                     IsRefreshing = true;
 
-                    GetConsults();
+                    GetUsers();
 
                     IsRefreshing = false;
                 });
+            }
+        }
+
+        public ICommand Reconnect
+        {
+            get
+            {
+                return new RelayCommand(GetUsers);
             }
         }
     }

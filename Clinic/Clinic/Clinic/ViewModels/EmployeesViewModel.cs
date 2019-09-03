@@ -153,7 +153,7 @@ namespace Clinic.ViewModels
         private async void search()
         {
             var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Buscando...");
-            var response = await functions.Read<Empleados>("/Api/empleado/search.php?query=" + Query);
+            var response = await functions.Read<Empleados>("/Api/usuario/read.php?query=" + Query);
             if (response.IsSuccess && response.Result != null)
             {
                 await loadingDialog.DismissAsync();

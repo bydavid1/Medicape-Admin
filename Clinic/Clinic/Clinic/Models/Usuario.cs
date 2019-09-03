@@ -4,7 +4,7 @@ using System.Text;
 
 namespace Clinic.Models
 {
-    class Usuario
+    public class Usuario
     {
         public int iduser { get; set; }
         public string user_Name { get; set; }

@@ -36,7 +36,6 @@ namespace Clinic.ViewModels
                 MenuItems.Add(new MasterMenu { MenuName = "Empleados", MenuIcon = "people", TargetType = typeof(Employees) });
                 MenuItems.Add(new MasterMenu { MenuName = "Medicamentos", MenuIcon = "list_write", TargetType = typeof(Medicaments) });
                 MenuItems.Add(new MasterMenu { MenuName = "Usuarios", MenuIcon = "people", TargetType = typeof(Users) });
-                MenuItems.Add(new MasterMenu { MenuName = "Facturas", MenuIcon = "list_success", TargetType = typeof(Invoice) });
                 MenuItems.Add(new MasterMenu { MenuName = "Consejos", MenuIcon = "list_write", TargetType = typeof(Views.Tips) });
                 MenuItems.Add(new MasterMenu { MenuName = "Listas de espera", MenuIcon = "list_write", TargetType = typeof(Waiting_list) });
             }
@@ -58,7 +57,6 @@ namespace Clinic.ViewModels
                 MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(Home) });
                 MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
                 MenuItems.Add(new MasterMenu { MenuName = "Citas", MenuIcon = "list_search", TargetType = typeof(Quotes) });
-                MenuItems.Add(new MasterMenu { MenuName = "Facturas", MenuIcon = "list_success", TargetType = typeof(Invoice) });
                 MenuItems.Add(new MasterMenu { MenuName = "Consejos", MenuIcon = "list_write", TargetType = typeof(Views.Tips) });
             }
             else if (type == "farmacia")

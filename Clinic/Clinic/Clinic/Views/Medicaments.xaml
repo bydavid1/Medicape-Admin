@@ -4,48 +4,46 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             BackgroundColor="#e2e2e2"
-             xmlns:material="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             BackgroundColor="#eaeeee"
+             xmlns:custom="clr-namespace:Clinic"
              x:Class="Clinic.Views.Medicaments">
     <ContentPage.Content>
-        <StackLayout BackgroundColor="#e2e2e2">
+        <StackLayout>
             <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
                 <Image Source="list_success_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" />
                 <Label Text="Lista de medicamentos registradas" FontSize="Medium"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
             </StackLayout>
-            <StackLayout Padding="5">
-                <Frame HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="5" Margin="0,10,0,10" BorderColor="#008ca5">
-                    <StackLayout>
-                        <StackLayout HeightRequest="33" BackgroundColor="#008ca5" Orientation="Horizontal" Padding="8">
-                            <Label Text="Medicamentos" FontFamily="{StaticResource NormalFont}" TextColor="White" FontSize="18" VerticalOptions="CenterAndExpand"/>
-                            <Button BackgroundColor="white" TextColor="#008ca5"  Text="Agregar medicamento" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="Micro" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
-                        </StackLayout>
-                        <StackLayout Orientation="Horizontal" Padding="5, 0, 5, 0">
+            <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
+                <Image Source="error_connect"/>
+                <Button BackgroundColor="#008ca5" Text="Reconectar" HorizontalOptions="Center" TextColor="White" Command="{Binding Reconnect}"/>
+            </StackLayout>
+            <Image Source="no_result" IsVisible="{Binding NoResults, Mode=TwoWay}"/>
+            <StackLayout Padding="5"  IsVisible="{Binding ListVisible, Mode=TwoWay}">
+                <StackLayout Orientation="Horizontal" Padding="5, 0, 5, 0">
                             <Label HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" Text="Nombre" FontSize="Medium"/>
                             <Label HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" Text="Cantidad" FontSize="Medium"/>
                             <Label HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" Text="Precio" FontSize="Medium"/>
-                        </StackLayout>
-                        <ListView x:Name="mylist" RowHeight="60" ItemTapped="Mylist_ItemTapped" IsPullToRefreshEnabled="True">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Padding="10,10,10,10">
-                                            <StackLayout Orientation="Horizontal">
-                                                <Label Text="{Binding nom_Medicamento}"  FontFamily="{StaticResource NormalFont}" FontSize="15" HorizontalOptions="StartAndExpand" LineBreakMode="TailTruncation"/>
-                                                <Label Text="{Binding cantidad}" FontFamily="{StaticResource BoldFont}" FontSize="15" HorizontalOptions="CenterAndExpand"/>
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
-                                                    <Label Text="$" FontFamily="{StaticResource BoldFont}"/>
-                                                    <Label Text="{Binding precio_U}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
-                                                </StackLayout>
+                </StackLayout>
+                <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
+                                <Frame Margin="5,5,5,0" CornerRadius="4" Padding="0">
+                                    <StackLayout Padding="10,10,10,10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <Label Text="{Binding nom_Medicamento}"  FontFamily="{StaticResource NormalFont}" FontSize="15" HorizontalOptions="StartAndExpand" LineBreakMode="TailTruncation"/>
+                                            <Label Text="{Binding cantidad}" FontFamily="{StaticResource BoldFont}" FontSize="15" HorizontalOptions="CenterAndExpand"/>
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                                <Label Text="$" FontFamily="{StaticResource BoldFont}"/>
+                                                <Label Text="{Binding precio_U}" FontFamily="{StaticResource BoldFont}" FontSize="15"/>
                                             </StackLayout>
                                         </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        <Label Text="No se encontraron medicamentos" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False" x:Name="message"/>
-                    </StackLayout>
-                </Frame>
+                                    </StackLayout>
+                                </Frame>
+                            </custom:CustomViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
             </StackLayout>
         </StackLayout>
     </ContentPage.Content>
