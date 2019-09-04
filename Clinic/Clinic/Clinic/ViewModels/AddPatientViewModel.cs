@@ -1,14 +1,15 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
-using System;
-using System.Windows.Input;
-using GalaSoft.MvvmLight.Command;
 using Clinic.Validaciones;
+using GalaSoft.MvvmLight.Command;
+using System;
 using System.Collections.Generic;
+using System.Text;
+using System.Windows.Input;
 
 namespace Clinic.ViewModels
 {
-    public class AddEmployeeViewModel : BaseViewModel
+    public class AddPatientViewModel : BaseViewModel
     {
         MaterialControls control = new MaterialControls();
         #region Propiedades
@@ -16,15 +17,12 @@ namespace Clinic.ViewModels
         private string _apellido;
         private string _sexo;
         private string _estado;
-        private string _especialidad;
         private string _dui;
         private string _telefono;
         private string _correo;
         private string _departamento;
         private string _municipio;
-        private string _celular;
         private string _dir;
-        private string _nit;
         private DateTime _selected;
         #endregion
 
@@ -51,12 +49,6 @@ namespace Clinic.ViewModels
             get { return _estado; }
             set { SetValue(ref _estado, value); }
         }
-        public List<string> l_especialidad { get; set; }
-        public string s_especialidad
-        {
-            get { return _especialidad; }
-            set { SetValue(ref _especialidad, value); }
-        }
         public string e_dui
         {
             get { return _dui; }
@@ -77,11 +69,6 @@ namespace Clinic.ViewModels
             get { return _departamento; }
             set { SetValue(ref _departamento, value); }
         }
-        public string e_celular
-        {
-            get { return _celular; }
-            set { SetValue(ref _celular, value); }
-        }
         public string e_municipio
         {
             get { return _municipio; }
@@ -92,11 +79,6 @@ namespace Clinic.ViewModels
             get { return _dir; }
             set { SetValue(ref _dir, value); }
         }
-        public string e_nit
-        {
-            get { return _nit; }
-            set { SetValue(ref _nit, value); }
-        }
         public string e_nac { get; set; }
 
         public DateTime e_selected
@@ -106,7 +88,9 @@ namespace Clinic.ViewModels
         }
 
         #endregion
-        public AddEmployeeViewModel()
+
+        #region Constructor
+        public AddPatientViewModel()
         {
             var listGenero = new List<string>();
             listGenero.Add("Masculino");
@@ -114,11 +98,6 @@ namespace Clinic.ViewModels
 
             l_sexo = listGenero;
 
-            var listEspecialidad= new List<string>();
-            listEspecialidad.Add("Doctor");
-            listEspecialidad.Add("Enfermera");
-
-            l_especialidad = listEspecialidad;
 
             var listEstado = new List<string>();
             listEstado.Add("Soltero");
@@ -127,6 +106,7 @@ namespace Clinic.ViewModels
 
             l_estado = listEstado;
         }
+        #endregion
 
         public ICommand Create
         {
@@ -148,9 +128,7 @@ namespace Clinic.ViewModels
               string.IsNullOrEmpty(e_dir) ||
               string.IsNullOrEmpty(e_telefono) ||
               string.IsNullOrEmpty(e_dui) ||
-              string.IsNullOrEmpty(e_nit) ||
-              string.IsNullOrEmpty(e_municipio) ||
-              string.IsNullOrEmpty(e_celular)
+              string.IsNullOrEmpty(e_municipio)
               )
             {
                 control.ShowAlert("Faltan datos por llenar", "Error", "Ok");
@@ -164,27 +142,23 @@ namespace Clinic.ViewModels
                 string date = DateTime.Today.ToString("yy/MM/dd");
                 string bornDate = e_selected.ToString("yy/MM/dd");
 
-                Empleados empleados = new Empleados
+                Pacientes pacientes = new Pacientes
                 {
                     nombres = e_nombre,
                     apellidos = e_apellido,
                     fecha_Nac = bornDate,
                     sexo = s_sexo,
                     estado_Civil = s_estado,
-                    especialidad = s_especialidad,
                     dui = e_dui,
                     telefono = e_telefono,
                     email = e_correo,
                     departamento = e_departamento,
-                    celular = e_celular,
                     municipio = e_municipio,
-                    direccion = e_dir,
-                    nit = e_nit,
-                    fecha_Contratacion = date
+                    direccion = e_dir
                 };
 
                 Functions element = new Functions();
-               var response = await element.Insert(empleados, "/Api/empleado/create.php");
+                var response = await element.Insert(pacientes, "/Api/paciente/create.php");
 
                 if (response == true)
                 {
@@ -193,12 +167,10 @@ namespace Clinic.ViewModels
                     e_apellido = string.Empty;
                     e_dui = string.Empty;
                     e_telefono = string.Empty;
-                    e_celular = string.Empty;
                     e_correo = string.Empty;
                     e_departamento = string.Empty;
                     e_municipio = string.Empty;
                     e_dir = string.Empty;
-                    e_nit = string.Empty;
                 }
                 else
                 {

@@ -12,6 +12,7 @@
             <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
                 <Image Source="list_success_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" />
                 <Label Text="Lista de consultas registradas" FontSize="Medium"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
+                <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Nueva consulta" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
             </StackLayout>
             <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
                 <Image Source="error_connect"/>

@@ -65,7 +65,7 @@
                         </material:MaterialTextField>
 
                         <Label Text="Fecha de nacimiento" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
-                        <DatePicker Date="{Binding e_nac}"/>
+                        <DatePicker Date="{Binding e_selected}"/>
 
                         <Label Text="Teléfono" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
                         <material:MaterialTextField Placeholder="Ingrese el número de telefono" BackgroundColor="#DCDCDC" TintColor="#008ca5"

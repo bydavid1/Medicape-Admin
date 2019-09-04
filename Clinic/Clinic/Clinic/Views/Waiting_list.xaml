@@ -4,40 +4,45 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
+             xmlns:custom="clr-namespace:Clinic"
              x:Class="Clinic.Views.Waiting_list">
     <ContentPage.Content>
-        <StackLayout Padding="10">
-            <Frame HorizontalOptions="FillAndExpand" Padding="0" CornerRadius="5" Margin="0,10,0,0">
-                <StackLayout>
-                    <StackLayout HeightRequest="30" BackgroundColor="#008ca5" Orientation="Horizontal" Padding="10">
-                        <Label Text="Listas de espera" FontFamily="{StaticResource NormalFont}" TextColor="White" FontSize="18"/>
-                        <Button BackgroundColor="white" TextColor="#008ca5"  Text="Agregar lista" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="Micro" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
-                    </StackLayout>
-                    <StackLayout HeightRequest="230">
-                        <ListView x:Name="mylist" IsPullToRefreshEnabled="True" Refreshing="Mylist_Refreshing" HasUnevenRows="True" ItemTapped="Mylist_ItemTapped">
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
-                                        <StackLayout Padding="10,10,20,10">
-                                            <StackLayout Orientation="Horizontal">
-                                                <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
-                                                    <Label Text="{Binding nombre} " />
-                                                    <Label Text="{Binding apellido}" />
-                                                </StackLayout>
-                                                <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
-                                                    <Label Text="Consultorio:"/>
-                                                    <Label Text="{Binding num_Consultorio}" />
-                                                </StackLayout>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
+                <Image Source="list_success_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" />
+                <Label Text="Listas de espera" FontSize="Medium"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
+                <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Nueva lista" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
+                <Image Source="error_connect"/>
+                <Button BackgroundColor="#008ca5" Text="Reconectar" HorizontalOptions="Center" TextColor="White" Command="{Binding Reconnect}"/>
+            </StackLayout>
+            <Image Source="no_result" IsVisible="{Binding NoResults, Mode=TwoWay}"/>
+            <StackLayout Padding="7">
+                <ListView x:Name="mylist" HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}" IsVisible="{Binding ListVisible, Mode=TwoWay}" ItemTapped="Mylist_ItemTapped">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
+                                <Frame Margin="5,5,5,0" CornerRadius="4" Padding="0">
+                                    <StackLayout Padding="10,10,20,10">
+                                        <StackLayout Orientation="Horizontal">
+                                            <StackLayout Orientation="Horizontal" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Label Text="{Binding nombre} " />
+                                                <Label Text="{Binding apellido}" />
+                                            </StackLayout>
+                                            <StackLayout HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Label Text="Consultorio:"/>
+                                                <Label Text="{Binding num_Consultorio}" />
                                             </StackLayout>
                                         </StackLayout>
-                                    </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                        <Label Text="No se encontraron listas" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False" x:Name="message"/>
-                    </StackLayout>
-                </StackLayout>
-            </Frame>
+                                    </StackLayout>
+                                </Frame>
+                            </custom:CustomViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+                <Label Text="No se encontraron listas" VerticalOptions="Center" HorizontalOptions="Center" IsVisible="False" x:Name="message"/>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

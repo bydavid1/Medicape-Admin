@@ -12,14 +12,20 @@
             <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
                 <Image Source="list_success_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" />
                 <Label Text="Lista de usuarios" FontSize="Medium"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
+                <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Crear usuario" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
             </StackLayout>
             <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
                 <Image Source="error_connect"/>
                 <Button BackgroundColor="#008ca5" Text="Reconectar" HorizontalOptions="Center" TextColor="White" Command="{Binding Reconnect}"/>
                 </StackLayout>
                 <Image Source="no_result" IsVisible="{Binding NoResults, Mode=TwoWay}"/>
-            <StackLayout VerticalOptions="EndAndExpand">
-                <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}" IsVisible="{Binding ListVisible, Mode=TwoWay}">
+            <StackLayout VerticalOptions="EndAndExpand" IsVisible="{Binding ListVisible, Mode=TwoWay}">
+                <StackLayout Orientation="Horizontal" Padding="5, 0, 5, 0">
+                    <Label HorizontalOptions="StartAndExpand" FontFamily="{StaticResource NormalFont}" Text="Usuario" FontSize="Medium"/>
+                    <Label HorizontalOptions="CenterAndExpand" FontFamily="{StaticResource NormalFont}" Text="Email" FontSize="Medium"/>
+                    <Label HorizontalOptions="EndAndExpand" FontFamily="{StaticResource NormalFont}" Text="Tipo de usuario" FontSize="Medium"/>
+                </StackLayout>
+                <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
