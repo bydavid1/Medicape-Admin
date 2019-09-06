@@ -29,7 +29,7 @@ namespace Clinic.ViewModels
             if (type == "admin")
             {
                 
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(Home) });
+                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
                 MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
                 MenuItems.Add(new MasterMenu { MenuName = "Citas", MenuIcon = "list_search", TargetType = typeof(Quotes) });
                 MenuItems.Add(new MasterMenu { MenuName = "Consultas", MenuIcon = "list_success", TargetType = typeof(Consults) });
@@ -41,32 +41,32 @@ namespace Clinic.ViewModels
             }
             else if (type == "archivo")
             {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(Home) });
+                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
                 MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
                 MenuItems.Add(new MasterMenu { MenuName = "Consultas", MenuIcon = "list_success", TargetType = typeof(Consults) });
             }
             else if (type == "doctor")
             {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(Home) });
+                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
                 MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
                 MenuItems.Add(new MasterMenu { MenuName = "Citas", MenuIcon = "list_search", TargetType = typeof(Quotes) });
                 MenuItems.Add(new MasterMenu { MenuName = "Consejos", MenuIcon = "list_write", TargetType = typeof(Views.Tips) });
             }
             else if (type == "enfermero")
             {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(Home) });
+                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
                 MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
                 MenuItems.Add(new MasterMenu { MenuName = "Citas", MenuIcon = "list_search", TargetType = typeof(Quotes) });
                 MenuItems.Add(new MasterMenu { MenuName = "Consejos", MenuIcon = "list_write", TargetType = typeof(Views.Tips) });
             }
             else if (type == "farmacia")
             {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(Home) });
+                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
                 MenuItems.Add(new MasterMenu { MenuName = "Medicamentos", MenuIcon = "list_write", TargetType = typeof(Medicaments) });
             }
             else
             {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(Home) });
+                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
             }
 
         }

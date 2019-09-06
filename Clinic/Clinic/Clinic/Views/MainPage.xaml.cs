@@ -20,7 +20,7 @@ namespace Clinic.Views
             user_Name.Text = username;
             NavigationPage.SetHasNavigationBar(this, false);
 
-            this.Detail = new NavigationPage(new Home()) { BarBackgroundColor = Color.FromHex("#00cbc5") };
+            this.Detail = new NavigationPage(new HomeAdmin()) { BarBackgroundColor = Color.FromHex("#00cbc5") };
 
             BindingContext = new MainPageViewModel();
             MessagingCenter.Subscribe<MasterMenu>(this, "OpenMenu", (Menu) =>

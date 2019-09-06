@@ -1,0 +1,443 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             x:Class="Clinic.Views.HomeAdmin">
+
+
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Name="Cerrar Sesion" Activated="OnClick"  Order="Secondary" Priority="0"/>
+        <ToolbarItem Name="Perfil" Activated="OnClick"  Order="Secondary" Priority="0"/>
+        <ToolbarItem Name="Acerca de" Activated="OnClick"  Order="Secondary" Priority="1"/>
+    </ContentPage.ToolbarItems>
+    
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="2">
+
+                <!--Total Empleados y Pacientes-->
+                <Grid 
+                 ColumnSpacing="5" 
+                 Margin="10,5,10,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Total Empleados-->
+                    <ui:MaterialCard
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Elevation="4"
+                        WidthRequest="150"
+                        HeightRequest="50"
+                        VerticalOptions="Center"
+                        BackgroundColor="#5ac9d2">
+
+                        <StackLayout 
+                         HorizontalOptions="FillAndExpand" 
+                         Spacing="-5">
+
+                            <ui:MaterialLabel 
+                             Text="Empleados"
+                             TextColor="White"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="18"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"/>
+
+                            <ui:MaterialLabel 
+                             Text="{Binding TEmpleado}" 
+                             TextColor="White"                                            
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"                                              
+                             TypeScale="H6" 
+                             FontSize="27" 
+                             FontAttributes="Bold" 
+                             LetterSpacing="0.15"/>
+
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+                    <!--Total Pacientes-->
+                    <ui:MaterialCard
+				     Grid.Column="1"
+					 Grid.Row="0"
+					 Elevation="4"
+				     WidthRequest="150"
+					 HeightRequest="50"
+					 VerticalOptions="Center"
+					 BackgroundColor="#4dbb68">
+
+                        <StackLayout 
+                         HorizontalOptions="FillAndExpand" 
+                         Spacing="-5">
+
+                            <ui:MaterialLabel 
+                             Text="Pacientes" 
+                             TextColor="White" 
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             TypeScale="Subtitle1"  
+                             FontSize="18" 
+                             FontAttributes="None" 
+                             LetterSpacing="0.15"/>
+
+
+                            <ui:MaterialLabel 
+                             Text="{Binding TPaciente}" 
+                             TextColor="White"                                            
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"                                              
+                             TypeScale="H6" 
+                             FontSize="27" 
+                             FontAttributes="Bold" 
+                             LetterSpacing="0.15"/>
+
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+                </Grid>
+
+                <!--Consultas del Dia-->
+                <ui:MaterialCard 
+                 HorizontalOptions="FillAndExpand"
+                 VerticalOptions="Center"
+                 Elevation="8"
+                 Margin="10,5,10,5"                                
+                 BackgroundColor="#0e84b5"
+                 CornerRadius="3">
+
+                    <StackLayout 
+                     HorizontalOptions="FillAndExpand" 
+                     Spacing="-5">
+
+                        <StackLayout 
+                      Orientation="Horizontal" 
+                      Spacing="0" 
+                      HorizontalOptions="Center">
+
+
+                            <ui:MaterialLabel 
+                         Text="Consultas del Dia"                       
+                         TextColor="White"                                            
+                         HorizontalOptions="Center"
+                         VerticalOptions="Center"                                              
+                         TypeScale="Body1" 
+                         FontSize="25" 
+                         FontAttributes="Bold" 
+                         LetterSpacing="0.15"/>
+
+                        </StackLayout>
+
+                        <ui:MaterialLabel 
+                        Text="{Binding DConsulta}" 
+                        TextColor="White"                                            
+                        HorizontalOptions="Center"
+                        VerticalOptions="Center"
+                        TypeScale="H3"  
+                        FontSize="50" 
+                        FontAttributes="None" 
+                        LetterSpacing="0.15"/>
+
+                    </StackLayout>
+                </ui:MaterialCard>
+
+                <ui:MaterialLabel 
+                 Text="Registros Medicos" 
+                 TextColor="Black"                                            
+                 HorizontalOptions="Start"
+                 VerticalOptions="Center"
+                 TypeScale="H4"  
+                 FontSize="20"
+                 Margin="10,0,0,0"
+                 FontAttributes="Bold" 
+                 LetterSpacing="0.15"/>
+
+                <!--Medicamentos-->
+                <Grid 
+                 Margin="10,5,10,8" 
+                 RowSpacing="-85">
+
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Texto a Mostrar-->
+                    <ui:MaterialCard
+                     ClickCommand="{Binding MedicamentosCommand}"
+                     Clicked="Clicked_Medicaments"
+                     IsClickable="True"
+                     WidthRequest="150"
+                     HeightRequest="55"
+                     CornerRadius="4"
+                     Grid.Row="0"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="2">
+
+                        <StackLayout 
+                         Margin="60,0,0,0" 
+                         Spacing="-1" 
+                         VerticalOptions="Center">
+
+                            <ui:MaterialLabel 
+                             Text="Medicamentos" 
+                             TextColor="Black"                                            
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             TypeScale="Subtitle1"  
+                             FontSize="18" 
+                             FontAttributes="Bold" 
+                             LetterSpacing="0.15"/>
+
+                            <BoxView HeightRequest="1" WidthRequest="150" Color="Black"/>
+
+                            <StackLayout 
+                             Orientation="Horizontal" 
+                             Spacing="2">
+
+                                <ui:MaterialLabel 
+                               Text="Ult.Registro:" 
+                               VerticalOptions="Center"
+                               TypeScale="Subtitle1"  
+                               FontSize="15"
+                               LetterSpacing="0.15"/>
+
+                                <ui:MaterialLabel 
+                                 Text="26/08/2019" 
+                                 VerticalOptions="Center"
+                                 TypeScale="Subtitle1"  
+                                 FontSize="15"
+                                 FontAttributes="Bold" 
+                                 LetterSpacing="0.15"/>
+
+                            </StackLayout>
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+                    <!--Imagen Medicamentos-->
+                    <ui:MaterialCard
+                     HorizontalOptions="FillAndExpand"
+                     HeightRequest="35"
+                     CornerRadius="4"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     BackgroundColor="#e66d45"
+                     Elevation="4">
+
+                        <StackLayout 
+                         VerticalOptions="CenterAndExpand" 
+                         HorizontalOptions="CenterAndExpand">
+
+                            <Image 
+                            Source="medication" 
+                            WidthRequest="35" 
+                            VerticalOptions="Center"/>
+
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+                </Grid>
+
+                <!--Consejos-->
+                <Grid 
+                    Margin="10,5,10,8"
+                    RowSpacing="-85">
+
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Texto a Mostrar-->
+                    <ui:MaterialCard
+                     ClickCommand="{Binding ConsejosCommand}"
+                     Clicked="Clicked_Tips"
+                     IsClickable="True"  
+                     WidthRequest="150"
+                     HeightRequest="55"
+                     CornerRadius="4"
+                     Grid.Row="0"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="2">
+
+                        <StackLayout 
+                            Margin="60,0,0,0"
+                            Spacing="-1"
+                            VerticalOptions="Center">
+
+                            <ui:MaterialLabel 
+                             Text="Consejos" 
+                             TextColor="Black"                                            
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             TypeScale="Subtitle1"  
+                             FontSize="18"
+                             FontAttributes="Bold" 
+                             LetterSpacing="0.15"/>
+
+                            <BoxView HeightRequest="1" WidthRequest="150" Color="Black"></BoxView>
+
+                            <StackLayout 
+                                Orientation="Horizontal"
+                                Spacing="2">
+
+                                <ui:MaterialLabel 
+                                 Text="Publicaciones del dia:" 
+                                 VerticalOptions="Center"
+                                 TypeScale="Subtitle1"  
+                                 FontSize="15"
+                                 LetterSpacing="0.15"/>
+
+                                <ui:MaterialLabel
+                                 Text="10" 
+                                 VerticalOptions="Center"
+                                 TypeScale="Subtitle1"  
+                                 FontSize="15"
+                                 FontAttributes="Bold" 
+                                 LetterSpacing="0.15"/>
+
+                            </StackLayout>
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+                    <!--Imagen Consejos-->
+                    <ui:MaterialCard
+                     HorizontalOptions="FillAndExpand"
+                     HeightRequest="35"
+                     CornerRadius="4"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     BackgroundColor="#3c96e0"
+                     Elevation="4">
+
+                        <StackLayout 
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+
+                            <Image 
+                             Source="social"
+                             WidthRequest="35"
+                             VerticalOptions="Center"/>
+
+                        </StackLayout>
+                    </ui:MaterialCard>
+                </Grid>
+
+                <!--Empleados-->
+                <Grid 
+                    Margin="10,5,10,8"
+                    RowSpacing="-85">
+
+                    <Grid.ColumnDefinitions >
+                        <ColumnDefinition Width="25"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <!--Texto a Mostrar-->
+                    <ui:MaterialCard
+                     ClickCommand="{Binding EmpleadosCommand}"
+                     Clicked="Clicked_Employees"
+                     IsClickable="True"
+                     WidthRequest="150"
+                     HeightRequest="55"
+                     CornerRadius="4"
+                     Grid.Row="0"
+                     Grid.Column="1"
+                     Grid.ColumnSpan="2">
+
+                        <StackLayout
+                         Margin="60,0,0,0"
+                         Spacing="-1"
+                         VerticalOptions="Center">
+
+                            <ui:MaterialLabel
+                             Text="Empleados" 
+                             TextColor="Black"                                            
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"
+                             TypeScale="Subtitle1"  
+                             FontSize="18"
+                             FontAttributes="Bold" 
+                             LetterSpacing="0.15"/>
+
+                            <BoxView HeightRequest="1" WidthRequest="150" Color="Black"></BoxView>
+
+                            <StackLayout 
+                             Orientation="Horizontal" 
+                             Spacing="2">
+
+                                <ui:MaterialLabel
+                                 Text="Ult.Contratacion:" 
+                                 VerticalOptions="Center"
+                                 TypeScale="Subtitle1"  
+                                 FontSize="15"
+                                 LetterSpacing="0.15"/>
+
+                                <ui:MaterialLabel
+                                 Text="26/08/2019"  
+                                 VerticalOptions="Center"
+                                 TypeScale="Subtitle1"  
+                                 FontSize="15"
+                                 FontAttributes="Bold" 
+                                 LetterSpacing="0.15"/>
+
+                            </StackLayout>
+                        </StackLayout>
+                    </ui:MaterialCard>
+
+                    <!--Imagen Empleados-->
+                    <ui:MaterialCard
+                     HorizontalOptions="FillAndExpand"
+                     HeightRequest="35"
+                     CornerRadius="4"
+                     Grid.Row="1"
+                     Grid.Column="0"
+                     Grid.ColumnSpan="2"
+                     BackgroundColor="#d6339c"
+                     Elevation="4">
+
+                        <StackLayout 
+                         VerticalOptions="CenterAndExpand"
+                         HorizontalOptions="CenterAndExpand">
+
+                            <Image
+                             Source="employee" 
+                             WidthRequest="35"  
+                             VerticalOptions="Center"/>
+                        </StackLayout>
+                    </ui:MaterialCard>
+                </Grid>
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
