@@ -160,7 +160,7 @@ namespace Clinic.ViewModels
                 Functions element = new Functions();
                 var response = await element.Insert(pacientes, "/Api/paciente/create.php");
 
-                if (response == true)
+                if (response.IsSuccess == true)
                 {
                     control.ShowAlert("Se agrego con exito", "Aviso", "Ok");
                     e_nombre = string.Empty;

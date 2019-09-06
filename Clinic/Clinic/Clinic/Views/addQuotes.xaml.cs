@@ -27,9 +27,8 @@ namespace Clinic.Views
         public addQuotes (string nombre, string apellido,int id)
 		{
 			InitializeComponent ();
+            BindingContext = new AddQuotesViewModel(nombre, apellido, id);
             baseurl = get.BaseUrl;
-            p_nombre.Text = nombre;
-            p_apellido.Text = apellido;
             idd.Text = Convert.ToString(id);
             fecha.MinimumDate = DateTime.Today;
         }

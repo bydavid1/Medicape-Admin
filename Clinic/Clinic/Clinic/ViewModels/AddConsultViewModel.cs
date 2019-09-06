@@ -111,7 +111,7 @@ namespace Clinic.ViewModels
 
                 if (!response.IsSuccess)
                 {
-                    control.ShowAlert(response.Message, "Error", "Aceptar");
+                    control.ShowAlert(response.Message, "Error al obtener el id", "Aceptar");
                 }
                 else
                 {
@@ -131,15 +131,35 @@ namespace Clinic.ViewModels
                     };
 
 
-                    var response1 = await element.Insert(consulta, "/Api/consultas/create.php");
+                    var response1 = await element.Insert(consulta, "/Api/consultas/create.php", true);
 
-                    if (response1 == true)
+                    if (response1.IsSuccess == true)
                     {
-                        control.ShowAlert("Se agrego con exito", "Aviso", "Ok");
+                        Expediente exp = new Expediente()
+                        {
+                            idconsulta = Convert.ToInt32(response1.Result),
+                            diagnostico = Diagnostico,
+                            tratamiento = Tratamiento,
+                            receta = Recetas,
+                            observaciones = Observaciones,
+                            descripcion_Exam = Examenes,
+                            idpaciente = _id
+                        };
+
+                        var response2 = await element.Insert(exp, "/Api/item_expediente/create.php");
+
+                        if (response2.IsSuccess == true)
+                        {
+                            control.ShowAlert("Registro exitoso", "Aviso", "Ok");
+                        }
+                        else
+                        {
+                            control.ShowAlert("Ocurrio un error al registrar al expediente", "Aviso", "Ok");
+                        }
                     }
                     else
                     {
-                        control.ShowAlert("Ocurrio un error", "Aviso", "Ok");
+                        control.ShowAlert("Ocurrio un error al registrar la consulta", "Aviso", "Ok");
                     }
                 }
             }
