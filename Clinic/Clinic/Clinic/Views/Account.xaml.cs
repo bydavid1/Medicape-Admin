@@ -1,6 +1,7 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,7 +19,6 @@ namespace Clinic.Views
 	public partial class Account : ContentPage
 	{
         Connection get = new Connection();
-        User name = new User();
         private string baseurl;
         public Account ()
 		{
@@ -31,25 +31,8 @@ namespace Clinic.Views
         {
             try
             {
-                string username = name.getName();
-                string url = baseurl + "/Api/usuario/read_id.php?username="+username;
 
-                HttpClient client = new HttpClient();
-                HttpResponseMessage connect = await client.GetAsync(url);
-
-                if (connect.StatusCode == HttpStatusCode.OK)
-                {
-                    var response = await client.GetStringAsync(url);
-                    var info = JsonConvert.DeserializeObject<Usuario>(response);
-                    var id = info.reference;
-                    var type = info.user_type;
-
-                    if (type != "doctor")
-                    {
-                        container.IsVisible = false;
-                    }
-
-                  string  url2 = baseurl + "/Api/empleado/read_one.php?idempleado=" + id;
+                  string  url2 = baseurl + "/Api/empleado/read_one.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser");
                     HttpClient client2 = new HttpClient();
                     HttpResponseMessage connect2 = await client2.GetAsync(url2);
 
@@ -60,9 +43,8 @@ namespace Clinic.Views
                         nombres.Text = personal.nombres;
                         apellidos.Text = personal.apellidos;
                         especialidad.Text = personal.especialidad;
-                        user.Text = username;
+                        //user.Text = username;
                     }
-                }
                 else
                 {
 

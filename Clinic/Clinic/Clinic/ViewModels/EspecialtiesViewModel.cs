@@ -11,14 +11,14 @@ using XF.Material.Forms.UI.Dialogs;
 
 namespace Clinic.ViewModels
 {
-   public class WaitingListViewModel : BaseViewModel
+    public class EspecialtiesViewModel : BaseViewModel
     {
         Connection get = new Connection();
         Functions functions;
 
         #region Propiedades
-        ObservableCollection<Lista_Espera> _Items;
-        public ObservableCollection<Lista_Espera> Items
+        ObservableCollection<Especialidades> _Items;
+        public ObservableCollection<Especialidades> Items
         {
             get { return _Items; }
             set { SetValue(ref _Items, value); }
@@ -38,13 +38,6 @@ namespace Clinic.ViewModels
             set { SetValue(ref _isVisible, value); }
         }
 
-        private string _query;
-        public string Query
-        {
-            get { return _query; }
-            set { SetValue(ref _query, value); }
-        }
-
         private bool _noresults;
         public bool NoResults
         {
@@ -61,41 +54,17 @@ namespace Clinic.ViewModels
         #endregion
 
         #region Constructor
-        public WaitingListViewModel()
+        public EspecialtiesViewModel()
         {
             IsVisible = false;
             ListVisible = true;
             functions = new Functions();
-            GetList();
+            GetEspecialties();
         }
+
         #endregion
 
-        #region Commands
-        public ICommand RefreshCommand
-        {
-            get
-            {
-                return new Command(() =>
-                {
-                    IsRefreshing = true;
-
-                    GetList();
-
-                    IsRefreshing = false;
-                });
-            }
-        }
-
-        public ICommand Reconnect
-        {
-            get
-            {
-                return new RelayCommand(GetList);
-            }
-        }
-        #endregion
-
-        private async void GetList()
+        private async void GetEspecialties()
         {
             var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Cargando...");
             bool result = get.TestConnection();
@@ -103,7 +72,7 @@ namespace Clinic.ViewModels
             {
                 IsVisible = false;
                 ListVisible = true;
-                var response = await functions.Read<Lista_Espera>("/Api/lista_espera/read.php");
+                var response = await functions.Read<Especialidades>("/Api/especialidades/read.php");
                 if (!response.IsSuccess)
                 {
                     await loadingDialog.DismissAsync();
@@ -121,8 +90,8 @@ namespace Clinic.ViewModels
                 else
                 {
                     await loadingDialog.DismissAsync();
-                    var list = (List<Lista_Espera>)response.Result;
-                    Items = new ObservableCollection<Lista_Espera>(list);
+                    var list = (List<Especialidades>)response.Result;
+                    Items = new ObservableCollection<Especialidades>(list);
                 }
             }
             else
@@ -132,5 +101,30 @@ namespace Clinic.ViewModels
                 ListVisible = false;
             }
         }
+
+
+        public ICommand RefreshCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    IsRefreshing = true;
+
+                    GetEspecialties();
+
+                    IsRefreshing = false;
+                });
+            }
+        }
+
+        public ICommand Reconnect
+        {
+            get
+            {
+                return new RelayCommand(GetEspecialties);
+            }
+        }
     }
 }
+

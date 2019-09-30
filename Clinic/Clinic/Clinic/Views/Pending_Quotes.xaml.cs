@@ -1,6 +1,7 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,6 @@ namespace Clinic.Views
     {
         MaterialControls control = new MaterialControls();
         Connection get = new Connection();
-        User name = new User();
         private string baseurl;
         public Pending_Quotes()
         {
@@ -37,19 +37,8 @@ namespace Clinic.Views
             {
 
                 control.ShowLoading("Obteniendo lista");
-                string username = name.getName();
-                string url2 = baseurl + "/Api/usuario/read_id.php?username=" + username;
 
-                HttpClient client2 = new HttpClient();
-                HttpResponseMessage connect2 = await client2.GetAsync(url2);
-
-                if (connect2.StatusCode == HttpStatusCode.OK)
-                {
-                    var response2 = await client2.GetStringAsync(url2);
-                    var info = JsonConvert.DeserializeObject<Usuario>(response2);
-                    var id = info.reference;
-
-                    string url = baseurl + "/Api/pending_quotes/read.php?idempleado=" + id;
+                    string url = baseurl + "/Api/pending_quotes/read.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser");
 
                     HttpClient client = new HttpClient();
                     HttpResponseMessage connect = await client.GetAsync(url);
@@ -65,8 +54,7 @@ namespace Clinic.Views
                         mylist.IsVisible = false;
                         message.IsVisible = true;
                     }
-                }
-
+                
             }
             catch (HttpRequestException e)
             {
@@ -106,21 +94,10 @@ namespace Clinic.Views
                         var list = (ListView)sender;
                         var selection = list.SelectedItem as Pending;
 
-                        string username = name.getName();
-                        string url2 = baseurl + "/Api/usuario/read_id.php?username=" + username;
 
-                        HttpClient client2 = new HttpClient();
-                        HttpResponseMessage connect2 = await client2.GetAsync(url2);
-
-                        if (connect2.StatusCode == HttpStatusCode.OK)
-                        {
-                            var response2 = await client2.GetStringAsync(url2);
-                            var info = JsonConvert.DeserializeObject<Usuario>(response2);
-                            var id = info.reference;
-
-                            string url4 = baseurl + "/Api/empleado/read_one.php?idempleado=" + id;
+                            string url4 = baseurl + "/Api/empleado/read_one.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser");
                             HttpClient client3 = new HttpClient();
-                            HttpResponseMessage connect3 = await client3.GetAsync(url2);
+                            HttpResponseMessage connect3 = await client3.GetAsync(url4);
 
                             if (connect3.StatusCode == HttpStatusCode.OK)
                             {
@@ -135,16 +112,16 @@ namespace Clinic.Views
                                 if (connect.StatusCode == HttpStatusCode.OK)
                                 {
 
-                                    Citas citas = new Citas
-                                    {
-                                        fecha_Cita = selection.fecha,
-                                        hora_Cita = selection.hora,
-                                        nombre_Paciente = selection.nombre,
-                                        apellido_Paciente = selection.apellido,
-                                        num_Consultorio = Convert.ToInt32(res),
-                                        nombre_Doctor = nombres,
-                                        idpaciente = selection.idpaciente,
-                                        idempleado = id
+                                Citas citas = new Citas
+                                {
+                                    fecha_Cita = selection.fecha,
+                                    hora_Cita = selection.hora,
+                                    nombre_Paciente = selection.nombre,
+                                    apellido_Paciente = selection.apellido,
+                                    num_Consultorio = Convert.ToInt32(res),
+                                    nombre_Doctor = nombres,
+                                    idpaciente = selection.idpaciente,
+                                    idempleado = Convert.ToInt32(CrossSecureStorage.Current.GetValue("iduser"))
                                     };
 
 
@@ -177,7 +154,6 @@ namespace Clinic.Views
                             {
                                 control.ShowSnackBar("Se cancelo");
                             }
-                        }
                         getQuotes();
                     }    
                 }

@@ -3,6 +3,7 @@ using Clinic.Clases;
 using Clinic.Models;
 using Clinic.ViewModels;
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,15 +20,13 @@ namespace Clinic.Views
     public partial class Login : ContentPage
     {
         public static string Username = "";
-        ILoginManager iml = null;
         MaterialControls control = new MaterialControls();
         Connection get = new Connection();
         private string baseurl;
-        public Login(ILoginManager ilm)
+        public Login()
         {
             InitializeComponent();
             baseurl = get.BaseUrl;
-            iml = ilm;
             NavigationPage.SetHasNavigationBar(this, false);
 
         }
@@ -61,20 +60,28 @@ namespace Clinic.Views
 
                     string json = JsonConvert.SerializeObject(users);
                     var content = new StringContent(json, Encoding.UTF8, "application/json");
-
                     var response = await client.PostAsync(controlador, content);
-
 
                     if (response.IsSuccessStatusCode)
                     {
-
-                        string res = await response.Content.ReadAsStringAsync();
-                        var result = res.ToString().Replace('"', ' ').Trim();
-                            Username = usuario;
-                            App.Current.Properties["name"] = Username;
-                            App.Current.Properties["type"] = result;
-                            App.Current.Properties["IsLoggedIn"] = true;
-                            iml.ShowMainPage();
+                        var res = await response.Content.ReadAsStringAsync();
+                        var result = JsonConvert.DeserializeObject<Usuario>(res);
+                        var iduser = Convert.ToString(result.iduser);
+                        var permisos = Convert.ToString(result.valor);
+                        var userName = Convert.ToString(result.user_Name);
+                        var sessionCreated =  CrossSecureStorage.Current.SetValue("SessionActive", "true");
+                        var idCreated = CrossSecureStorage.Current.SetValue("iduser", iduser);
+                        var permisosCreated = CrossSecureStorage.Current.SetValue("permisos", permisos);
+                        var userCreated = CrossSecureStorage.Current.SetValue("user", userName);
+                        var sessionToken = CrossSecureStorage.Current.GetValue("SessionActive");
+                        if (sessionToken == "true" && sessionCreated == true && idCreated == true && permisosCreated == true && userCreated == true)
+                        {
+                            await Navigation.PushAsync(new MainPage());
+                        }
+                        else
+                        {
+                            control.ShowAlert("Hubo un error al crear la sesion", "Error", "Ok");
+                        }
                     }
                     else
                     {

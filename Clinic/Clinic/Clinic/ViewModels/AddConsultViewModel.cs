@@ -1,6 +1,7 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
 using GalaSoft.MvvmLight.Command;
+using Plugin.SecureStorage;
 using System;
 using System.Windows.Input;
 
@@ -9,7 +10,6 @@ namespace Clinic.ViewModels
     public class AddConsultViewModel : BaseViewModel
     {
         MaterialControls control = new MaterialControls();
-        User name = new User();
         Functions element = new Functions();
 
         #region Atributos
@@ -71,7 +71,7 @@ namespace Clinic.ViewModels
             set { SetValue(ref _examenes, value); }
         }
 
-        
+
         #endregion
 
         #region Constructor
@@ -106,61 +106,52 @@ namespace Clinic.ViewModels
             }
             else
             {
-                string username = name.getName();
-                var response = await element.GetCurrentId(username);
 
-                if (!response.IsSuccess)
-                {
-                    control.ShowAlert(response.Message, "Error al obtener el id", "Aceptar");
-                }
-                else
-                {
-                    var idemp = Convert.ToInt32(response.Result);
-                    string date = DateTime.Today.ToString("yy/MM/dd");
-                    string hour = DateTime.Now.ToString("hh:mm");
+                var idemp = Convert.ToInt32(CrossSecureStorage.Current.GetValue("iduser"));
+                string date = DateTime.Today.ToString("yy/MM/dd");
+                string hour = DateTime.Now.ToString("hh:mm");
 
-                    Consultas consulta = new Consultas
+                Consultas consulta = new Consultas
+                {
+                    nombres = Nombres,
+                    apellidos = Apellidos,
+                    idpaciente = _id,
+                    idempleado = idemp,
+                    fecha = date,
+                    hora = hour,
+                    num_Consultorio = Consultorio
+                };
+
+
+                var response1 = await element.Insert(consulta, "/Api/consultas/create.php", true);
+
+                if (response1.IsSuccess == true)
+                {
+                    Expediente exp = new Expediente()
                     {
-                        nombres = Nombres,
-                        apellidos = Apellidos,
-                        idpaciente = _id,
-                        idempleado = idemp,
-                        fecha = date,
-                        hora = hour,
-                        num_Consultorio = Consultorio
+                        idconsulta = Convert.ToInt32(response1.Result),
+                        diagnostico = Diagnostico,
+                        tratamiento = Tratamiento,
+                        receta = Recetas,
+                        observaciones = Observaciones,
+                        descripcion_Exam = Examenes,
+                        idpaciente = _id
                     };
 
+                    var response2 = await element.Insert(exp, "/Api/item_expediente/create.php");
 
-                    var response1 = await element.Insert(consulta, "/Api/consultas/create.php", true);
-
-                    if (response1.IsSuccess == true)
+                    if (response2.IsSuccess == true)
                     {
-                        Expediente exp = new Expediente()
-                        {
-                            idconsulta = Convert.ToInt32(response1.Result),
-                            diagnostico = Diagnostico,
-                            tratamiento = Tratamiento,
-                            receta = Recetas,
-                            observaciones = Observaciones,
-                            descripcion_Exam = Examenes,
-                            idpaciente = _id
-                        };
-
-                        var response2 = await element.Insert(exp, "/Api/item_expediente/create.php");
-
-                        if (response2.IsSuccess == true)
-                        {
-                            control.ShowAlert("Registro exitoso", "Aviso", "Ok");
-                        }
-                        else
-                        {
-                            control.ShowAlert("Ocurrio un error al registrar al expediente", "Aviso", "Ok");
-                        }
+                        control.ShowAlert("Registro exitoso", "Aviso", "Ok");
                     }
                     else
                     {
-                        control.ShowAlert("Ocurrio un error al registrar la consulta", "Aviso", "Ok");
+                        control.ShowAlert("Ocurrio un error al registrar al expediente", "Aviso", "Ok");
                     }
+                }
+                else
+                {
+                    control.ShowAlert("Ocurrio un error al registrar la consulta", "Aviso", "Ok");
                 }
             }
         }

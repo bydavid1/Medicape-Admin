@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             BackgroundColor="#eaeeee"
+             xmlns:custom="clr-namespace:Clinic"
+             x:Class="Clinic.Views.Especialties">
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
+                <Image Source="list_success_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Start" />
+                <Label Text="Configuracion de especialidaes" FontSize="Medium"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
+            </StackLayout>
+            <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
+                <Image Source="error_connect"/>
+                <Button BackgroundColor="#008ca5" Text="Reconectar" HorizontalOptions="Center" TextColor="White" Command="{Binding Reconnect}"/>
+            </StackLayout>
+            <Image Source="no_result" IsVisible="{Binding NoResults, Mode=TwoWay}"/>
+            <StackLayout VerticalOptions="EndAndExpand" IsVisible="{Binding ListVisible, Mode=TwoWay}" Margin="0,10,0,0">
+                <ListView HasUnevenRows="True" IsPullToRefreshEnabled="True" IsRefreshing="{Binding IsRefreshing, Mode=TwoWay}" RefreshCommand="{Binding RefreshCommand}" ItemsSource="{Binding Items}">
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
+                                <StackLayout Padding="10,10,10,10">
+                                        <StackLayout Orientation="Horizontal" Padding="20,0,0,0">
+                                        <Label Text="{Binding nombre}" FontFamily="{StaticResource NormalFont}" TextColor="#212121" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                            </custom:CustomViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

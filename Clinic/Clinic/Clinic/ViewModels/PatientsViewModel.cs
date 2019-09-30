@@ -14,7 +14,6 @@ namespace Clinic.ViewModels
     public class PatientsViewModel : BaseViewModel
     {
         Connection get = new Connection();
-        User name = new User();
         Functions functions;
 
         #region Propiedades

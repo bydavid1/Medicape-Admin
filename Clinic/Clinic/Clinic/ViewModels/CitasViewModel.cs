@@ -1,6 +1,7 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
 using GalaSoft.MvvmLight.Command;
+using Plugin.SecureStorage;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
@@ -9,11 +10,10 @@ using XF.Material.Forms.UI.Dialogs;
 
 namespace Clinic.ViewModels
 {
-   public class CitasViewModel : BaseViewModel
+    public class CitasViewModel : BaseViewModel
     {
         MaterialControls control = new MaterialControls();
         Connection get = new Connection();
-        User name = new User();
         Functions functions;
 
         ObservableCollection<Citas> _Items;
@@ -64,39 +64,27 @@ namespace Clinic.ViewModels
             bool result = get.TestConnection();
             if (result == true)
             {
-                string username = name.getName();
-                var response = await functions.GetCurrentId(username);
-
-                if (!response.IsSuccess)
+                var response2 = await functions.Read<Citas>("/Api/citas/custom_read.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser"));
+                if (!response2.IsSuccess)
                 {
                     await loadingDialog.DismissAsync();
-                    control.ShowAlert(response.Message, "Error", "Aceptar");
+                    control.ShowAlert(response2.Message, "Error", "Aceptar");
+                }
+                else if (response2.Result == null)
+                {
+                    await loadingDialog.DismissAsync();
+                    IsVisible = false;
+                    NoResults = true;
+                    ListVisible = false;
                 }
                 else
                 {
-                    var response2 = await functions.Read<Citas>("/Api/citas/custom_read.php?idempleado=" + response.Result);
-                    if (!response2.IsSuccess)
-                    {
-                        await loadingDialog.DismissAsync();
-                        control.ShowAlert(response2.Message, "Error", "Aceptar");
-                    }
-                    else if (response2.Result == null)
-                    {
-                        await loadingDialog.DismissAsync();
-                        IsVisible = false;
-                        NoResults = true;
-                        ListVisible = false;
-                        control.ShowAlert(response2.Message, "Error", "Aceptar");
-                    }
-                    else
-                    {
-                        IsVisible = false;
-                        NoResults = false;
-                        ListVisible = true;
-                        await loadingDialog.DismissAsync();
-                        var list = (List<Citas>)response2.Result;
-                        Items = new ObservableCollection<Citas>(list);
-                    }
+                    IsVisible = false;
+                    NoResults = false;
+                    ListVisible = true;
+                    await loadingDialog.DismissAsync();
+                    var list = (List<Citas>)response2.Result;
+                    Items = new ObservableCollection<Citas>(list);
                 }
             }
             else
@@ -123,7 +111,7 @@ namespace Clinic.ViewModels
                 {
                     IsRefreshing = true;
 
-                     GetQuotes();
+                    GetQuotes();
 
                     IsRefreshing = false;
                 });

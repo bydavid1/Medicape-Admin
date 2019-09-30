@@ -1,5 +1,6 @@
 ﻿using Clinic.Models;
 using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -22,7 +23,7 @@ namespace Clinic.Clases
             Response = new Response();
         }
 
-        public async Task<bool> Insert(object objeto, string controller)
+        public async Task<Response> Insert(object objeto, string controller, bool request = false)
         {
 
             client.BaseAddress = new Uri(baseurl);
@@ -34,11 +35,27 @@ namespace Clinic.Clases
 
             if (response.IsSuccessStatusCode)
             {
-                return true;
+                if (request == true)
+                {
+                    string res = await response.Content.ReadAsStringAsync();
+                    var result = res.ToString().Replace('"', ' ').Trim();
+                    return new Response
+                    {
+                        IsSuccess = true,
+                        Result = result
+                    };
+                }
+                return new Response
+                {
+                    IsSuccess = true
+                };
             }
             else
             {
-                return false;
+                return new Response
+                {
+                    IsSuccess = false
+                };
             }
         }
 
@@ -88,32 +105,6 @@ namespace Clinic.Clases
             {
                 IsSuccess = false,
                 Message = "Ocurrio un error"
-            };
-        }
-
-        public async Task<Response> GetCurrentId(string id)
-        {
-            client.BaseAddress = new Uri(baseurl);
-            var controller = "/Api/usuario/read_id.php?username="+id;
-            HttpResponseMessage connect = await client.GetAsync(controller);
-
-            if (connect.StatusCode == HttpStatusCode.OK)
-            {
-                var response = await client.GetStringAsync(controller);
-                var info = JsonConvert.DeserializeObject<Usuario>(response);
-                var res = Convert.ToString(info.reference);
-
-                return new Response
-                {
-                    Result = res,
-                    IsSuccess = true
-                };
-            }
-
-            return new Response
-            {
-                IsSuccess = false,
-                Message = "No se pudo obtener el id"
             };
         }
 

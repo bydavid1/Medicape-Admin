@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Plugin.Connectivity;
+using System;
 using System.Collections.Generic;
 using System.Net;
 using System.Text;
@@ -11,20 +12,12 @@ namespace Clinic.Clases
 
         public bool TestConnection()
         {
-            try
+            if (CrossConnectivity.Current.IsConnected)
             {
-                HttpWebRequest iNetRequest = (HttpWebRequest)WebRequest.Create(BaseUrl);
-
-                iNetRequest.Timeout = 5000;
-
-                WebResponse iNetResponse = iNetRequest.GetResponse();
-
                 return true;
             }
-            catch (WebException)
-            {
-                return false;
-            }
+
+            return false;
         }
     }
 }

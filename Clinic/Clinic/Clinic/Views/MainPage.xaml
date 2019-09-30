@@ -20,8 +20,12 @@
                 </Grid.RowDefinitions>
                 <StackLayout BackgroundColor="#00cbc5" HeightRequest="120" Orientation="Horizontal" Padding="10">
                     <Image Source="account" WidthRequest="60" HeightRequest="60"/>
-                    <Label FontSize="Medium" TextColor="White" x:Name="user_Name"
-                           Margin="10,0,0,0" VerticalOptions="Center" FontFamily="{StaticResource BoldFont}"/>
+                    <StackLayout VerticalOptions="Center" Spacing="1">
+                        <Label FontSize="Medium" TextColor="White" x:Name="Name"
+                           Margin="10,0,0,0" FontFamily="{StaticResource BoldFont}"/>
+                        <Label FontSize="Small" TextColor="White" x:Name="userName"
+                           Margin="10,0,0,0"/>
+                    </StackLayout>
                 </StackLayout>
                 <Grid Grid.Row="1" Grid.Column="0">
                     <ListView SeparatorVisibility="None" ItemsSource="{Binding MenuItems}" 

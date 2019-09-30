@@ -75,7 +75,6 @@ namespace Clinic.Views
             {
                 MaterialControls control = new MaterialControls();
                 control.ShowLoading("Cerrando sesion...");
-                App.Current.Logout();
             }
             else if (tbi.Text == "Acerca de")
             {

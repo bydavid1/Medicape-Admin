@@ -1,46 +1,42 @@
 ﻿using System;
-using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
+using System.Net;
+using System.Net.Http;
+using Clinic.Clases;
+using Clinic.Models;
 using Clinic.Views;
-using Clinic.Behavior;
+using Newtonsoft.Json;
+using Plugin.SecureStorage;
+using Xamarin.Forms;
 using Xamarin.Forms.PlatformConfiguration.AndroidSpecific;
+using Application = Xamarin.Forms.Application;
 
 namespace Clinic
 {
-    public partial class App : Xamarin.Forms.Application, ILoginManager
+    public partial class App : Application
     {
-        static ILoginManager loginManager;
-        public new static App Current;
-        public static int val;
         public App()
         {
-            Xamarin.Forms.Application.Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
+            Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
-            ; Current = this;
-            var isLoggedIn = Properties.ContainsKey("IsLoggedIn") ? (bool)Properties["IsLoggedIn"] : false;
-           
-            
-            if (!isLoggedIn) {
-                var value = App.Current.Properties["type"] = "";
-                MainPage = new Login(this);
+
+            var sessionToken = CrossSecureStorage.Current.GetValue("SessionActive");
+            if (sessionToken == null)
+            {
+                CrossSecureStorage.Current.SetValue("SessionActive", "false");
+                MainPage = new NavigationPage(new Login());
             }
             else
             {
-                MainPage = new MainPage();  
-            }   
-        }
- 
-
-        public void ShowMainPage()
-        {
-            MainPage = new MainPage();
-        }
-
-        public void Logout()
-        {
-            Properties["IsLoggedIn"] = false;
-            MainPage = new Login(this);
+                if (sessionToken == "false")
+                {
+                    MainPage = new NavigationPage(new Login());
+                }
+                else
+                {
+                    MainPage = new NavigationPage(new LoadPage());
+                }
+            }
         }
 
         protected override void OnStart()
@@ -57,6 +53,5 @@ namespace Clinic
         {
             // Handle when your app resumes
         }
-
     }
 }

@@ -1,6 +1,7 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
 using Clinic.Views;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -11,67 +12,10 @@ using Xamarin.Forms;
 
 namespace Clinic.ViewModels
 {
-    public class MainPageViewModel : INotifyPropertyChanged
+    public class MainPageViewModel : BaseViewModel
     {
-        private string type;
-        User model = new User();
-        public MainPageViewModel()
-        {
-            PopulateMenu();
-        }
 
-        private void PopulateMenu()
-        {
-
-            type = model.getType();
-            MenuItems = new ObservableCollection<MasterMenu>();
-
-            if (type == "admin")
-            {
-                
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
-                MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
-                MenuItems.Add(new MasterMenu { MenuName = "Citas", MenuIcon = "list_search", TargetType = typeof(Quotes) });
-                MenuItems.Add(new MasterMenu { MenuName = "Consultas", MenuIcon = "list_success", TargetType = typeof(Consults) });
-                MenuItems.Add(new MasterMenu { MenuName = "Empleados", MenuIcon = "people", TargetType = typeof(Employees) });
-                MenuItems.Add(new MasterMenu { MenuName = "Medicamentos", MenuIcon = "list_write", TargetType = typeof(Medicaments) });
-                MenuItems.Add(new MasterMenu { MenuName = "Usuarios", MenuIcon = "people", TargetType = typeof(Users) });
-                MenuItems.Add(new MasterMenu { MenuName = "Consejos", MenuIcon = "list_write", TargetType = typeof(Views.Tips) });
-                MenuItems.Add(new MasterMenu { MenuName = "Listas de espera", MenuIcon = "list_write", TargetType = typeof(Waiting_list) });
-            }
-            else if (type == "archivo")
-            {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
-                MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
-                MenuItems.Add(new MasterMenu { MenuName = "Consultas", MenuIcon = "list_success", TargetType = typeof(Consults) });
-            }
-            else if (type == "doctor")
-            {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
-                MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
-                MenuItems.Add(new MasterMenu { MenuName = "Citas", MenuIcon = "list_search", TargetType = typeof(Quotes) });
-                MenuItems.Add(new MasterMenu { MenuName = "Consejos", MenuIcon = "list_write", TargetType = typeof(Views.Tips) });
-            }
-            else if (type == "enfermero")
-            {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
-                MenuItems.Add(new MasterMenu { MenuName = "Pacientes", MenuIcon = "people", TargetType = typeof(Patients) });
-                MenuItems.Add(new MasterMenu { MenuName = "Citas", MenuIcon = "list_search", TargetType = typeof(Quotes) });
-                MenuItems.Add(new MasterMenu { MenuName = "Consejos", MenuIcon = "list_write", TargetType = typeof(Views.Tips) });
-            }
-            else if (type == "farmacia")
-            {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
-                MenuItems.Add(new MasterMenu { MenuName = "Medicamentos", MenuIcon = "list_write", TargetType = typeof(Medicaments) });
-            }
-            else
-            {
-                MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
-            }
-
-        }
-
-        ObservableCollection<MasterMenu> _menuItems;
+        private ObservableCollection<MasterMenu> _menuItems;
         public ObservableCollection<MasterMenu> MenuItems
         {
             get
@@ -88,7 +32,7 @@ namespace Clinic.ViewModels
             }
         }
 
-        MasterMenu _selectedMenu;
+        private MasterMenu _selectedMenu;
         public MasterMenu SelectedMenu
         {
             get
@@ -114,12 +58,30 @@ namespace Clinic.ViewModels
                 }
             }
         }
-
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        protected virtual void OnPropertyChanged([CallerMemberName]string propertyName = null)
+        public MainPageViewModel()
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PopulateMenu();
+        }
+
+        private void PopulateMenu()
+        {
+            MenuItems = new ObservableCollection<MasterMenu>();
+            var permisos = CrossSecureStorage.Current.GetValue("permisos");
+
+            string[] name = new string[] { "Pacientes", "Citas", "Consultas", "Empleados", "Medicamentos", "Usuarios", "Consejos", "Listas de espera"};
+            string[] image = new string[] { "people", "list_search", "list_success", "people", "list_write", "people", "list_write", "list_write"};
+            Type[] view = new Type[] { typeof(Patients), typeof(Quotes), typeof(Consults), typeof(Employees), typeof(Medicaments), typeof(Users), typeof(Views.Tips), typeof(Waiting_list) };
+
+            MenuItems.Add(new MasterMenu { MenuName = "Home", MenuIcon = "home", TargetType = typeof(HomeAdmin) });
+            MenuItems.Add(new MasterMenu { MenuName = "Especialidades(beta)", MenuIcon = "people", TargetType = typeof(Especialties) });
+
+            for (int i=0; i < permisos.Length; i++)
+            {
+                if (permisos.Substring(i, 1) == "7")
+                {
+                    MenuItems.Add(new MasterMenu { MenuName = name[i], MenuIcon = image[i], TargetType = view[i] });
+                }
+            }    
         }
     }
 }

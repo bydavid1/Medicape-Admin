@@ -1,6 +1,7 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
 using GalaSoft.MvvmLight.Command;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -15,7 +16,6 @@ namespace Clinic.ViewModels
     {
         MaterialControls control = new MaterialControls();
         Connection get = new Connection();
-        User name = new User();
         Functions functions;
 
         #region Propiedades
@@ -70,21 +70,11 @@ namespace Clinic.ViewModels
             bool result = get.TestConnection();
             if (result == true)
             {
-                string username = name.getName();
-                var response = await functions.GetCurrentId(username);
-
-                if (!response.IsSuccess)
-                {
-                    await loadingDialog.DismissAsync();
-                    control.ShowAlert(response.Message, "Error", "Aceptar");
-                }
-                else
-                {
-                    var response2 = await functions.Read<Consultas>("/Api/consultas/read.php?idempleado=" + response.Result);
+                    var response2 = await functions.Read<Consultas>("/Api/consultas/read.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser"));
                     if (!response2.IsSuccess)
                     {
                         IsVisible = false;
-                        NoResults = true;
+                        NoResults = false;
                         await loadingDialog.DismissAsync();
                         control.ShowAlert(response2.Message, "Error", "Aceptar");
                     }
@@ -94,7 +84,6 @@ namespace Clinic.ViewModels
                         IsVisible = false;
                         NoResults = true;
                         ListVisible = false;
-                        control.ShowAlert(response2.Message, "Error", "Aceptar");
                     }
                     else
                     {
@@ -105,7 +94,6 @@ namespace Clinic.ViewModels
                         var list = (List<Consultas>)response2.Result;
                         Items = new ObservableCollection<Consultas>(list);
                     }
-                }
             }
             else
             {
@@ -130,7 +118,7 @@ namespace Clinic.ViewModels
                 return new Command(() =>
                 {
                     IsRefreshing = true;
-
+                    Items.Clear();
                     GetConsults();
 
                     IsRefreshing = false;

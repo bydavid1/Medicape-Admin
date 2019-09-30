@@ -43,28 +43,10 @@
                             </StackLayout>
                         </StackLayout>
                     </Frame>
-                </StackLayout>
-            </ScrollView>
-        </ContentPage.Content>
-    </ContentPage>
-
-    <ContentPage Title="Profesional">
-        <ContentPage.Content>
-            <ScrollView>
-                <StackLayout Padding="5, 15, 5, 0">
-                    <Label Text="Informacion profesional" FontSize="Medium" FontAttributes="Italic"/>
-                    <Frame CornerRadius="5" BackgroundColor="White">
+                    <Frame>
                         <StackLayout>
                             <Label Text="Especialidad:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
                             <Label Text="{Binding especialidad}" FontSize="Large" x:Name="_especialidad" FontFamily="{StaticResource BoldFont}"/>
-                            <Label Text="Antecendentes:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
-                            <Label Text="{Binding antecedentes}" FontSize="Large" x:Name="_antecedentes" FontFamily="{StaticResource BoldFont}"/>
-                            <Label Text="Solvencia:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
-                            <Label Text="{Binding solvencia}" FontSize="Large" x:Name="_solvencia" FontFamily="{StaticResource BoldFont}"/>
-                            <Label Text="Constancia de titulo:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
-                            <Label Text="{Binding constancia_Titulo}" FontSize="Large" x:Name="_titulado" FontFamily="{StaticResource BoldFont}"/>
-                            <Label Text="Certificado de salud:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
-                            <Label Text="{Binding certificado_Salud}" FontSize="Large" x:Name="_certificado" FontFamily="{StaticResource BoldFont}"/>
                             <Label Text="Fecha de contratacion:" FontFamily="{StaticResource NormalFont}" FontSize="Medium"/>
                             <Label Text="{Binding fecha_Contratacion}" FontSize="Large" x:Name="_fecha_contratacion" FontFamily="{StaticResource BoldFont}"/>
                         </StackLayout>

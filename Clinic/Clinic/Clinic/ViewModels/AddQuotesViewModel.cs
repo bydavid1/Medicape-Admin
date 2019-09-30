@@ -11,7 +11,6 @@ namespace Clinic.ViewModels
     {
 
         MaterialControls control = new MaterialControls();
-        User name = new User();
         Functions element = new Functions();
 
         private string _nombres;
@@ -74,17 +73,7 @@ namespace Clinic.ViewModels
             }
             else
             {
-                string username = name.getName();
-                var response = await element.GetCurrentId(username);
-
-                if (!response.IsSuccess)
-                {
-                    control.ShowAlert(response.Message, "Error al obtener el id", "Aceptar");
-                }
-                else
-                {
-                    var idemp = Convert.ToInt32(response.Result);
-                }
+                    ///Falta algo  y no se que es
             }
         }
     }

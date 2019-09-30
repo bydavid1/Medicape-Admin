@@ -19,7 +19,6 @@ namespace Clinic.Views
 	public partial class Patients : ContentPage
 	{
         Connection get = new Connection();
-        private string baseurl;
         public Patients ()
 		{
             MaterialControls control = new MaterialControls();
