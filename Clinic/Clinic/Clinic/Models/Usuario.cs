@@ -11,6 +11,7 @@ namespace Clinic.Models
         public string user_Password { get; set; }
         public string email { get; set; }
         public string user_type { get; set; }
-        public int reference { get; set; }
+        public int idpermisos { get; set; }
+        public int valor { get; set; }
     }
 }

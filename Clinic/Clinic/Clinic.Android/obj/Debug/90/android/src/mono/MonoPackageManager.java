@@ -107,6 +107,8 @@ class MonoPackageManager_Resources {
 	public static final String[] Assemblies = new String[]{
 		/* We need to ensure that "Clinic.Android.dll" comes first in this list. */
 		"Clinic.Android.dll",
+		"Acr.UserDialogs.dll",
+		"AndHUD.dll",
 		"Clinic.dll",
 		"CommonServiceLocator.dll",
 		"FormsViewGroup.dll",
@@ -116,6 +118,10 @@ class MonoPackageManager_Resources {
 		"Lottie.Android.dll",
 		"Lottie.Forms.dll",
 		"Newtonsoft.Json.dll",
+		"Plugin.Connectivity.Abstractions.dll",
+		"Plugin.Connectivity.dll",
+		"Plugin.SecureStorage.Abstractions.dll",
+		"Plugin.SecureStorage.dll",
 		"Rg.Plugins.Popup.dll",
 		"Rg.Plugins.Popup.Droid.dll",
 		"Xamarin.Android.Arch.Core.Common.dll",

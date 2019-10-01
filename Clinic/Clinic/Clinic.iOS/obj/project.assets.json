@@ -2,6 +2,30 @@
   "version": 3,
   "targets": {
     "Xamarin.iOS,Version=v1.0": {
+      "Acr.UserDialogs/7.0.30": {
+        "type": "package",
+        "dependencies": {
+          "BTProgressHUD": "1.2.0.6"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        }
+      },
+      "BTProgressHUD/1.2.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        }
+      },
       "Com.Airbnb.iOS.Lottie/2.5.6": {
         "type": "package",
         "compile": {
@@ -72,6 +96,17 @@
           "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
         }
       },
+      "sameerIOTApps.Plugin.SecureStorage/2.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -79,6 +114,20 @@
         },
         "runtime": {
           "lib/xamarinios10/_._": {}
+        }
+      },
+      "Xam.Plugin.Connectivity/4.0.0.190-beta": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.SimplePing": "1.4.0"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
       "Xamarin.Essentials/1.1.0": {
@@ -219,6 +268,15 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "Xamarin.SimplePing/1.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        }
+      },
       "XF.Material/1.4.1.3": {
         "type": "package",
         "dependencies": {
@@ -241,11 +299,14 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Acr.UserDialogs": "7.0.30",
           "MvvmLightLibs": "5.4.1.1",
           "Newtonsoft.Json": "12.0.2",
           "XF.Material": "1.4.1.3",
+          "Xam.Plugin.Connectivity": "4.0.0.190-beta",
           "Xamarin.Essentials": "1.1.0",
-          "Xamarin.Forms": "4.0.0.425677"
+          "Xamarin.Forms": "4.0.0.425677",
+          "sameerIOTApps.Plugin.SecureStorage": "2.5.0"
         },
         "compile": {
           "bin/placeholder/Clinic.dll": {}
@@ -256,6 +317,30 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win": {
+      "Acr.UserDialogs/7.0.30": {
+        "type": "package",
+        "dependencies": {
+          "BTProgressHUD": "1.2.0.6"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        }
+      },
+      "BTProgressHUD/1.2.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        }
+      },
       "Com.Airbnb.iOS.Lottie/2.5.6": {
         "type": "package",
         "compile": {
@@ -326,6 +411,17 @@
           "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
         }
       },
+      "sameerIOTApps.Plugin.SecureStorage/2.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -333,6 +429,20 @@
         },
         "runtime": {
           "lib/xamarinios10/_._": {}
+        }
+      },
+      "Xam.Plugin.Connectivity/4.0.0.190-beta": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.SimplePing": "1.4.0"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
       "Xamarin.Essentials/1.1.0": {
@@ -473,6 +583,15 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "Xamarin.SimplePing/1.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        }
+      },
       "XF.Material/1.4.1.3": {
         "type": "package",
         "dependencies": {
@@ -495,11 +614,14 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Acr.UserDialogs": "7.0.30",
           "MvvmLightLibs": "5.4.1.1",
           "Newtonsoft.Json": "12.0.2",
           "XF.Material": "1.4.1.3",
+          "Xam.Plugin.Connectivity": "4.0.0.190-beta",
           "Xamarin.Essentials": "1.1.0",
-          "Xamarin.Forms": "4.0.0.425677"
+          "Xamarin.Forms": "4.0.0.425677",
+          "sameerIOTApps.Plugin.SecureStorage": "2.5.0"
         },
         "compile": {
           "bin/placeholder/Clinic.dll": {}
@@ -510,6 +632,30 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x64": {
+      "Acr.UserDialogs/7.0.30": {
+        "type": "package",
+        "dependencies": {
+          "BTProgressHUD": "1.2.0.6"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        }
+      },
+      "BTProgressHUD/1.2.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        }
+      },
       "Com.Airbnb.iOS.Lottie/2.5.6": {
         "type": "package",
         "compile": {
@@ -580,6 +726,17 @@
           "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
         }
       },
+      "sameerIOTApps.Plugin.SecureStorage/2.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -587,6 +744,20 @@
         },
         "runtime": {
           "lib/xamarinios10/_._": {}
+        }
+      },
+      "Xam.Plugin.Connectivity/4.0.0.190-beta": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.SimplePing": "1.4.0"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
       "Xamarin.Essentials/1.1.0": {
@@ -727,6 +898,15 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "Xamarin.SimplePing/1.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        }
+      },
       "XF.Material/1.4.1.3": {
         "type": "package",
         "dependencies": {
@@ -749,11 +929,14 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Acr.UserDialogs": "7.0.30",
           "MvvmLightLibs": "5.4.1.1",
           "Newtonsoft.Json": "12.0.2",
           "XF.Material": "1.4.1.3",
+          "Xam.Plugin.Connectivity": "4.0.0.190-beta",
           "Xamarin.Essentials": "1.1.0",
-          "Xamarin.Forms": "4.0.0.425677"
+          "Xamarin.Forms": "4.0.0.425677",
+          "sameerIOTApps.Plugin.SecureStorage": "2.5.0"
         },
         "compile": {
           "bin/placeholder/Clinic.dll": {}
@@ -764,6 +947,30 @@
       }
     },
     "Xamarin.iOS,Version=v1.0/win-x86": {
+      "Acr.UserDialogs/7.0.30": {
+        "type": "package",
+        "dependencies": {
+          "BTProgressHUD": "1.2.0.6"
+        },
+        "frameworkAssemblies": [
+          "System.Drawing.Common.dll"
+        ],
+        "compile": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        },
+        "runtime": {
+          "lib/xamarinios10/Acr.UserDialogs.dll": {}
+        }
+      },
+      "BTProgressHUD/1.2.0.6": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/BTProgressHUD.dll": {}
+        }
+      },
       "Com.Airbnb.iOS.Lottie/2.5.6": {
         "type": "package",
         "compile": {
@@ -834,6 +1041,17 @@
           "lib/Xamarin.IOS/Rg.Plugins.Popup.dll": {}
         }
       },
+      "sameerIOTApps.Plugin.SecureStorage/2.5.0": {
+        "type": "package",
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.SecureStorage.dll": {}
+        }
+      },
       "System.Numerics.Vectors/4.5.0": {
         "type": "package",
         "compile": {
@@ -841,6 +1059,20 @@
         },
         "runtime": {
           "lib/xamarinios10/_._": {}
+        }
+      },
+      "Xam.Plugin.Connectivity/4.0.0.190-beta": {
+        "type": "package",
+        "dependencies": {
+          "Xamarin.SimplePing": "1.4.0"
+        },
+        "compile": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
+        },
+        "runtime": {
+          "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll": {},
+          "lib/Xamarin.iOS10/Plugin.Connectivity.dll": {}
         }
       },
       "Xamarin.Essentials/1.1.0": {
@@ -981,6 +1213,15 @@
           "build/Xamarin.Forms.targets": {}
         }
       },
+      "Xamarin.SimplePing/1.4.0": {
+        "type": "package",
+        "compile": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        },
+        "runtime": {
+          "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll": {}
+        }
+      },
       "XF.Material/1.4.1.3": {
         "type": "package",
         "dependencies": {
@@ -1003,11 +1244,14 @@
         "type": "project",
         "framework": ".NETStandard,Version=v2.0",
         "dependencies": {
+          "Acr.UserDialogs": "7.0.30",
           "MvvmLightLibs": "5.4.1.1",
           "Newtonsoft.Json": "12.0.2",
           "XF.Material": "1.4.1.3",
+          "Xam.Plugin.Connectivity": "4.0.0.190-beta",
           "Xamarin.Essentials": "1.1.0",
-          "Xamarin.Forms": "4.0.0.425677"
+          "Xamarin.Forms": "4.0.0.425677",
+          "sameerIOTApps.Plugin.SecureStorage": "2.5.0"
         },
         "compile": {
           "bin/placeholder/Clinic.dll": {}
@@ -1019,6 +1263,59 @@
     }
   },
   "libraries": {
+    "Acr.UserDialogs/7.0.30": {
+      "sha512": "pNHzppiDYYlGszezoZCSF5Q76mOASWjDT4kL+jZk2sWCSKnYllMbyP58Y2d1flr5aplUCbDY4pxrnQm9Nv5h0A==",
+      "type": "package",
+      "path": "acr.userdialogs/7.0.30",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "acr.userdialogs.7.0.30.nupkg.sha512",
+        "acr.userdialogs.nuspec",
+        "lib/monoandroid81/Acr.UserDialogs.dll",
+        "lib/monoandroid81/Acr.UserDialogs.pdb",
+        "lib/monoandroid81/Acr.UserDialogs.xml",
+        "lib/monoandroid90/Acr.UserDialogs.dll",
+        "lib/monoandroid90/Acr.UserDialogs.pdb",
+        "lib/monoandroid90/Acr.UserDialogs.xml",
+        "lib/netstandard2.0/Acr.UserDialogs.dll",
+        "lib/netstandard2.0/Acr.UserDialogs.pdb",
+        "lib/netstandard2.0/Acr.UserDialogs.xml",
+        "lib/uap10.0.16299/Acr.UserDialogs.dll",
+        "lib/uap10.0.16299/Acr.UserDialogs.pdb",
+        "lib/uap10.0.16299/Acr.UserDialogs.pri",
+        "lib/uap10.0.16299/Acr.UserDialogs.xml",
+        "lib/uap10.0.16299/Acr.UserDialogs/Acr.UserDialogs.xr.xml",
+        "lib/uap10.0.16299/Acr.UserDialogs/Platforms/Uwp/ActionSheetContentDialog.xaml",
+        "lib/uap10.0.16299/Acr.UserDialogs/Platforms/Uwp/DatePickerControl.xaml",
+        "lib/uap10.0.16299/Acr.UserDialogs/Platforms/Uwp/LoginContentDialog.xaml",
+        "lib/uap10.0.16299/Acr.UserDialogs/Platforms/Uwp/ProgressContentDialog.xaml",
+        "lib/uap10.0.16299/Acr.UserDialogs/Platforms/Uwp/TimePickerControl.xaml",
+        "lib/xamarinios10/Acr.UserDialogs.dll",
+        "lib/xamarinios10/Acr.UserDialogs.pdb",
+        "lib/xamarinios10/Acr.UserDialogs.xml",
+        "lib/xamarinmac20/Acr.UserDialogs.dll",
+        "lib/xamarinmac20/Acr.UserDialogs.pdb",
+        "lib/xamarinmac20/Acr.UserDialogs.xml",
+        "lib/xamarintvos10/Acr.UserDialogs.dll",
+        "lib/xamarintvos10/Acr.UserDialogs.pdb",
+        "lib/xamarintvos10/Acr.UserDialogs.xml",
+        "readme.txt"
+      ]
+    },
+    "BTProgressHUD/1.2.0.6": {
+      "sha512": "rTCMPx/HX/cCvXeQfMKk51gt7+PGwkKqTf2Y/5knlb5kJG0l703dnrxdkg9yzsHC2+aflFSGe97C0iqPw8Ni2A==",
+      "type": "package",
+      "path": "btprogresshud/1.2.0.6",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt/NOTICE",
+        "btprogresshud.1.2.0.6.nupkg.sha512",
+        "btprogresshud.nuspec",
+        "lib/Xamarin.iOS10/BTProgressHUD.dll"
+      ]
+    },
     "Com.Airbnb.iOS.Lottie/2.5.6": {
       "sha512": "hzzoDaldIQCe3epEnK6L3gAA3a4zA1KDUWNH3xrOalkS5aElT8ryK7iUa0qudlUlQtlHC864cBX1XA+zEG04bw==",
       "type": "package",
@@ -1267,6 +1564,29 @@
         "rg.plugins.popup.nuspec"
       ]
     },
+    "sameerIOTApps.Plugin.SecureStorage/2.5.0": {
+      "sha512": "dguQ8+d2VyfwkiLuOJCcVc6ICKjpqaAwKIc3aHopM084CvTgVQ6IlyE6dBqzW0U5cVnlma5e+Lb2lCwuCW3pKg==",
+      "type": "package",
+      "path": "sameeriotapps.plugin.securestorage/2.5.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/Plugin.SecureStorage.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.SecureStorage.dll",
+        "lib/UAP10/Plugin.SecureStorage.Abstractions.dll",
+        "lib/UAP10/Plugin.SecureStorage.dll",
+        "lib/Xamarin.Mac/Plugin.SecureStorage.Abstractions.dll",
+        "lib/Xamarin.Mac/Plugin.SecureStorage.dll",
+        "lib/Xamarin.iOS10/Plugin.SecureStorage.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.SecureStorage.dll",
+        "lib/netstandard1.0/Plugin.SecureStorage.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.SecureStorage.dll",
+        "lib/tizen40/Plugin.SecureStorage.Abstractions.dll",
+        "lib/tizen40/Plugin.SecureStorage.dll",
+        "sameeriotapps.plugin.securestorage.2.5.0.nupkg.sha512",
+        "sameeriotapps.plugin.securestorage.nuspec"
+      ]
+    },
     "System.Numerics.Vectors/4.5.0": {
       "sha512": "QQTlPTl06J/iiDbJCiepZ4H//BVraReU4O4EoRw1U02H5TLUIT7xn3GnDp9AXPSlJUDyFs4uWjWafNX6WrAojQ==",
       "type": "package",
@@ -1312,6 +1632,74 @@
         "system.numerics.vectors.nuspec",
         "useSharedDesignerContext.txt",
         "version.txt"
+      ]
+    },
+    "Xam.Plugin.Connectivity/4.0.0.190-beta": {
+      "sha512": "p9PofTKArw6wHg45GpRRE+xDioJGOSAgA+X+E+vUf1CFZmTzeOO3YCmFdP7/W8x6f85Z50zugXGoszEGJx4QSg==",
+      "type": "package",
+      "path": "xam.plugin.connectivity/4.0.0.190-beta",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.dll",
+        "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.pdb",
+        "lib/MonoAndroid10/Plugin.Connectivity.Abstractions.xml",
+        "lib/MonoAndroid10/Plugin.Connectivity.dll",
+        "lib/MonoAndroid10/Plugin.Connectivity.dll.mdb",
+        "lib/MonoAndroid10/Plugin.Connectivity.pdb",
+        "lib/MonoAndroid10/Plugin.Connectivity.xml",
+        "lib/UAP10/Plugin.Connectivity.Abstractions.dll",
+        "lib/UAP10/Plugin.Connectivity.Abstractions.pdb",
+        "lib/UAP10/Plugin.Connectivity.Abstractions.xml",
+        "lib/UAP10/Plugin.Connectivity.XML",
+        "lib/UAP10/Plugin.Connectivity.dll",
+        "lib/UAP10/Plugin.Connectivity.pdb",
+        "lib/UAP10/Plugin.Connectivity.pri",
+        "lib/UAP10/Plugin.Connectivity/Properties/Plugin.Connectivity.rd.xml",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.Abstractions.dll",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.Abstractions.pdb",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.Abstractions.xml",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.dll",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.pdb",
+        "lib/Xamarin.Mac20/Plugin.Connectivity.xml",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.dll",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.pdb",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.Abstractions.xml",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.dll",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.pdb",
+        "lib/Xamarin.iOS10/Plugin.Connectivity.xml",
+        "lib/XamarinTVOS/Plugin.Connectivity.Abstractions.dll",
+        "lib/XamarinTVOS/Plugin.Connectivity.Abstractions.pdb",
+        "lib/XamarinTVOS/Plugin.Connectivity.Abstractions.xml",
+        "lib/XamarinTVOS/Plugin.Connectivity.dll",
+        "lib/XamarinTVOS/Plugin.Connectivity.pdb",
+        "lib/XamarinTVOS/Plugin.Connectivity.xml",
+        "lib/net45/Plugin.Connectivity.Abstractions.dll",
+        "lib/net45/Plugin.Connectivity.Abstractions.pdb",
+        "lib/net45/Plugin.Connectivity.Abstractions.xml",
+        "lib/net45/Plugin.Connectivity.XML",
+        "lib/net45/Plugin.Connectivity.dll",
+        "lib/net45/Plugin.Connectivity.pdb",
+        "lib/netcoreapp2.0/Plugin.Connectivity.Abstractions.dll",
+        "lib/netcoreapp2.0/Plugin.Connectivity.Abstractions.pdb",
+        "lib/netcoreapp2.0/Plugin.Connectivity.Abstractions.xml",
+        "lib/netcoreapp2.0/Plugin.Connectivity.deps.json",
+        "lib/netcoreapp2.0/Plugin.Connectivity.dll",
+        "lib/netcoreapp2.0/Plugin.Connectivity.xml",
+        "lib/netstandard1.0/Plugin.Connectivity.Abstractions.dll",
+        "lib/netstandard1.0/Plugin.Connectivity.Abstractions.pdb",
+        "lib/netstandard1.0/Plugin.Connectivity.Abstractions.xml",
+        "lib/netstandard1.0/Plugin.Connectivity.deps.json",
+        "lib/netstandard1.0/Plugin.Connectivity.dll",
+        "lib/netstandard1.0/Plugin.Connectivity.pdb",
+        "lib/netstandard1.0/Plugin.Connectivity.xml",
+        "lib/tizen40/Plugin.Connectivity.Abstractions.dll",
+        "lib/tizen40/Plugin.Connectivity.Abstractions.pdb",
+        "lib/tizen40/Plugin.Connectivity.Abstractions.xml",
+        "lib/tizen40/Plugin.Connectivity.deps.json",
+        "lib/tizen40/Plugin.Connectivity.dll",
+        "xam.plugin.connectivity.4.0.0.190-beta.nupkg.sha512",
+        "xam.plugin.connectivity.nuspec"
       ]
     },
     "Xamarin.Essentials/1.1.0": {
@@ -1603,6 +1991,20 @@
         "xamarin.forms.nuspec"
       ]
     },
+    "Xamarin.SimplePing/1.4.0": {
+      "sha512": "L00a5GlowQZxI3yyvCo7clpA1s96eQ0MGgwFphB8azpUBn2TwPkFQGo1UTu6So2IuhIdwz9I61f1WF0XLQn95A==",
+      "type": "package",
+      "path": "xamarin.simpleping/1.4.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "THIRD-PARTY-NOTICES.txt",
+        "lib/XamarinMac20/Xamarin.SimplePing.Mac.dll",
+        "lib/XamariniOS10/Xamarin.SimplePing.iOS.dll",
+        "xamarin.simpleping.1.4.0.nupkg.sha512",
+        "xamarin.simpleping.nuspec"
+      ]
+    },
     "XF.Material/1.4.1.3": {
       "sha512": "Q56WA7A5wGdiIf7pDXiU8OYqQFayO1GLcxL15vRXl/Uam+UyBF0ybzg//sA+Ng2CFngDnzSPj+96vied1URREg==",
       "type": "package",
@@ -1637,11 +2039,14 @@
   },
   "projectFileDependencyGroups": {
     "Xamarin.iOS,Version=v1.0": [
+      "Acr.UserDialogs >= 7.0.30",
       "Clinic >= 1.0.0",
       "Newtonsoft.Json >= 12.0.2",
       "XF.Material >= 1.4.1.3",
+      "Xam.Plugin.Connectivity >= 4.0.0.190-beta",
       "Xamarin.Essentials >= 1.1.0",
-      "Xamarin.Forms >= 4.0.0.425677"
+      "Xamarin.Forms >= 4.0.0.425677",
+      "sameerIOTApps.Plugin.SecureStorage >= 2.5.0"
     ]
   },
   "packageFolders": {
@@ -1650,11 +2055,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\CDS07\\Documents\\Medicape\\Clinic\\Clinic\\Clinic.iOS\\Clinic.iOS.csproj",
+      "projectUniqueName": "C:\\Users\\CDS07\\Documents\\Medicape-Admin\\Clinic\\Clinic\\Clinic.iOS\\Clinic.iOS.csproj",
       "projectName": "Clinic.iOS",
-      "projectPath": "C:\\Users\\CDS07\\Documents\\Medicape\\Clinic\\Clinic\\Clinic.iOS\\Clinic.iOS.csproj",
+      "projectPath": "C:\\Users\\CDS07\\Documents\\Medicape-Admin\\Clinic\\Clinic\\Clinic.iOS\\Clinic.iOS.csproj",
       "packagesPath": "C:\\Users\\CDS07\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\CDS07\\Documents\\Medicape\\Clinic\\Clinic\\Clinic.iOS\\obj\\",
+      "outputPath": "C:\\Users\\CDS07\\Documents\\Medicape-Admin\\Clinic\\Clinic\\Clinic.iOS\\obj\\",
       "projectStyle": "PackageReference",
       "skipContentFileWrite": true,
       "configFilePaths": [
@@ -1671,8 +2076,8 @@
       "frameworks": {
         "xamarinios10": {
           "projectReferences": {
-            "C:\\Users\\CDS07\\Documents\\Medicape\\Clinic\\Clinic\\Clinic\\Clinic.csproj": {
-              "projectPath": "C:\\Users\\CDS07\\Documents\\Medicape\\Clinic\\Clinic\\Clinic\\Clinic.csproj"
+            "C:\\Users\\CDS07\\Documents\\Medicape-Admin\\Clinic\\Clinic\\Clinic\\Clinic.csproj": {
+              "projectPath": "C:\\Users\\CDS07\\Documents\\Medicape-Admin\\Clinic\\Clinic\\Clinic\\Clinic.csproj"
             }
           }
         }
@@ -1681,6 +2086,10 @@
     "frameworks": {
       "xamarinios10": {
         "dependencies": {
+          "Acr.UserDialogs": {
+            "target": "Package",
+            "version": "[7.0.30, )"
+          },
           "Newtonsoft.Json": {
             "target": "Package",
             "version": "[12.0.2, )"
@@ -1689,6 +2098,10 @@
             "target": "Package",
             "version": "[1.4.1.3, )"
           },
+          "Xam.Plugin.Connectivity": {
+            "target": "Package",
+            "version": "[4.0.0.190-beta, )"
+          },
           "Xamarin.Essentials": {
             "target": "Package",
             "version": "[1.1.0, )"
@@ -1696,6 +2109,10 @@
           "Xamarin.Forms": {
             "target": "Package",
             "version": "[4.0.0.425677, )"
+          },
+          "sameerIOTApps.Plugin.SecureStorage": {
+            "target": "Package",
+            "version": "[2.5.0, )"
           }
         }
       }

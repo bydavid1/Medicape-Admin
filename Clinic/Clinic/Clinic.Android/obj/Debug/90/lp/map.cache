@@ -1,3 +1,5 @@
+Acr.UserDialogs
+AndHUD
 Clinic
 CommonServiceLocator
 FormsViewGroup
@@ -7,6 +9,10 @@ GalaSoft.MvvmLight.Platform
 Lottie.Android
 Lottie.Forms
 Newtonsoft.Json
+Plugin.Connectivity.Abstractions
+Plugin.Connectivity
+Plugin.SecureStorage.Abstractions
+Plugin.SecureStorage
 Rg.Plugins.Popup
 Rg.Plugins.Popup.Droid
 System.Runtime
@@ -57,6 +63,7 @@ Xamarin.Forms.Xaml
 XF.Material.Droid
 XF.Material.Forms
 netstandard
+System.Drawing.Common
 System.Resources.ResourceManager
 System.ComponentModel
 System.Reflection.Extensions

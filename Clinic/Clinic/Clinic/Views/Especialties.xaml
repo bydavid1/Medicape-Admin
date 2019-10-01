@@ -23,6 +23,10 @@
                                 <StackLayout Padding="10,10,10,10">
                                         <StackLayout Orientation="Horizontal" Padding="20,0,0,0">
                                         <Label Text="{Binding nombre}" FontFamily="{StaticResource NormalFont}" TextColor="#212121" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
+                                            <Image Source="{Binding Image}" HeightRequest="35" WidthRequest="35"/>
+                                            <Image Source="ajuste" HeightRequest="35" WidthRequest="35"/>
+                                        </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
                             </custom:CustomViewCell>
