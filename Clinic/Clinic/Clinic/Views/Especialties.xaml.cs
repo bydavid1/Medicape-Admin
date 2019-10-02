@@ -1,4 +1,5 @@
-﻿using Clinic.ViewModels;
+﻿using Clinic.Models;
+using Clinic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,5 +19,5 @@ namespace Clinic.Views
 			InitializeComponent ();
             BindingContext = new EspecialtiesViewModel();
 		}
-	}
+    }
 }

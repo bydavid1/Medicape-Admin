@@ -51,6 +51,13 @@ namespace Clinic.ViewModels
             get { return _listVisible; }
             set { SetValue(ref _listVisible, value); }
         }
+
+        private string _image;
+        public string Image
+        {
+            get { return _image; }
+            set { SetValue(ref _image, value); }
+        }
         #endregion
 
         #region Constructor
@@ -91,7 +98,21 @@ namespace Clinic.ViewModels
                 {
                     await loadingDialog.DismissAsync();
                     var list = (List<Especialidades>)response.Result;
-                    Items = new ObservableCollection<Especialidades>(list);
+                    Items = new ObservableCollection<Especialidades>();
+                    foreach (var item in list)
+                    {
+                        if (item.publico == 0)
+                        {
+                            item.Image = "apagar";
+                        }
+                        else
+                        {
+                            item.Image = "encender";
+                        }
+
+                        Items.Add(item);
+                    }
+                   
                 }
             }
             else
@@ -123,6 +144,49 @@ namespace Clinic.ViewModels
             get
             {
                 return new RelayCommand(GetEspecialties);
+            }
+        }
+
+        public ICommand ImageClicked
+        {
+            get
+            {
+                return new Command((e) =>
+                {
+                    var item = (Especialidades)e;
+                    Especialidades esp = new Especialidades
+                    {
+                        idespecialidad = item.idespecialidad,
+                        nombre = item.nombre,
+                        publico = item.publico
+                    };
+
+                    Update(esp);
+                });
+            }
+        }
+
+        private async void Update(Especialidades esp)
+        {
+            bool result = get.TestConnection();
+            if (result == true)
+            {
+                IsVisible = false;
+                ListVisible = true;
+                var response = await functions.Update(esp, "/Api/especialidades/update_public.php");
+                if (!response)
+                {
+                   await MaterialDialog.Instance.SnackbarAsync(message: "No se pudo actualizar");
+                }
+                else
+                {
+                    GetEspecialties();
+                }
+            }
+            else
+            {
+                IsVisible = true;
+                ListVisible = false;
             }
         }
     }
