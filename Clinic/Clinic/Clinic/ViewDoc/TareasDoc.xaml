@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Clinic.ViewDoc.TareasDoc">
+    <ContentPage.Content>
+        <StackLayout>
+            <ui:MaterialCard
+                 Elevation="6" 
+                 BackgroundColor="White"
+                 HeightRequest="50">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                 <Image 
+                 Source="check" 
+                 WidthRequest="50" 
+                 HorizontalOptions="Center" 
+                 VerticalOptions="Center"/>
+
+                 <ui:MaterialLabel
+                 Grid.Column="0"
+                 Grid.RowSpan="4"
+                 Text="TAREAS PARA HOY"
+                 TypeScale="H4" 
+                 FontSize="24"
+                 TextColor="Black"
+                 FontAttributes="Bold" 
+                 LetterSpacing="0.15"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"/>
+                </StackLayout>
+            </ui:MaterialCard>
+
+            <ui:MaterialCard
+                 Elevation="6"                   
+                 BackgroundColor="#40c7c0"
+                 HeightRequest="75"
+                 Margin="10,10,10,0">
+
+                <Grid
+                    RowSpacing="-2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <ui:MaterialLabel
+                     Grid.Column="0"
+                     Grid.RowSpan="4"
+                     Text="04:30pm"
+                     TypeScale="H4" 
+                     FontSize="24"
+                     TextColor="White"
+                     FontAttributes="Bold" 
+                     LetterSpacing="0.15"
+                     VerticalOptions="Center"
+                     HorizontalOptions="Start"
+                     />
+
+                    <ui:MaterialLabel
+                     Grid.Column="1"
+                     Grid.Row="0"
+                     Text="Reunion de Doctores"
+                     TypeScale="H6" 
+                     FontSize="20"
+                     TextColor="White"
+                     FontAttributes="Bold" 
+                     LetterSpacing="0.15"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center"
+                     />
+
+                    <ui:MaterialLabel
+                     Grid.Column="1"
+                     Grid.Row="1"                           
+                     Text="Sala de Reuniones" 
+                     TypeScale="Subtitle1"  
+                     FontSize="18"
+                     TextColor="White"
+                     FontAttributes="None" 
+                     LetterSpacing="0.15"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center"
+                     />
+
+                    <ui:MaterialLabel
+                     Grid.Column="1"
+                     Grid.Row="2"                           
+                     Text="18/09/2019" 
+                     TypeScale="Subtitle1"  
+                     FontSize="18"
+                     TextColor="White"
+                     FontAttributes="None" 
+                     LetterSpacing="0.15"
+                     HorizontalOptions="Start"
+                     VerticalOptions="Center"
+                     />
+                </Grid>
+            </ui:MaterialCard>
+
+            <ListView HasUnevenRows="True"
+                  ItemsSource="{Binding Personas, Mode=TwoWay}"
+                  IsPullToRefreshEnabled="True"
+                  IsRefreshing="{Binding  IsRefreshing, Mode=TwoWay}"
+                  SelectedItem="{Binding Obj, Mode=TwoWay}"
+                  RefreshCommand="{Binding RefreshCommand, Mode=TwoWay}"
+                  SeparatorVisibility="None">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ui:MaterialCard
+                            Margin="10,5,10,0"
+                            Padding="0"
+                            HorizontalOptions="FillAndExpand"                
+                            Elevation="8">
+
+                                <Grid 
+                                ColumnSpacing="-2"
+                                Padding="0">
+
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="110"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="3"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Frame
+                                    BackgroundColor="#40c7c0"
+                                    WidthRequest="100"
+                                    HeightRequest="30" 
+                                    Grid.Column="0"
+                                    Grid.Row="0">
+
+                                        <StackLayout
+                                    WidthRequest="100"
+                                    Spacing="-1">
+
+                                            <ui:MaterialLabel                          
+                                        Text="{Binding Dia}"
+                                        TextColor="White"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        TypeScale="Subtitle1"
+                                        FontSize="20"
+                                        FontAttributes="Bold"
+                                        LetterSpacing="0.15"/>
+
+                                            <ui:MaterialLabel                          
+                                        Text="{Binding Mes}"
+                                        TextColor="White"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="CenterAndExpand"
+                                        TypeScale="Subtitle1"
+                                        FontSize="14"
+                                        FontAttributes="Bold"
+                                        LetterSpacing="0.15"/>
+
+                                        </StackLayout>
+                                    </Frame>
+
+                                    <ui:MaterialCard
+                                   BackgroundColor="Transparent"
+                                   HorizontalOptions="FillAndExpand"
+                                   HeightRequest="30" 
+                                   Grid.Column="1"
+                                   Grid.Row="0">
+
+                                        <StackLayout
+                                    HorizontalOptions="FillAndExpand"
+                                    Spacing="-1">
+
+                                            <ui:MaterialLabel                          
+                                        Text="{Binding Tarea}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        TypeScale="Subtitle1"
+                                        FontSize="15"
+                                        FontAttributes="None"
+                                        LetterSpacing="0.15"/>
+
+                                            <ui:MaterialLabel                          
+                                        Text="{Binding Lugar}"
+                                        TextColor="Black"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="Center"
+                                        TypeScale="Subtitle1"
+                                        FontSize="12"
+                                        FontAttributes="None"
+                                        LetterSpacing="0.15"/>
+                                        </StackLayout>
+                                    </ui:MaterialCard>
+
+                                    <Frame
+                                  BackgroundColor="#40c7c0"
+                                  HorizontalOptions="FillAndExpand"
+                                  HeightRequest="30" 
+                                  Grid.Column="2"
+                                  Grid.Row="0">
+                                    </Frame>
+                                </Grid>
+                            </ui:MaterialCard>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
