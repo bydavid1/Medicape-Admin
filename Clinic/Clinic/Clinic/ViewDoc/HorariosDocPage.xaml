@@ -1,0 +1,221 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Clinic.ViewDoc.HorariosDocPage">
+    <ContentPage.Content>
+        <StackLayout>
+            <ui:MaterialCard
+             Margin="10"
+             HorizontalOptions="FillAndExpand">
+                <Grid ColumnSpacing="2">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+
+                    <Label
+                     Text="Citas:"
+                     TextColor="#a5adc0"
+                     FontAttributes="Bold"
+                     Grid.Column="0"
+                     Grid.Row="0"/>
+
+                    <ui:MaterialTextField  
+                     Placeholder="Numero de citas"
+                     BackgroundColor="#eaeaea"
+                     InputType="Numeric"
+                     MaxLength="2"
+                     TintColor="#15ccc8" 
+                     FloatingPlaceholderEnabled="False" 
+                     LeadingIconTintColor="#696969" 
+                     PlaceholderColor="#c8c8c8"
+                     Grid.Column="0"
+                     Grid.Row="1" />
+
+
+                    <Label
+                     Text="Tiempo:"
+                     TextColor="#a5adc0"
+                     FontAttributes="Bold"
+                     Grid.Column="0"
+                     Grid.Row="2"/>
+
+                    <ui:MaterialTextField  
+                     Placeholder="Tiempo por cita"
+                     BackgroundColor="#eaeaea"
+                     InputType="Numeric"
+                     MaxLength="2"
+                     TintColor="#15ccc8" 
+                     FloatingPlaceholderEnabled="False" 
+                     LeadingIconTintColor="#696969" 
+                     PlaceholderColor="#c8c8c8"
+                     Grid.Column="0"
+                     Grid.Row="3" />
+
+                    <Picker 
+                     SelectedItem="{Binding s_estado}" 
+                     Title="Seleccione..."
+                     Grid.Column="0"
+                     Grid.Row="4">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}" >
+                                <x:String>8:00 am</x:String>
+                                <x:String>9:00 am</x:String>
+                                <x:String>10:00 am</x:String>
+                                <x:String>11:00 am</x:String>
+                                <x:String>12:00 am</x:String>
+                                <x:String>1:00 pm</x:String>
+                                <x:String>2:00 pm</x:String>
+                                <x:String>3:00 pm</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+
+
+                    <StackLayout
+                    Orientation="Horizontal"
+                    Grid.Column="0"
+                    Grid.Row="5" >
+                        <ui:MaterialButton 
+                     Command="{Binding Create}"
+                     BackgroundColor="#B00020" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="Center" 
+                     Text="Cancelar" 
+                     TextColor="White"
+                     FontAttributes="Bold" 
+                     PressedBackgroundColor="#B00020"
+                     />
+
+                        <ui:MaterialButton 
+                     Command="{Binding Create}"
+                     BackgroundColor="#15ccc8" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="Center" 
+                     Text="Registrar" 
+                     TextColor="White"
+                     FontAttributes="Bold"
+                     PressedBackgroundColor="#008ca5"
+                     />
+
+
+                    </StackLayout>
+                </Grid>
+            </ui:MaterialCard>
+
+            <ui:MaterialCard
+             HorizontalOptions="FillAndExpand"
+             VerticalOptions="Center"
+             Padding="0"
+             Elevation="8"
+             Margin="10,5,10,5"                                             
+             CornerRadius="3">
+
+                <StackLayout>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+
+                        </Grid.RowDefinitions>
+
+                        <StackLayout
+                         Grid.Column="0"
+                         Grid.Row="1"
+                         VerticalOptions="Center">
+                            <ui:MaterialLabel 
+                             Text="Numero de citas"
+                             TextColor="#a5adc0"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="16"
+                             FontAttributes="Bold"
+                             LetterSpacing="0.15"/>
+
+                            <ui:MaterialLabel 
+                             Text="5" 
+                             TextColor="#15ccc8"                                            
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"                                              
+                             TypeScale="H6" 
+                             FontSize="30" 
+                             FontAttributes="Bold" 
+                             LetterSpacing="0.15"/>
+                        </StackLayout>
+
+
+                        <StackLayout
+                         Grid.Column="1"
+                         Grid.Row="1">
+                            <StackLayout Orientation="Horizontal" Spacing="0">
+                                <ui:MaterialLabel 
+                             Text="01:00" 
+                             TextColor="#8d97ad"                                            
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             TypeScale="H3"  
+                             FontSize="50" 
+                             FontAttributes="None" 
+                             LetterSpacing="0.15"/>
+
+                                <Label
+                             VerticalOptions="Start"
+                             HorizontalOptions="Center"
+                             Text="p.m"
+                             FontSize="Large"
+                             TextColor="#a5adc0"
+                             FontAttributes="Bold"/>
+                            </StackLayout>
+
+
+                            <ui:MaterialLabel 
+                             Text="Hora de finalizacion"
+                             TextColor="#a5adc0"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="16"
+                             FontAttributes="Bold"
+                             LetterSpacing="0.15"/>
+
+                        </StackLayout>
+
+                    </Grid>
+
+                    <StackLayout 
+                     HeightRequest="25" 
+                     BackgroundColor="#15ccc8" 
+                     Orientation="Horizontal" 
+                     Padding="10">
+
+                        <ui:MaterialLabel 
+                      Text="45 minutos de consulta por persona"  
+                      TextColor="White" 
+                      FontAttributes="Bold"  
+                      FontSize="Medium" />
+
+                    </StackLayout>
+
+                </StackLayout>
+            </ui:MaterialCard>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

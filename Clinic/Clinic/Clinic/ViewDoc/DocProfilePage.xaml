@@ -1,0 +1,277 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Clinic.ViewDoc.DocProfilePage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!--CardFotoPerfil-->
+                <ui:MaterialCard
+                 Elevation="4"                   
+                 BackgroundColor="#40c7c0"
+                 HeightRequest="215">
+
+                    <StackLayout 
+                    Orientation="Vertical">
+
+                        <Grid>
+
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
+
+
+                            <ui:MaterialLabel
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Text="Perfil"
+                            TypeScale="H6" 
+                            FontSize="20"
+                            TextColor="White"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"
+                            HorizontalOptions="Center"
+                            VerticalOptions="Center"
+                             Margin="50,0,0,0"/>
+
+                            <ImageButton
+                             Grid.Column="1"
+                             Grid.Row="0"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"
+                             BackgroundColor="Transparent"                       
+                             Source="refreshDoc"
+                             WidthRequest="25"/>
+
+                        </Grid>
+
+
+
+
+                        <Image
+                             Margin="0,5,0,0"
+                             Source="man" 
+                             WidthRequest="125"                       
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+
+                        <StackLayout
+                         Margin="0,2,0,0"
+                         Spacing="-1">
+
+                            <ui:MaterialLabel
+                            Text="Byron Martinez"
+                            TypeScale="H6" 
+                            FontSize="24"
+                            TextColor="White"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"
+                             HorizontalOptions="Center"/>
+
+                            <ui:MaterialLabel 
+                             HorizontalOptions="Center"
+                             Text="Doctor" 
+                             TypeScale="Subtitle1"  
+                             FontSize="18"
+                             TextColor="White"
+                             FontAttributes="None" 
+                             LetterSpacing="0.15"/>
+
+                        </StackLayout>
+                    </StackLayout>
+
+                </ui:MaterialCard>
+                <!--CardDatosN,A,T-->
+                <ui:MaterialCard
+                 Padding="0"
+                 Margin="5,10,5,0"
+                 BackgroundColor="White"
+                 HeightRequest="190">
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout
+                     HorizontalOptions="FillAndExpand"                   
+                     Spacing="4"
+                     Grid.Column="0"
+                     Margin="20">
+
+
+                            <ui:MaterialLabel
+                            Text="Nombre"
+                            TypeScale="Caption" 
+                            FontSize="14"
+                            TextColor="#40c7c0"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.4"/>
+
+                            <ui:MaterialLabel
+                            Text="Byron David"
+                            TypeScale="Subtitle1" 
+                            FontSize="16"
+                            TextColor="Black"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"/>
+
+
+
+                            <ui:MaterialLabel
+                            Margin="0,5,0,0"
+                            Text="Apellido"
+                            TypeScale="Caption" 
+                            FontSize="14"
+                            TextColor="#40c7c0"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.4"/>
+
+                            <ui:MaterialLabel
+                            Text="Martinez Jimenez"
+                            TypeScale="Subtitle1" 
+                            FontSize="16"
+                            TextColor="Black"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"/>
+
+
+
+                            <ui:MaterialLabel
+                            Margin="0,5,0,0"
+                            Text="Telefono"
+                            TypeScale="Caption" 
+                            FontSize="14"
+                            TextColor="#40c7c0"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.4"/>
+
+
+
+
+
+
+
+                            <ui:MaterialLabel
+                            Text="4850-7896"
+                            TypeScale="Subtitle1" 
+                            FontSize="16"
+                            TextColor="Black"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"
+                            />
+
+
+
+
+
+
+
+                        </StackLayout>
+
+                        <ImageButton
+                           
+                             Grid.Column="1"
+                             HorizontalOptions="Center"
+                             VerticalOptions="End"
+                             BackgroundColor="Transparent"                       
+                             Source="pencil"
+                             WidthRequest="40"
+                             Margin="0,0,5,20"
+                             />
+                    </Grid>
+
+
+
+
+
+                </ui:MaterialCard>
+                <!--CardDatosCorreo,Contr-->
+                <ui:MaterialCard
+                 Padding="0"
+                 Margin="5,0,5,0"
+                 BackgroundColor="White"
+                 HeightRequest="150">
+
+
+                    <Grid>
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="50"/>
+                        </Grid.ColumnDefinitions>
+
+                        <StackLayout
+                     HorizontalOptions="FillAndExpand"                   
+                     Spacing="4"
+                     Grid.Column="0"
+                     Margin="20">
+
+                            <ui:MaterialLabel
+                            Text="Correo Electronico"
+                            TypeScale="Caption" 
+                            FontSize="14"
+                            TextColor="#40c7c0"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.4"/>
+
+
+                            <ui:MaterialLabel
+                            Text="byrondavid9@gmail.com"
+                            TypeScale="Subtitle1" 
+                            FontSize="16"
+                            TextColor="Black"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"/>
+
+                            <ui:MaterialLabel
+                             Margin="0,5,0,0"   
+                            Text="Contraseña"
+                            TypeScale="Caption" 
+                            FontSize="14"
+                            TextColor="#40c7c0"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.4"/>
+
+
+
+                            <ui:MaterialLabel
+                            Text="............"
+                            TypeScale="Subtitle1" 
+                            FontSize="16"
+                            TextColor="Black"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"
+                            />
+
+                        </StackLayout>
+
+                        <ImageButton
+                             Grid.Column="1"
+                             HorizontalOptions="Center"
+                             VerticalOptions="End"
+                             BackgroundColor="Transparent"                       
+                             Source="pencil"
+                             WidthRequest="40"
+                             Margin="0,0,5,20"
+                            
+                             />
+                    </Grid>
+
+                </ui:MaterialCard>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

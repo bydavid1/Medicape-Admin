@@ -1,0 +1,425 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             NavigationPage.HasNavigationBar="False"
+             x:Class="Clinic.ViewDoc.HomeDocPage">
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout>
+                <!--Card Perfil-->
+                <ui:MaterialCard
+                 Elevation="4"                   
+                 BackgroundColor="#40c7c0"
+                 HeightRequest="100">
+
+                    <StackLayout
+                    Orientation="Horizontal">
+
+                        <Image 
+                         Source="man" 
+                         WidthRequest="100"
+                         VerticalOptions="Start" 
+                         HorizontalOptions="Start"
+                         />
+
+                        <StackLayout 
+                         Orientation="Vertical" 
+                         Spacing="-3" 
+                         HorizontalOptions="StartAndExpand" 
+                         VerticalOptions="Center" 
+                         Padding="5,0,20,0">
+
+                            <ui:MaterialLabel
+                            Text="Byron Martinez"
+                            TypeScale="H6" 
+                            FontSize="24"
+                             TextColor="White"
+                            FontAttributes="Bold" 
+                            LetterSpacing="0.15"/>
+
+                            <ui:MaterialLabel                            
+                             Text="Doctor" 
+                             TypeScale="Subtitle1"  
+                             FontSize="18"
+                             TextColor="White"
+                             FontAttributes="None" 
+                             LetterSpacing="0.15"/>
+
+                            <ui:MaterialButton
+                            Clicked="MaterialButton_Clicked"
+                            Margin="0,12,0,0"
+                            BackgroundColor="White"
+                            BorderColor="White"
+                            BorderWidth="3"
+                            Text="Editar Perfil" 
+                            TextColor="#40c7c0"
+                            CornerRadius="6"
+                            HeightRequest="50"
+                            FontSize="Small"
+                            AllCaps="False"                             
+                             />
+
+                        </StackLayout>
+
+
+
+                    </StackLayout>
+
+                </ui:MaterialCard>
+
+                <!--Card 2-->
+                <Grid 
+                 ColumnSpacing="5"
+                 Margin="5,10,5,0">
+
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--Eventos-->
+                    <ui:MaterialCard
+                         Clicked="MaterialCard_Clicked"
+                         IsClickable="True"
+                         WidthRequest="100"
+                         HeightRequest="50"
+                         Elevation="6"
+                         CornerRadius="10"
+                         Grid.Column="0"
+                         Grid.Row="0">
+
+                        <StackLayout 
+                           Orientation="Vertical" 
+                           Spacing="5" 
+                           HorizontalOptions="FillAndExpand">
+
+                            <Image 
+                             Source="calendar3"
+                             WidthRequest="35"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"
+                             >
+
+                            </Image>
+
+                            <ui:MaterialLabel 
+                             Text="Tareas"
+                             TextColor="Black"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="16"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"/>
+
+                       </StackLayout>
+                    </ui:MaterialCard>
+                    <!--Horarios-->
+                    <ui:MaterialCard
+                         Clicked="MaterialCard_Clicked1"
+                         IsClickable="True"
+                         WidthRequest="100"
+                         HeightRequest="50"
+                         Elevation="12"
+                         CornerRadius="10"
+                         Grid.Column="1"
+                         Grid.Row="0">
+
+                        <StackLayout 
+                           Orientation="Vertical" 
+                           Spacing="5" 
+                           HorizontalOptions="FillAndExpand">
+
+                            <Image 
+                             Source="event3"
+                             WidthRequest="35"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+
+                            <ui:MaterialLabel 
+                             Text="Horarios"
+                             TextColor="Black"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="16"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"/>
+
+                        </StackLayout>
+
+                    </ui:MaterialCard>
+                    <!--Historial-->
+                    <ui:MaterialCard
+                         WidthRequest="100"
+                         HeightRequest="50"
+                         Elevation="6"
+                        CornerRadius="10"
+                         Grid.Column="2"
+                         Grid.Row="0">
+
+                        <StackLayout 
+                           Orientation="Vertical" 
+                           Spacing="5" 
+                           HorizontalOptions="FillAndExpand">
+
+                            <Image 
+                             Source="history4"
+                             WidthRequest="35"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+
+                            <ui:MaterialLabel 
+                             Text="Historial"
+                             TextColor="Black"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="15"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"/>
+
+                        </StackLayout>
+
+                    </ui:MaterialCard>
+
+                </Grid>
+
+                <ui:MaterialCard
+                 Margin="10,10,10,0"
+                 Padding="0"
+                 HorizontalOptions="FillAndExpand"                
+                 Elevation="8">
+
+                    <Grid ColumnSpacing="0"
+                          Padding="0">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="75"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="3"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <Frame
+                          BackgroundColor="#40c7c0"
+                          HorizontalOptions="FillAndExpand"
+                          HeightRequest="30" 
+                          Grid.Column="0"
+                          Grid.Row="0">
+
+                            <Image
+                             Source="worldwide"
+                             WidthRequest="75"
+                             HorizontalOptions="Center"
+                             VerticalOptions="Center"/>
+
+                        </Frame>
+
+                        <ui:MaterialCard
+                          BackgroundColor="Transparent"
+                          HorizontalOptions="FillAndExpand"
+                          HeightRequest="30" 
+                          Grid.Column="1"
+                          Grid.Row="0">
+
+                            <StackLayout
+                             HorizontalOptions="FillAndExpand"
+                             Orientation="Horizontal">
+
+                                <ui:MaterialLabel                          
+                             Text="Estado"
+                             TextColor="Black"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="20"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"
+                             Margin="0,0,75,0"/>
+
+                                <Switch
+                              HorizontalOptions="Center"
+                              VerticalOptions="Center"
+                              Margin="10,0,0,0"/>
+
+                            </StackLayout>
+
+                        </ui:MaterialCard>
+
+                        <Frame
+                          BackgroundColor="#40c7c0"
+                          HorizontalOptions="FillAndExpand"
+                          HeightRequest="30" 
+                          Grid.Column="2"
+                          Grid.Row="0">
+
+
+
+                        </Frame>
+
+                    </Grid>
+
+                </ui:MaterialCard>
+
+                <!--Card 3-->
+                <ui:MaterialCard 
+                 CornerRadius="10"
+                 Elevation="5"
+                 HorizontalOptions="FillAndExpand" 
+                 Padding="0" 
+                 Margin="5,25,5,0" 
+                 VerticalOptions="Center">
+
+                    <Grid 
+                     RowSpacing="1">
+
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                            <RowDefinition Height="auto"/>
+                        </Grid.RowDefinitions>
+
+                        <!--Solicitudes-->
+                        <ui:MaterialCard
+                         HorizontalOptions="FillAndExpand"
+                         HeightRequest="35"                                                  
+                         Grid.Column="0"
+                         Grid.Row="0">
+
+                            <StackLayout 
+                           Orientation="Horizontal"                           
+                           HorizontalOptions="FillAndExpand">
+
+                                <Image 
+                             Source="Solicitudes"
+                             WidthRequest="35"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"/>
+
+                                <ui:MaterialLabel
+                             Margin="5,0,20,0"
+                             Text="Solicitudes de Citas"
+                             TextColor="Black"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="18"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"/>
+
+                                <Image 
+                             Margin="50,0,0,0"
+                             Source="keyboard"
+                             WidthRequest="20"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"/>
+
+                            </StackLayout>
+
+                        </ui:MaterialCard>
+
+                        <!--Consultas-->
+                        <ui:MaterialCard
+                         HorizontalOptions="FillAndExpand"
+                         HeightRequest="35"                                                  
+                         Grid.Column="0"
+                         Grid.Row="1">
+
+                            <StackLayout 
+                           Orientation="Horizontal"                           
+                           HorizontalOptions="FillAndExpand">
+
+                                <Image 
+                             Source="consultingC"
+                             WidthRequest="35"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"/>
+
+                                <ui:MaterialLabel
+                             Margin="5,0,38,0"    
+                             Text="Consultas del Dia"
+                             TextColor="Black"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="18"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"/>
+
+                                <Image
+                             Margin="50,0,0,0"   
+                             Source="keyboard"
+                             WidthRequest="20"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"/>
+
+                            </StackLayout>
+
+                        </ui:MaterialCard>
+
+                        <!--Citas-->
+                        <ui:MaterialCard
+                         HorizontalOptions="FillAndExpand"
+                         HeightRequest="35"                                                  
+                         Grid.Column="0"
+                         Grid.Row="2">
+
+                            <StackLayout 
+                           Orientation="Horizontal"                           
+                           HorizontalOptions="FillAndExpand">
+
+                                <Image 
+                             Source="calendarC"
+                             WidthRequest="35"
+                             HorizontalOptions="Start"
+                             VerticalOptions="Center"/>
+
+                                <ui:MaterialLabel
+                             Margin="5,0,56,0"
+                             Text="Proximas Citas"
+                             TextColor="Black"
+                             VerticalOptions="Center"
+                             HorizontalOptions="Center"
+                             TypeScale="Subtitle1"
+                             FontSize="18"
+                             FontAttributes="None"
+                             LetterSpacing="0.15"/>
+
+                                <Image
+                             Margin="50,0,0,0"    
+                             Source="keyboard"
+                             WidthRequest="20"
+                             HorizontalOptions="End"
+                             VerticalOptions="Center"/>
+
+                            </StackLayout>
+
+                        </ui:MaterialCard>
+
+
+                    </Grid>
+
+
+                </ui:MaterialCard>
+
+
+
+
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
