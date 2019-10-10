@@ -130,12 +130,15 @@ namespace Clinic.ViewModels
                 else if (response.Result == null)
                 {
                     await loadingDialog.DismissAsync();
-                    await MaterialDialog.Instance.AlertAsync(message: response.Message,
-                                               title: "Error",
-                                               acknowledgementText: "Ok");
+                    IsVisible = false;
+                    NoResults = true;
+                    ListVisible = false;
                 }
                 else
                 {
+                    IsVisible = false;
+                    NoResults = false;
+                    ListVisible = true;
                     await loadingDialog.DismissAsync();
                     var list = (List<Empleados>)response.Result;
                     Items = new ObservableCollection<Empleados>(list);

@@ -5,12 +5,16 @@ using System.Windows.Input;
 using GalaSoft.MvvmLight.Command;
 using Clinic.Validaciones;
 using System.Collections.Generic;
+using System.Threading.Tasks;
+using System.Collections.ObjectModel;
 
 namespace Clinic.ViewModels
 {
     public class AddEmployeeViewModel : BaseViewModel
     {
         MaterialControls control = new MaterialControls();
+        Functions functions = new Functions();
+
         #region Propiedades
         private string _nombre;
         private string _apellido;
@@ -25,6 +29,7 @@ namespace Clinic.ViewModels
         private string _celular;
         private string _dir;
         private string _nit;
+        private List<string> _lespecialidad;
         private DateTime _selected;
         #endregion
 
@@ -51,7 +56,11 @@ namespace Clinic.ViewModels
             get { return _estado; }
             set { SetValue(ref _estado, value); }
         }
-        public List<string> l_especialidad { get; set; }
+        public List<string> l_especialidad
+        {
+            get { return _lespecialidad; }
+            set { SetValue(ref _lespecialidad, value); }
+        }
         public string s_especialidad
         {
             get { return _especialidad; }
@@ -108,17 +117,16 @@ namespace Clinic.ViewModels
         #endregion
         public AddEmployeeViewModel()
         {
+            FillPickers();
+        }
+
+        private async void FillPickers()
+        {
             var listGenero = new List<string>();
             listGenero.Add("Masculino");
             listGenero.Add("Femenino");
 
             l_sexo = listGenero;
-
-            var listEspecialidad= new List<string>();
-            listEspecialidad.Add("Doctor");
-            listEspecialidad.Add("Enfermera");
-
-            l_especialidad = listEspecialidad;
 
             var listEstado = new List<string>();
             listEstado.Add("Soltero");
@@ -126,6 +134,35 @@ namespace Clinic.ViewModels
             listEstado.Add("Viudo");
 
             l_estado = listEstado;
+
+            Connection get = new Connection();
+            bool result = get.TestConnection();
+            if (result == true)
+            {
+                var response = await functions.Read<Especialidades>("/Api/especialidades/read.php");
+                if (!response.IsSuccess)
+                {
+                }
+                else if (response.Result == null)
+                {
+
+                }
+                else
+                {
+                    var list = (List<Especialidades>)response.Result;
+                    var items = new List<string>();
+                    foreach (var item in list)
+                    {
+                        items.Add(item.nombre);
+                    }
+
+                    l_especialidad = items;
+                }
+            }
+            else
+            {
+
+            }
         }
 
         public ICommand Create
@@ -182,9 +219,7 @@ namespace Clinic.ViewModels
                     nit = e_nit,
                     fecha_Contratacion = date
                 };
-
-                Functions element = new Functions();
-               var response = await element.Insert(empleados, "/Api/empleado/create.php");
+               var response = await functions.Insert(empleados, "/Api/empleado/create.php");
 
                 if (response.IsSuccess == true)
                 {
