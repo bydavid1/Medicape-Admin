@@ -1,5 +1,6 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
+using Clinic.Views;
 using GalaSoft.MvvmLight.Command;
 using System;
 using System.Collections.Generic;
@@ -101,6 +102,18 @@ namespace Clinic.ViewModels
             {
                 return new RelayCommand(GetPatients);
             }
+        }
+        public ICommand NewPatient
+        {
+            get
+            {
+                return new RelayCommand(NewPatients);
+            }
+        }
+
+        private void NewPatients()
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new AddPatients());
         }
 
 
