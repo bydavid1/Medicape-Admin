@@ -7,7 +7,9 @@ using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using XF.Material.Forms.UI;
 using XF.Material.Forms.UI.Dialogs;
+using XF.Material.Forms.UI.Dialogs.Configurations;
 
 namespace Clinic.ViewModels
 {
@@ -187,6 +189,117 @@ namespace Clinic.ViewModels
             {
                 IsVisible = true;
                 ListVisible = false;
+            }
+        }
+
+        public ICommand Settings
+        {
+            get
+            {
+                return new Command((e) =>
+                {
+                    var item = (Especialidades)e;
+
+                    Edit(item);
+                });
+            }
+        }
+
+        private async void Edit(Especialidades especialidad)
+        {
+            var actions = new string[] { "Cambiar nombre", "Editar permisos"};
+
+            var select = await MaterialDialog.Instance.SelectActionAsync(title: "Selecciona una accion",
+                                                                         actions: actions);
+            if (select == 0)
+            {
+                var config = new MaterialInputDialogConfiguration()
+                {
+                    CornerRadius = 8,
+                    BackgroundColor = Color.FromHex("#2c3e50"),
+                    InputTextColor = Color.White,
+                    InputPlaceholderColor = Color.White.MultiplyAlpha(0.6),
+                    TintColor = Color.White,
+                    TitleTextColor = Color.White,
+                    MessageTextColor = Color.FromHex("#DEFFFFFF")
+                };
+
+                var input = await MaterialDialog.Instance.InputAsync(title: "Cambiar nombre",
+                                                                     message: "Por favor ingrese el nuevo nombre de la especialidad",
+                                                                     inputPlaceholder: "Especialidad",
+                                                                     inputText: especialidad.nombre,
+                                                                     confirmingText: "Cambiar",
+                                                                     configuration: config);
+
+                if (!string.IsNullOrEmpty(input) || input == especialidad.nombre)
+                {
+                    bool result = get.TestConnection();
+                    if (result == true)
+                    {
+                        Especialidades esp = new Especialidades
+                        {
+                            idespecialidad = especialidad.idespecialidad,
+                            nombre = input,
+                            publico = especialidad.publico
+                        };
+                        IsVisible = false;
+                        ListVisible = true;
+                        var response = await functions.Update(esp, "/Api/especialidades/update.php");
+                        if (!response)
+                        {
+                            await MaterialDialog.Instance.SnackbarAsync(message: "No se pudo actualizar");
+                        }
+                        else
+                        {
+                            GetEspecialties();
+                        }
+                    }
+                    else
+                    {
+                        IsVisible = true;
+                        ListVisible = false;
+                    }
+                }
+            }
+            else if (select == 1)
+            {
+                var permisos = new string[]
+                     {
+                        "Pacientes",
+                        "Citas",
+                        "Consultas",
+                        "Empleados",
+                        "Medicamentos",
+                        "Usuarios",
+                        "Consejos",
+                        "Listas de espera"
+                     };
+
+                var choices = await MaterialDialog.Instance.SelectChoicesAsync(title: "Marque los permisos",
+                                                              choices: permisos);
+                string value = "";
+                bool status = false;
+                for (int i = 0; i < permisos.Length; i++)
+                {
+                    for (int j = 0; j < choices.Length; j++)
+                    {
+                        if (i == choices[j])
+                        {
+                            value += "7";
+                            status = true;
+                            break;
+                        }
+                        else
+                        {
+                            status = false;
+                        }
+                    }
+                    if (status == false)
+                    {
+                        value += "0";
+                    }
+                }
+                Console.WriteLine(Convert.ToString(value));
             }
         }
     }

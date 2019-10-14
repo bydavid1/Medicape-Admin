@@ -52,6 +52,7 @@ namespace Clinic.Views
                 _celular.Text = empleado.celular;
                 _correo.Text = empleado.email;
                 _especialidad.Text = empleado.especialidad;
+                _fecha_contratacion.Text = empleado.fecha_Contratacion;
             }
             else
             {

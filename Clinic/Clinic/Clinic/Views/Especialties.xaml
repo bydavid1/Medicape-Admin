@@ -25,7 +25,7 @@
                                         <Label Text="{Binding nombre}" FontFamily="{StaticResource NormalFont}" TextColor="#212121" FontSize="15" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand"/>
                                         <StackLayout Orientation="Horizontal" HorizontalOptions="EndAndExpand">
                                             <ImageButton Source="{Binding Image}" HeightRequest="40" WidthRequest="45" Margin="0,0,5,0" Padding="0" BackgroundColor="Transparent" Command="{Binding BindingContext.ImageClicked, Source={x:Reference list}}" CommandParameter="{Binding .}"/>
-                                            <Image Source="ajuste" HeightRequest="35" WidthRequest="35"/>
+                                            <ImageButton Source="ajuste" HeightRequest="35" WidthRequest="35" Padding="0" BackgroundColor="Transparent" Command="{Binding BindingContext.Settings, Source={x:Reference list}}" CommandParameter="{Binding .}"/>
                                         </StackLayout>
                                         </StackLayout>
                                     </StackLayout>
