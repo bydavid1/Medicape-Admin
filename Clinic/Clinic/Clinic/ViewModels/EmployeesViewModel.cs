@@ -103,7 +103,18 @@ namespace Clinic.ViewModels
                 return new RelayCommand(getEmployees);
             }
         }
+        public ICommand NewEmployee
+        {
+            get
+            {
+                return new RelayCommand(NewEmployees);
+            }
+        }
 
+        private void NewEmployees()
+        {
+            Application.Current.MainPage.Navigation.PushAsync(new AddEmployee());
+        }
 
 
         #endregion

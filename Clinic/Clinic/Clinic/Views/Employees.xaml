@@ -3,16 +3,23 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Clinic.Views.Employees"
              xmlns:custom="clr-namespace:Clinic"
-             BackgroundColor="#eaeeee">
+             BackgroundColor="#eaeeee"
+             Title="Empleados"
+             BackgroundImageSource="back5"
+             >
+    <ContentPage.ToolbarItems>
+        <ToolbarItem IconImageSource="doc5"
+                     Command="{Binding NewEmployee}"/>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="White">
+            <!--<StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="White">
                 <Image Source="people_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
                 <Label Text="Lista de empleados registrados" FontSize="14"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
                 <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Agregar empleado" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
-            </StackLayout>
-            <Frame Padding="0" CornerRadius="3" OutlineColor="DarkGray" HasShadow="True">
-                <SearchBar Placeholder="Buscar empleado" SearchCommand="{Binding SearchCommand}" Text="{Binding Query}" BackgroundColor="White" HeightRequest="40" Margin="5,0,5,0"/>
+            </StackLayout>-->
+            <Frame Padding="0" CornerRadius="15" OutlineColor="white" HasShadow="True" Margin="7">
+                <SearchBar Placeholder="Buscar empleado" SearchCommand="{Binding SearchCommand}" Text="{Binding Query}" BackgroundColor="Transparent" HeightRequest="25" Margin="7"/>
             </Frame>
             <StackLayout>
                 <StackLayout VerticalOptions="FillAndExpand">
@@ -25,20 +32,20 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
-                                    <Frame Margin="5,5,5,0" CornerRadius="4" Padding="0">
+                                    <Frame Margin="5,5,5,5" Padding="0"   HasShadow="True" BackgroundColor="Transparent" >
                                         <StackLayout Orientation="Horizontal" Padding="5" HorizontalOptions="FillAndExpand">
-                                            <Image Source="usuario" HeightRequest="30" WidthRequest="30"/>
+                                            <Image Source="doc4" HeightRequest="40" WidthRequest="40"/>
                                             <StackLayout HorizontalOptions="FillAndExpand" Margin="7,0,0,0">
                                                 <StackLayout Orientation="Horizontal">
-                                                    <Label Text="{Binding nombres} " LineBreakMode="HeadTruncation"  FontSize="14" TextColor="#000"/>
-                                                    <Label Text="{Binding apellidos}" LineBreakMode="MiddleTruncation"  FontSize="14" TextColor="#000"/>
+                                                    <Label Text="{Binding nombres} " LineBreakMode="HeadTruncation"  FontSize="Medium" TextColor="White" FontAttributes="Bold"/>
+                                                    <Label Text="{Binding apellidos}" LineBreakMode="MiddleTruncation"  FontSize="Medium" TextColor="White" FontAttributes="Bold"/>
                                                 </StackLayout>
                                                 <StackLayout Orientation="Horizontal">
                                                     <StackLayout HorizontalOptions="StartAndExpand">
-                                                        <Label Text="{Binding fecha_Nac}" FontSize="12"/>
+                                                        <Label Text="{Binding fecha_Nac}" FontSize="12" FontAttributes="Bold" TextColor="White"/>
                                                     </StackLayout>
                                                     <StackLayout HorizontalOptions="EndAndExpand">
-                                                        <Label Text="{Binding especialidad}" FontSize="12"/>
+                                                        <Label Text="{Binding especialidad}" FontSize="12" FontAttributes="Bold" TextColor="White"/>
                                                     </StackLayout>
                                                 </StackLayout>
                                             </StackLayout>
