@@ -45,9 +45,9 @@
                         <Label Text="DUI" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
                         <material:MaterialTextField Placeholder="Ingrese el número de DUI" BackgroundColor="#DCDCDC" TintColor="#008ca5"
                                                     InputType="Numeric" FloatingPlaceholderEnabled="False"
-                                                    MaxLength="9" Text="{Binding e_dui}">
+                                                    MaxLength="10" Text="{Binding e_dui}">
                             <material:MaterialTextField.Behaviors>
-                                <localV:NumeroValidator/>
+                                <localV:DuiValidator Mask="XXXXXXXX-X"/>
                             </material:MaterialTextField.Behaviors >
                         </material:MaterialTextField>
 
@@ -57,9 +57,9 @@
                         <Label Text="Teléfono" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
                         <material:MaterialTextField Placeholder="Ingrese el número de telefono" BackgroundColor="#DCDCDC" TintColor="#008ca5"
                                                     InputType="Numeric" FloatingPlaceholderEnabled="False"
-                                                    MaxLength="8" Text="{Binding e_telefono}">
+                                                     Text="{Binding e_telefono}">
                             <material:MaterialTextField.Behaviors>
-                                <localV:NumeroValidator/>
+                                <localV:NumeroValidator Mask="XXXX-XXXX"/>
                             </material:MaterialTextField.Behaviors >
                         </material:MaterialTextField>
 
@@ -68,7 +68,7 @@
                                                     InputType="Email" FloatingPlaceholderEnabled="False"
                                                     ErrorText="Email invalido" HasError="False" Text="{Binding e_correo}">
                             <material:MaterialTextField.Behaviors>
-                                <localV:ValidateEmail/>
+                                <localV:ValidateEmail />
                             </material:MaterialTextField.Behaviors>
                         </material:MaterialTextField>
 

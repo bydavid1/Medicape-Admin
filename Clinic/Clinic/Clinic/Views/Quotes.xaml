@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Clinic.Views.Quotes"
              xmlns:custom="clr-namespace:Clinic"
-             BackgroundColor="#eaeeee">
+             BackgroundColor="#eaeeee"
+             Title="Citas">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="White">

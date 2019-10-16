@@ -4,7 +4,8 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="Clinic.Views.Tips">
+             x:Class="Clinic.Views.Tips"
+             Title="Consejos">
     <ContentPage.Content>
         <ScrollView>
             <StackLayout BackgroundColor="#E5E5E5">

@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              BackgroundColor="#eaeeee"
              xmlns:custom="clr-namespace:Clinic"
-             x:Class="Clinic.Views.Especialties">
+             x:Class="Clinic.Views.Especialties"
+             Title="Especialidades">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">

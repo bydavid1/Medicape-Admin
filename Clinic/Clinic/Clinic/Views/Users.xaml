@@ -6,7 +6,8 @@
              mc:Ignorable="d"
              xmlns:custom="clr-namespace:Clinic"
              BackgroundColor="#eaeeee"
-             x:Class="Clinic.Views.Users">
+             x:Class="Clinic.Views.Users"
+             Title="Usuarios">
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
