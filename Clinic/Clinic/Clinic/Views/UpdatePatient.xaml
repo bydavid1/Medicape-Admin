@@ -48,16 +48,16 @@
                         <Picker Title="Soltero"  x:Name="p_estado"/>
 
                         <Label Text="DUI" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
-                        <material:MaterialTextField Placeholder="Ingrese el número de DUI" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="p_dui" MaxLength="9">
+                        <material:MaterialTextField Placeholder="Ingrese el número de DUI" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="p_dui">
                             <material:MaterialTextField.Behaviors>
-                                <localV:NumeroValidator/>
+                                <localV:DuiValidator Mask="XXXXXXXX-X"/>
                             </material:MaterialTextField.Behaviors >
                         </material:MaterialTextField>
 
                         <Label Text="Teléfono" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
-                        <material:MaterialTextField Placeholder="Ingrese el número de telefono" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="p_telefono" MaxLength="8">
+                        <material:MaterialTextField Placeholder="Ingrese el número de telefono" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Numeric" FloatingPlaceholderEnabled="False"  x:Name="p_telefono">
                             <material:MaterialTextField.Behaviors>
-                                <localV:NumeroValidator/>
+                                <localV:NumeroValidator Mask="XXXX-XXXX"/>
                             </material:MaterialTextField.Behaviors >
                         </material:MaterialTextField>
 

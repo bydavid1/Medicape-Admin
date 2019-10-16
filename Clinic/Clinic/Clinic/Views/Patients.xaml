@@ -12,13 +12,9 @@
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
         <StackLayout>
-            <!--<StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="White">
-                <Image Source="people_color" WidthRequest="30" HeightRequest="30" VerticalOptions="Center" />
-                <Label Text="Lista de pacientes registrados" FontSize="14"  FontAttributes="Italic" VerticalOptions="CenterAndExpand" TextColor="#008ca5"/>
-                <Button Padding="0" BackgroundColor="#008ca5" TextColor="White"  Text="Agregar paciente" HeightRequest="20" HorizontalOptions="EndAndExpand" FontSize="8" FontFamily="{StaticResource NormalFont}" Clicked="Button_Clicked"/>
-            </StackLayout>-->
-            <Frame Padding="0" CornerRadius="3" OutlineColor="DarkGray" HasShadow="True" Margin="7">
-                <SearchBar Placeholder="Buscar pacientes" SearchCommand="{Binding SearchCommand}" Text="{Binding Query}" BackgroundColor="White" HeightRequest="40" Margin="7"/>
+        
+            <Frame Padding="0" CornerRadius="15" OutlineColor="white" HasShadow="True" Margin="7">
+                <SearchBar Placeholder="Buscar empleado" SearchCommand="{Binding SearchCommand}" Text="{Binding Query}"  HeightRequest="25" Margin="7"/>
             </Frame>
             <StackLayout IsVisible="{Binding IsVisible, Mode=TwoWay}">
                 <Image Source="error_connect"/>
@@ -30,11 +26,11 @@
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
-                                <Frame Margin="5,5,5,5" CornerRadius="4" Padding="0"  OutlineColor="#64F7F1" HasShadow="True" BackgroundColor="#7ACECB">
+                                <Frame  Margin="5,5,5,5" Padding="0"  OutlineColor="White" HasShadow="True" BackgroundColor="#64B2B8 ">
                                     <StackLayout>
                                         <StackLayout Orientation="Horizontal" Padding="5" HorizontalOptions="FillAndExpand">
                                             <Image Source="usr6" HeightRequest="40" WidthRequest="40" Margin="10"/>
-                                            <StackLayout>
+                                            <StackLayout  HorizontalOptions="FillAndExpand" Margin="7,0,0,0">
                                                 <StackLayout Orientation="Horizontal">
                                                      <Label Text="{Binding nombres} " LineBreakMode="MiddleTruncation" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>
                                                     <Label Text="{Binding apellidos}" LineBreakMode="MiddleTruncation" TextColor="White" FontAttributes="Bold" FontSize="Medium"/>

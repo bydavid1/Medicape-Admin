@@ -5,10 +5,9 @@
              xmlns:custom="clr-namespace:Clinic"
              BackgroundColor="#eaeeee"
              Title="Empleados"
-             BackgroundImageSource="back5"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem IconImageSource="doc5"
+        <ToolbarItem IconImageSource="doc1"
                      Command="{Binding NewEmployee}"/>
     </ContentPage.ToolbarItems>
     <ContentPage.Content>
@@ -32,7 +31,7 @@
                         <ListView.ItemTemplate>
                             <DataTemplate>
                                 <custom:CustomViewCell SelectedItemBackgroundColor="#f2f2f2">
-                                    <Frame Margin="5,5,5,5" Padding="0"   HasShadow="True" BackgroundColor="Transparent" >
+                                    <Frame  Margin="5,5,5,5" Padding="0"  OutlineColor="White" HasShadow="True" BackgroundColor="#64B2B8 ">
                                         <StackLayout Orientation="Horizontal" Padding="5" HorizontalOptions="FillAndExpand">
                                             <Image Source="doc4" HeightRequest="40" WidthRequest="40"/>
                                             <StackLayout HorizontalOptions="FillAndExpand" Margin="7,0,0,0">
