@@ -299,7 +299,20 @@ namespace Clinic.ViewModels
                         value += "0";
                     }
                 }
-                Console.WriteLine(Convert.ToString(value));
+                //Creo un objeto ususario porque es el unico que tiene la propiedad de valor 
+                Usuario user = new Usuario
+                {
+                    valor = Convert.ToInt32(value)
+                };
+                var res = await functions.Update(user, "/Api/usuario/update_permission.php?idespecialidad=" + especialidad.idespecialidad);
+                if (res)
+                {
+                    await MaterialDialog.Instance.SnackbarAsync(message: "Actualizado..");
+                }
+                else
+                {
+                    await MaterialDialog.Instance.SnackbarAsync(message: "No se pudo actualizar...");
+                }
             }
         }
     }

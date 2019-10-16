@@ -19,27 +19,21 @@ namespace Clinic.Views
     public partial class AddUser : ContentPage
     {
         MaterialControls control = new MaterialControls();
-        Connection get = new Connection();
-        private string baseurl;
+        Functions functions;
+
         public AddUser(int id, string email)
         {
             InitializeComponent();
-            baseurl = get.BaseUrl;
             id_empleado.Text = Convert.ToString(id);
             correo.Text = email;
+            functions = new Functions();
             control.ShowSnackBar("Se utilizara el correo ya registrado");
-            t_user.Items.Add("archivo");
-            t_user.Items.Add("doctor");
-            t_user.Items.Add("enfermero");
-            t_user.Items.Add("farmacia");
         }
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            if (String.IsNullOrWhiteSpace(us.Text) &&
-              String.IsNullOrWhiteSpace(pass.Text) &&
-              String.IsNullOrWhiteSpace(Convert.ToString(t_user.SelectedItem))
-              )
+            if (string.IsNullOrWhiteSpace(us.Text) &&
+              string.IsNullOrWhiteSpace(pass.Text))
             {
                 var alertDialogConfiguration = new MaterialAlertDialogConfiguration
                 {
@@ -68,49 +62,89 @@ namespace Clinic.Views
                 control.ShowAlert("Campo Contraseña es obligatorio!!", "Error", "Ok");
 
             }
-            else if (String.IsNullOrWhiteSpace(Convert.ToString(t_user.SelectedItem)))
+            else if (String.IsNullOrWhiteSpace(correo.Text))
             {
-                control.ShowAlert("Campo Tipo de usuario es obligatorio!!", "Error", "Ok");
+                control.ShowAlert("Campo email es obligatorio!!", "Error", "Ok");
 
             }
             else
             {
                 try
                 {
-                control.ShowLoading("Registrando");
+                    //Se piden los permisos
+                    var permisos = new string[]
+                        {
+                        "Pacientes",
+                        "Citas",
+                        "Consultas",
+                        "Empleados",
+                        "Medicamentos",
+                        "Usuarios",
+                        "Consejos",
+                        "Listas de espera"
+                        };
 
+                    var choices = await MaterialDialog.Instance.SelectChoicesAsync(title: "Marque los permisos",
+                                                                  choices: permisos);
 
-                Usuario citas = new Usuario
-                {
-                    user_Name = us.Text,
-                    user_Password = pass.Text,
-                    email = correo.Text,
-                    user_type = Convert.ToString(t_user.SelectedItem)
-                };
+                    if (choices != null)
+                    {
+                        var loadingDialog = await MaterialDialog.Instance.LoadingDialogAsync(message: "Cargando...");
+                        string value = "";
+                        bool status = false;
+                        for (int i = 0; i < permisos.Length; i++)
+                        {
+                            for (int j = 0; j < choices.Length; j++)
+                            {
+                                if (i == choices[j])
+                                {
+                                    value += "7";
+                                    status = true;
+                                    break;
+                                }
+                                else
+                                {
+                                    status = false;
+                                }
+                            }
+                            if (status == false)
+                            {
+                                value += "0";
+                            }
+                        }
 
+                        Usuario user = new Usuario
+                        {
+                            user_Name = us.Text,
+                            user_Password = pass.Text,
+                            email = correo.Text,
+                            user_type = 1,
+                            valor = Convert.ToInt32(value)
+                        };
 
-
-                HttpClient client = new HttpClient();
-                string controlador = "/Api/usuario/create.php";
-                client.BaseAddress = new Uri(baseurl);
-
-                string json = JsonConvert.SerializeObject(citas);
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-
-                var response = await client.PostAsync(controlador, content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    control.ShowAlert("Registrado", "Exito", "Ok");
-                }
-                else
-                {
-                    control.ShowAlert("Ocurrio un error al registrar", "Error", "Ok");
-                }
+                        var response = await functions.Insert(user, "/Api/usuario/create.php?idempleado=" + id_empleado.Text);
+                        if (response.IsSuccess == true)
+                        {
+                            await loadingDialog.DismissAsync();
+                            control.ShowAlert("Registrado", "Perfecto!", "Ok");
+                            us.Text = "";
+                            pass.Text = "";
+                            correo.Text = "";
+                        }
+                        else
+                        {
+                            await loadingDialog.DismissAsync();
+                            control.ShowAlert("Ocurrio un error al registrar", "Error", "Ok");
+                        }
+                    }
+                    else
+                    {
+                        control.ShowSnackBar("No se creo el usuario, permisos requeridos");
+                    }
             }
             catch (Exception ex)
             {
-              await  DisplayAlert("Ocurrio un error " + ex, "Error", "Ok");
+              await  DisplayAlert("Ocurrio un error ", "Error" + ex, "Ok");
             }
             }
         }

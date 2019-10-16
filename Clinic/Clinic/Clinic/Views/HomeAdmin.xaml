@@ -91,6 +91,7 @@
 
                             <ui:MaterialLabel 
                              Text="{Binding TPaciente}" 
+                             x:Name="TPaciente"
                              TextColor="White"                                            
                              HorizontalOptions="Center"
                              VerticalOptions="Center"                                              

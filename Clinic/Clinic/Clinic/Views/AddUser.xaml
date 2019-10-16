@@ -32,9 +32,6 @@
 
                         <Label Text="Contraseña" FontSize="Default"/>
                         <material:MaterialTextField Placeholder="Contraseña" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Password" FloatingPlaceholderEnabled="False" x:Name="pass"/>
-
-                        <Label Text="Tipo de Usuario" FontSize="Default"/>
-                        <Picker x:Name="t_user"/>
                     </StackLayout>
                 </Frame>
                 <StackLayout Margin="10">
