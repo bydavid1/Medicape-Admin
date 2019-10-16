@@ -5,7 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              xmlns:custom="clr-namespace:Clinic"
-             x:Class="Clinic.Views.Waiting_list">
+             x:Class="Clinic.Views.Waiting_list"
+             >
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
