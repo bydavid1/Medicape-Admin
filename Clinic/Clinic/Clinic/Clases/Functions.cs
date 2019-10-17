@@ -25,7 +25,7 @@ namespace Clinic.Clases
 
         public async Task<Response> Insert(object objeto, string controller, bool request = false)
         {
-
+            client = new HttpClient();
             client.BaseAddress = new Uri(baseurl);
 
             string json = JsonConvert.SerializeObject(objeto);
@@ -61,6 +61,7 @@ namespace Clinic.Clases
 
         public async Task<bool> Update(object objeto, string controller)
         {
+            client = new HttpClient();
             client.BaseAddress = new Uri(baseurl);
 
             string json = JsonConvert.SerializeObject(objeto);
@@ -80,6 +81,7 @@ namespace Clinic.Clases
 
         public async Task<Response> Read<T>(string controller)
         {
+            client = new HttpClient();
             client.BaseAddress = new Uri(baseurl);
             HttpResponseMessage connect = await client.GetAsync(controller);
 
@@ -110,6 +112,7 @@ namespace Clinic.Clases
 
         public async Task<Response> Delete(string controller)
         {
+            client = new HttpClient();
             client.BaseAddress = new Uri(baseurl);
 
             var response = await client.DeleteAsync(controller);

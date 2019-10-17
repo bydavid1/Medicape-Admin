@@ -105,16 +105,6 @@
                         <Label Text="Dirección" FontSize="Default" TextColor="Black" VerticalOptions="Start"/>
                         <material:MaterialTextField Placeholder="Eje: Metapan" BackgroundColor="#DCDCDC"   TintColor="#008ca5" InputType="Text" FloatingPlaceholderEnabled="False"  x:Name="e_dir">
                         </material:MaterialTextField>
-                        <Label Text="Solvencia" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
-                        <Picker x:Name="e_solvencia"/>
-                        <Label Text="Antecedentes" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
-                        <Picker x:Name="e_antecedentes"/>
-                        <Label Text="Constancia de titulo" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
-                        <Picker x:Name="e_constancia"/>
-                        <Label Text="Certificado" FontSize="Default" TextColor="Black" VerticalOptions="Start" />
-                        <Picker x:Name="e_certificado"/>
-
-
                     </StackLayout>
                 </Frame>
                 <StackLayout Margin="10">

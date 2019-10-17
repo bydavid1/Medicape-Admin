@@ -7,12 +7,6 @@
              mc:Ignorable="d"
              x:Class="Clinic.Views.HomeAdmin">
 
-    <ContentPage.ToolbarItems>
-        <ToolbarItem Name="Cerrar Sesion" Activated="OnClick"  Order="Secondary" Priority="0"/>
-        <ToolbarItem Name="Perfil" Activated="OnClick"  Order="Secondary" Priority="0"/>
-        <ToolbarItem Name="Acerca de" Activated="OnClick"  Order="Secondary" Priority="1"/>
-    </ContentPage.ToolbarItems>
-
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="2">

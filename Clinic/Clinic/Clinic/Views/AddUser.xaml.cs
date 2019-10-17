@@ -1,13 +1,6 @@
 ﻿using Clinic.Clases;
 using Clinic.Models;
-using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Http;
-using System.Text;
-using System.Threading.Tasks;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using XF.Material.Forms.UI.Dialogs;
@@ -52,17 +45,17 @@ namespace Clinic.Views
                                                              configuration: alertDialogConfiguration);
 
             }
-            else if (String.IsNullOrWhiteSpace(us.Text))
+            else if (string.IsNullOrWhiteSpace(us.Text))
             {
                 control.ShowAlert("Campo Usuario es obligatorio!!", "Error", "Ok");
 
             }
-            else if (String.IsNullOrWhiteSpace(pass.Text))
+            else if (string.IsNullOrWhiteSpace(pass.Text))
             {
                 control.ShowAlert("Campo Contraseña es obligatorio!!", "Error", "Ok");
 
             }
-            else if (String.IsNullOrWhiteSpace(correo.Text))
+            else if (string.IsNullOrWhiteSpace(correo.Text))
             {
                 control.ShowAlert("Campo email es obligatorio!!", "Error", "Ok");
 
@@ -141,11 +134,11 @@ namespace Clinic.Views
                     {
                         control.ShowSnackBar("No se creo el usuario, permisos requeridos");
                     }
-            }
-            catch (Exception ex)
-            {
-              await  DisplayAlert("Ocurrio un error ", "Error" + ex, "Ok");
-            }
+                }
+                catch (Exception ex)
+                {
+                    await DisplayAlert("Ocurrio un error ", "Error" + ex, "Ok");
+                }
             }
         }
     }

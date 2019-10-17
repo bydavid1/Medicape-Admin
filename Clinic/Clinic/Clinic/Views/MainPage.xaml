@@ -17,6 +17,8 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <StackLayout BackgroundColor="#00cbc5" HeightRequest="120" Orientation="Horizontal" Padding="10">
                     <Image Source="account" WidthRequest="60" HeightRequest="60"/>
@@ -51,6 +53,22 @@
                         </ListView.ItemTemplate>
                     </ListView>
                 </Grid>
+                <BoxView Color="Gray" Margin="5" Grid.Row="2" HeightRequest="1" HorizontalOptions="FillAndExpand"/>
+                <StackLayout  Grid.Row="3">
+                    <StackLayout.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                    </StackLayout.GestureRecognizers>
+                    <Grid VerticalOptions="Center">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="Auto"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image Source="exit" HeightRequest="20" WidthRequest="20" Grid.Row="0" 
+                                           Grid.Column="0" VerticalOptions="Center" Margin="15,0,0,0"/>
+                        <Label Text="Cerrar sesion" Margin="10,0,0,0" LineBreakMode="TailTruncation" Grid.Row="0" Grid.Column="1" VerticalOptions="Center" FontFamily="{StaticResource NormalFont}" FontSize="17"/>
+                    </Grid>
+                </StackLayout>
+
             </Grid>
         </ContentPage>
     </MasterDetailPage.Master>

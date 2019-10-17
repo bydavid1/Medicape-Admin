@@ -32,7 +32,7 @@
                     </StackLayout>
                 </Frame>
                 <StackLayout Margin="10">
-                    <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Agregar" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Clicked="Button_Clicked" Command="{Binding Add}" />
+                    <material:MaterialButton BackgroundColor="#DCDCDC" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Text="Agregar" TextColor="Black"  Font="Arial" Image="pencil"   PressedBackgroundColor="#008ca5" FontAttributes="Italic" Command="{Binding Add}" />
                 </StackLayout>
             </StackLayout>
         </ScrollView>

@@ -119,7 +119,6 @@ namespace Clinic.Views
                                     nombre_Paciente = selection.nombre,
                                     apellido_Paciente = selection.apellido,
                                     num_Consultorio = Convert.ToInt32(res),
-                                    nombre_Doctor = nombres,
                                     idpaciente = selection.idpaciente,
                                     idempleado = Convert.ToInt32(CrossSecureStorage.Current.GetValue("iduser"))
                                     };

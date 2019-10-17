@@ -12,7 +12,6 @@ namespace Clinic.Models
         public string nombre_Paciente { get; set; }
         public string apellido_Paciente { get; set; }
         public int num_Consultorio { get; set; }
-        public string nombre_Doctor { get; set; }
         public int idpaciente { get; set; }
         public int idempleado { get; set; }
     }

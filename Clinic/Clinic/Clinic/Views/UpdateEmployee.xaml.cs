@@ -23,12 +23,15 @@ namespace Clinic.Views
         private int ids;
         MaterialControls control = new MaterialControls();
         Connection get = new Connection();
+        Functions functions = new Functions();
         private string baseurl;
 
         public UpdateEmployee(int id)
         {
             InitializeComponent();
             baseurl = get.BaseUrl;
+
+            FillPickers();
             e_especialidad.Items.Add("Medico General");
             e_especialidad.Items.Add("Odontologo");
             e_especialidad.Items.Add("Ginecologo");
@@ -36,23 +39,43 @@ namespace Clinic.Views
 
             e_estado.Items.Add("Casado");
             e_estado.Items.Add("Soltero");
+            e_estado.Items.Add("Viudo");
 
             e_sexo.Items.Add("Masculino");
             e_sexo.Items.Add("Femenino");
-
-            e_solvencia.Items.Add("Entregado");
-            e_solvencia.Items.Add("Pendiente");
-
-            e_antecedentes.Items.Add("Entregado");
-            e_antecedentes.Items.Add("Pendiente");
-
-            e_certificado.Items.Add("Entregado");
-            e_certificado.Items.Add("Pendiente");
-
-            e_constancia.Items.Add("Entregado");
-            e_constancia.Items.Add("Pendiente");
             ids = id;
             getPersonalinfo();
+        }
+
+        private async void FillPickers()
+        {
+            bool result = get.TestConnection();
+            if (result == true)
+            {
+                var response = await functions.Read<Especialidades>("/Api/especialidades/read.php");
+                if (!response.IsSuccess)
+                {
+                }
+                else if (response.Result == null)
+                {
+
+                }
+                else
+                {
+                    var list = (List<Especialidades>)response.Result;
+                    var items = new List<string>();
+                    foreach (var item in list)
+                    {
+                        items.Add(item.nombre);
+                    }
+
+                    e_especialidad.ItemsSource = items;
+                }
+            }
+            else
+            {
+
+            }
         }
 
         private async void getPersonalinfo()
@@ -69,6 +92,7 @@ namespace Clinic.Views
                 e_apellido.Text = empleado.apellidos;
                 e_nac.Date.ToString(empleado.fecha_Nac);
                 e_sexo.SelectedItem = empleado.sexo;
+                e_estado.SelectedItem = empleado.estado_Civil;
                 e_dui.Text = empleado.dui;
                 e_nit.Text = empleado.nit;
                 e_dir.Text = empleado.direccion;
@@ -99,11 +123,7 @@ namespace Clinic.Views
             String.IsNullOrWhiteSpace(e_dui.Text) &&
             String.IsNullOrWhiteSpace(e_nit.Text) &&
             String.IsNullOrWhiteSpace(e_municipio.Text) &&
-            String.IsNullOrWhiteSpace(e_celular.Text) &&
-            String.IsNullOrWhiteSpace(Convert.ToString(e_solvencia.SelectedItem)) &&
-            String.IsNullOrWhiteSpace(Convert.ToString(e_antecedentes.SelectedItem)) &&
-            String.IsNullOrWhiteSpace(Convert.ToString(e_certificado.SelectedItem)) &&
-            String.IsNullOrWhiteSpace(Convert.ToString(e_constancia.SelectedItem))
+            String.IsNullOrWhiteSpace(e_celular.Text) 
             )
             {
                 var alertDialogConfiguration = new MaterialAlertDialogConfiguration
@@ -132,22 +152,6 @@ namespace Clinic.Views
             else if (String.IsNullOrWhiteSpace(e_apellido.Text))
             {
                 control.ShowAlert("Campo Apellido es Obligatorio!!", "Error", "Ok");
-            }
-            else if (String.IsNullOrWhiteSpace(Convert.ToString(e_solvencia.SelectedItem)))
-            {
-                control.ShowAlert("Campo Solvencia es Obligatorio!!", "Error", "Ok");
-            }
-            else if (String.IsNullOrWhiteSpace(Convert.ToString(e_antecedentes.SelectedItem)))
-            {
-                control.ShowAlert("Campo antecedentes es Obligatorio!!", "Error", "Ok");
-            }
-            else if (String.IsNullOrWhiteSpace(Convert.ToString(e_certificado.SelectedItem)))
-            {
-                control.ShowAlert("Campo certificado es Obligatorio!!", "Error", "Ok");
-            }
-            else if (String.IsNullOrWhiteSpace(Convert.ToString(e_constancia.SelectedItem)))
-            {
-                control.ShowAlert("Campo Solvencia es Obligatorio!!", "Error", "Ok");
             }
             else if (String.IsNullOrWhiteSpace(Convert.ToString(e_sexo.SelectedItem)))
             {
@@ -200,7 +204,6 @@ namespace Clinic.Views
                 {
                 MaterialControls control = new MaterialControls();
                 control.ShowLoading("Registrando");
-                string date = DateTime.Today.ToString("yy/MM/dd");
                 string fecha = e_nac.Date.ToString("yy/MM/dd");
                 Empleados empleados = new Empleados
                 {
@@ -218,9 +221,7 @@ namespace Clinic.Views
                     celular = e_celular.Text,
                     municipio = e_municipio.Text,
                     direccion = e_dir.Text,
-                    nit = e_nit.Text,
-                    fecha_Contratacion = date
-
+                    nit = e_nit.Text
                 };
 
 

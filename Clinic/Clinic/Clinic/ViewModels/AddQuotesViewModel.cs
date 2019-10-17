@@ -1,5 +1,8 @@
 ﻿using Clinic.Clases;
+using Clinic.Models;
 using GalaSoft.MvvmLight.Command;
+using Newtonsoft.Json;
+using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -11,13 +14,14 @@ namespace Clinic.ViewModels
     {
 
         MaterialControls control = new MaterialControls();
-        Functions element = new Functions();
+        Functions functions = new Functions();
 
         private string _nombres;
         private string _apellidos;
         private DateTime _fecha;
         private TimeSpan _hora;
         private int _consultorio;
+        private int _id;
 
         public string Nombres
         {
@@ -49,10 +53,18 @@ namespace Clinic.ViewModels
             set { SetValue(ref _consultorio, value); }
         }
 
+        public int Id
+        {
+            get { return _id; }
+            set { SetValue(ref _id, value); }
+        }
+
+
         public AddQuotesViewModel(string nombre, string apellido,int id)
         {
             Nombres = nombre;
             Apellidos = apellido;
+            Id = id;
         }
 
         public ICommand Add
@@ -73,7 +85,31 @@ namespace Clinic.ViewModels
             }
             else
             {
-                    ///Falta algo  y no se que es
+                    var hour = Convert.ToString(Hora);
+
+                    Citas citas = new Citas
+                    {
+                        fecha_Cita = Convert.ToString(Fecha),
+                        hora_Cita = hour,
+                        nombre_Paciente = Nombres,
+                        apellido_Paciente = Apellidos,
+                        num_Consultorio = Consultorio,
+                        idpaciente = Id,
+                        idempleado = Convert.ToInt32(CrossSecureStorage.Current.GetValue("iduser"))
+                    };
+
+                    var response = await functions.Insert(citas,"/Api/citas/create.php");
+
+                    if (response.IsSuccess == true)
+                    {
+
+                        control.ShowAlert("Registrado!!", "Exito", "Ok");
+                    }
+                    else
+                    {
+                        control.ShowAlert("Ocurrio un error al registrar", "Error", "Ok");
+                    }
+                
             }
         }
     }

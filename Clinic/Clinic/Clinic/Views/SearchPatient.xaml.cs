@@ -52,7 +52,7 @@ namespace Clinic.Views
             }
         }
 
-        private void Searchlist_ItemTapped(object sender, ItemTappedEventArgs e)
+        private async void Searchlist_ItemTapped(object sender, ItemTappedEventArgs e)
         {
             if (e.Item == null)
             {
@@ -64,11 +64,11 @@ namespace Clinic.Views
                 var tapped = (list.SelectedItem as Pacientes);
                 if (origen.Text == "quotes")
                 {
-                    Navigation.PushAsync(new addQuotes(tapped.nombres, tapped.apellidos, tapped.idpaciente));
+                   await Navigation.PushAsync(new addQuotes(tapped.nombres, tapped.apellidos, tapped.idpaciente));
                 }
                 else if (origen.Text == "consults")
                 {
-                    Navigation.PushAsync(new AddConsult(tapped.nombres, tapped.apellidos, tapped.idpaciente));
+                   await Navigation.PushAsync(new AddConsult(tapped.nombres, tapped.apellidos, tapped.idpaciente));
                 }
                 else if (origen.Text == "lists")
                 {
@@ -81,7 +81,7 @@ namespace Clinic.Views
                         idlista = ids
                     };
                     Functions create = new Functions();
-                    create.Insert(empleados, "/Api/item_espera/create.php");
+                    await create.Insert(empleados, "/Api/item_espera/create.php");
 
                 }
             }

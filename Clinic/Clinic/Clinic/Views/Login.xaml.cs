@@ -69,12 +69,14 @@ namespace Clinic.Views
                         var iduser = Convert.ToString(result.iduser);
                         var permisos = Convert.ToString(result.valor);
                         var userName = Convert.ToString(result.user_Name);
+                        var idespecialidad = Convert.ToString(result.idespecialidad);
                         var sessionCreated =  CrossSecureStorage.Current.SetValue("SessionActive", "true");
                         var idCreated = CrossSecureStorage.Current.SetValue("iduser", iduser);
                         var permisosCreated = CrossSecureStorage.Current.SetValue("permisos", permisos);
                         var userCreated = CrossSecureStorage.Current.SetValue("user", userName);
+                        var idespcreated = CrossSecureStorage.Current.SetValue("idespecialidad", idespecialidad);
                         var sessionToken = CrossSecureStorage.Current.GetValue("SessionActive");
-                        if (sessionToken == "true" && sessionCreated == true && idCreated == true && permisosCreated == true && userCreated == true)
+                        if (sessionToken == "true" && sessionCreated == true && idCreated == true && permisosCreated == true && userCreated == true && idespcreated == true)
                         {
                             await Navigation.PushAsync(new MainPage());
                         }

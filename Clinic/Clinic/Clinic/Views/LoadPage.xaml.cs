@@ -29,27 +29,35 @@ namespace Clinic.Views
         }
         private async void GetInfo(string id)
         {
-            Connection get = new Connection();
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(get.BaseUrl);
-            HttpResponseMessage connect = await client.GetAsync("/Api/usuario/read_id.php?iduser=" + id);
-
-            if (connect.StatusCode == HttpStatusCode.OK)
+            try
             {
-                var response = await client.GetStringAsync("/Api/usuario/read_id.php?iduser=" + id);
-                var list = JsonConvert.DeserializeObject<Usuario>(response);
-                var permisosUpdated = CrossSecureStorage.Current.SetValue("permisos", Convert.ToString(list.valor));
-                var userUpdated = CrossSecureStorage.Current.SetValue("user", list.user_Name);
-                if (permisosUpdated != true && userUpdated != true)
+                Connection get = new Connection();
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri(get.BaseUrl);
+                HttpResponseMessage connect = await client.GetAsync("/Api/usuario/read_id.php?iduser=" + id);
+
+                if (connect.StatusCode == HttpStatusCode.OK)
                 {
-                    MaterialControls controls = new MaterialControls();
-                    controls.ShowSnackBar("No se pudieron actuaizar los datos desde el servidor");
-                    await Navigation.PushAsync(new MainPage());
+                    var response = await client.GetStringAsync("/Api/usuario/read_id.php?iduser=" + id);
+                    var list = JsonConvert.DeserializeObject<Usuario>(response);
+                    var permisosUpdated = CrossSecureStorage.Current.SetValue("permisos", Convert.ToString(list.valor));
+                    var userUpdated = CrossSecureStorage.Current.SetValue("user", list.user_Name);
+                    if (permisosUpdated != true && userUpdated != true)
+                    {
+                        MaterialControls controls = new MaterialControls();
+                        controls.ShowSnackBar("No se pudieron actuaizar los datos desde el servidor");
+                        await Navigation.PushAsync(new MainPage());
+                    }
+                    else
+                    {
+                        await Navigation.PushAsync(new MainPage());
+                    }
                 }
-                else
-                {
-                    await Navigation.PushAsync(new MainPage());
-                }
+            }
+            catch (Exception ex)
+            {
+
+              await  DisplayAlert("Error", "" + ex, "ok");
             }
         }
     }
