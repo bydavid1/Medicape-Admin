@@ -159,11 +159,6 @@
                             LetterSpacing="0.4"/>
 
 
-
-
-
-
-
                             <ui:MaterialLabel
                             Text="4850-7896"
                             TypeScale="Subtitle1" 
@@ -173,24 +168,17 @@
                             LetterSpacing="0.15"
                             />
 
-
-
-
-
-
-
                         </StackLayout>
 
                         <ImageButton
-                           
+                             Command="{Binding PInformation}"
                              Grid.Column="1"
                              HorizontalOptions="Center"
                              VerticalOptions="End"
                              BackgroundColor="Transparent"                       
                              Source="pencil"
                              WidthRequest="40"
-                             Margin="0,0,5,20"
-                             />
+                             Margin="0,0,5,20"/>
                     </Grid>
 
 
@@ -259,15 +247,14 @@
                         </StackLayout>
 
                         <ImageButton
+                            Command="{Binding InformationCC}"
                              Grid.Column="1"
                              HorizontalOptions="Center"
                              VerticalOptions="End"
                              BackgroundColor="Transparent"                       
                              Source="pencil"
                              WidthRequest="40"
-                             Margin="0,0,5,20"
-                            
-                             />
+                             Margin="0,0,5,20"/>
                     </Grid>
 
                 </ui:MaterialCard>

@@ -12,7 +12,7 @@
         <ToolbarItem Name="Perfil" Activated="OnClick"  Order="Secondary" Priority="0"/>
         <ToolbarItem Name="Acerca de" Activated="OnClick"  Order="Secondary" Priority="1"/>
     </ContentPage.ToolbarItems>
-    
+
     <ContentPage.Content>
         <ScrollView>
             <StackLayout Padding="2">
@@ -52,7 +52,7 @@
                              LetterSpacing="0.15"/>
 
                             <ui:MaterialLabel 
-                             Text="{Binding TEmpleado}" 
+                             Text="{Binding TotalE, Mode=TwoWay}" 
                              TextColor="White"                                            
                              HorizontalOptions="Center"
                              VerticalOptions="Center"                                              
@@ -79,7 +79,7 @@
                          Spacing="-5">
 
                             <ui:MaterialLabel 
-                             Text="Pacientes" 
+                             Text="Pacientes"
                              TextColor="White" 
                              HorizontalOptions="Center"
                              VerticalOptions="Center"
@@ -90,8 +90,7 @@
 
 
                             <ui:MaterialLabel 
-                             Text="{Binding TPaciente}" 
-                             x:Name="TPaciente"
+                             Text="{Binding TotalP, Mode=TwoWay}"
                              TextColor="White"                                            
                              HorizontalOptions="Center"
                              VerticalOptions="Center"                                              
@@ -125,7 +124,7 @@
 
 
                             <ui:MaterialLabel 
-                         Text="Consultas del Dia"                       
+                         Text="Consultas"                      
                          TextColor="White"                                            
                          HorizontalOptions="Center"
                          VerticalOptions="Center"                                              
@@ -137,7 +136,7 @@
                         </StackLayout>
 
                         <ui:MaterialLabel 
-                        Text="{Binding DConsulta}" 
+                        Text="{Binding TotalC, Mode=TwoWay}" 
                         TextColor="White"                                            
                         HorizontalOptions="Center"
                         VerticalOptions="Center"

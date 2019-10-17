@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Clinic.ViewModels.ViewModelsDoc;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace Clinic.ViewDoc
         public HomeDocPage()
         {
             InitializeComponent();
+            BindingContext = new HomeDocViewModel();
         }
 
         private void MaterialButton_Clicked(object sender, EventArgs e)

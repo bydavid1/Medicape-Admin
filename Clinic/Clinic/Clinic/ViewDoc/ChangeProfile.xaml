@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             x:Class="Clinic.ViewDoc.ChangeProfile">
+    <ContentPage.Content>
+        <StackLayout>
+            <ui:MaterialCard
+                 Padding="0"
+                 Margin="5,10,5,0"
+                 BackgroundColor="White"
+                 HeightRequest="300">
+                <StackLayout
+                    HorizontalOptions="FillAndExpand" Padding="5">
+                    <ui:MaterialTextField  
+                     Placeholder="Nombre"
+                     Text="{Binding d_nombre, Mode=TwoWay}"
+                     BackgroundColor="#eaeaea"
+                     InputType="Text"
+                     MaxLength="25"
+                     TintColor="#15ccc8" 
+                     FloatingPlaceholderEnabled="True"                   
+                     LeadingIconTintColor="#696969" 
+                     PlaceholderColor="#c8c8c8"
+                     />
+
+                    <ui:MaterialTextField  
+                     Placeholder="Apellido"
+                     Text="{Binding d_apellido, Mode=TwoWay}"
+                     BackgroundColor="#eaeaea"
+                     InputType="Text"
+                     MaxLength="25"
+                     TintColor="#15ccc8" 
+                     FloatingPlaceholderEnabled="True" 
+                     LeadingIconTintColor="#696969" 
+                     PlaceholderColor="#c8c8c8"
+                      />
+
+                    <ui:MaterialTextField  
+                     Placeholder="Telefono"
+                     Text="{Binding d_telefono, Mode=TwoWay}"
+                     BackgroundColor="#eaeaea"
+                     InputType="Numeric"
+                     MaxLength="8"
+                     TintColor="#15ccc8" 
+                     FloatingPlaceholderEnabled="True" 
+                     LeadingIconTintColor="#696969" 
+                     PlaceholderColor="#c8c8c8"
+                      />
+
+                    <StackLayout
+                     Orientation="Horizontal">
+                        <ui:MaterialButton 
+                     Command="{Binding Cancel}"
+                     BackgroundColor="#B00020" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="Center" 
+                     Text="Cancelar" 
+                     TextColor="White"
+                     FontAttributes="Bold" 
+                     PressedBackgroundColor="#B00020"
+                     />
+
+                        <ui:MaterialButton 
+                     Command="{Binding Update}"
+                     BackgroundColor="#15ccc8" 
+                     HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="Center" 
+                     Text="Actualizar" 
+                     TextColor="White"
+                     FontAttributes="Bold"
+                     PressedBackgroundColor="#008ca5"
+                     />
+                    </StackLayout>
+                </StackLayout>
+            </ui:MaterialCard>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

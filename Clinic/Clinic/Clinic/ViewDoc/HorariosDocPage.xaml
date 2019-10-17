@@ -35,6 +35,7 @@
 
                     <ui:MaterialTextField  
                      Placeholder="Numero de citas"
+                     Text="{Binding d_NumCitas, Mode=TwoWay}"
                      BackgroundColor="#eaeaea"
                      InputType="Numeric"
                      MaxLength="2"
@@ -55,6 +56,7 @@
 
                     <ui:MaterialTextField  
                      Placeholder="Tiempo por cita"
+                     Text="{Binding d_TimeCitas, Mode=TwoWay}"
                      BackgroundColor="#eaeaea"
                      InputType="Numeric"
                      MaxLength="2"
@@ -66,22 +68,11 @@
                      Grid.Row="3" />
 
                     <Picker 
-                     SelectedItem="{Binding s_estado}" 
+                     SelectedItem="{Binding l_selecH, Mode=TwoWay}"
+                     ItemsSource="{Binding l_Horarios, Mode=TwoWay}"
                      Title="Seleccione..."
                      Grid.Column="0"
                      Grid.Row="4">
-                        <Picker.ItemsSource>
-                            <x:Array Type="{x:Type x:String}" >
-                                <x:String>8:00 am</x:String>
-                                <x:String>9:00 am</x:String>
-                                <x:String>10:00 am</x:String>
-                                <x:String>11:00 am</x:String>
-                                <x:String>12:00 am</x:String>
-                                <x:String>1:00 pm</x:String>
-                                <x:String>2:00 pm</x:String>
-                                <x:String>3:00 pm</x:String>
-                            </x:Array>
-                        </Picker.ItemsSource>
                     </Picker>
 
 
@@ -89,8 +80,9 @@
                     Orientation="Horizontal"
                     Grid.Column="0"
                     Grid.Row="5" >
+
                         <ui:MaterialButton 
-                     Command="{Binding Create}"
+                     Command="{Binding Cancel}"
                      BackgroundColor="#B00020" 
                      HorizontalOptions="FillAndExpand" 
                      VerticalOptions="Center" 
@@ -151,7 +143,7 @@
                              LetterSpacing="0.15"/>
 
                             <ui:MaterialLabel 
-                             Text="5" 
+                             Text="{Binding TotalC, Mode=TwoWay}" 
                              TextColor="#15ccc8"                                            
                              HorizontalOptions="Center"
                              VerticalOptions="Center"                                              
@@ -167,7 +159,7 @@
                          Grid.Row="1">
                             <StackLayout Orientation="Horizontal" Spacing="0">
                                 <ui:MaterialLabel 
-                             Text="01:00" 
+                             Text="{Binding TiempoT, Mode=TwoWay}" 
                              TextColor="#8d97ad"                                            
                              HorizontalOptions="Center"
                              VerticalOptions="Center"
@@ -179,7 +171,7 @@
                                 <Label
                              VerticalOptions="Start"
                              HorizontalOptions="Center"
-                             Text="p.m"
+                             Text="{Binding Horario, Mode=TwoWay}"
                              FontSize="Large"
                              TextColor="#a5adc0"
                              FontAttributes="Bold"/>
@@ -207,7 +199,13 @@
                      Padding="10">
 
                         <ui:MaterialLabel 
-                      Text="45 minutos de consulta por persona"  
+                      Text="{Binding Minutos, Mode=TwoWay}"  
+                      TextColor="White" 
+                      FontAttributes="Bold"  
+                      FontSize="Medium" />
+
+                        <ui:MaterialLabel 
+                      Text=" minutos de consulta por persona"  
                       TextColor="White" 
                       FontAttributes="Bold"  
                       FontSize="Medium" />
@@ -216,6 +214,16 @@
 
                 </StackLayout>
             </ui:MaterialCard>
+
+            <ImageButton
+             BackgroundColor="Transparent"
+             Command="{Binding Delete}"
+             Margin="0,10,0,0"
+             Source="trashsImg.png"
+             WidthRequest="75"             
+             HorizontalOptions="Center"
+             VerticalOptions="Center"/>
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

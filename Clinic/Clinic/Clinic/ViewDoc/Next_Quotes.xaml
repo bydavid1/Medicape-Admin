@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:ui="clr-namespace:XF.Material.Forms.UI;assembly=XF.Material.Forms"
+             mc:Ignorable="d"
+             x:Class="Clinic.ViewDoc.Next_Quotes">
+    <ContentPage.Content>
+        <StackLayout>
+            <ui:MaterialCard               
+                 Elevation="6" 
+                 BackgroundColor="White"
+                 HeightRequest="50">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                    <Image 
+                 Source="timer" 
+                 WidthRequest="50" 
+                 HorizontalOptions="Center" 
+                 VerticalOptions="Center"/>
+
+                    <ui:MaterialLabel
+                 Grid.Column="0"
+                 Grid.RowSpan="4"
+                 Text="Proximas Citas"
+                 TypeScale="H4" 
+                 FontSize="24"
+                 TextColor="Black"
+                 FontAttributes="Bold" 
+                 LetterSpacing="0.15"
+                 VerticalOptions="Center"
+                 HorizontalOptions="Center"/>
+                </StackLayout>
+            </ui:MaterialCard>
+
+            <ListView
+                HasUnevenRows="True"
+                ItemsSource="{Binding Items, Mode=TwoWay}"
+                IsPullToRefreshEnabled="True"
+                IsRefreshing="{Binding  IsRefreshing, Mode=TwoWay}"
+                SelectedItem="{Binding Obj, Mode=TwoWay}"
+                RefreshCommand="{Binding RefreshCommand, Mode=TwoWay}"
+                SeparatorVisibility="None">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <ui:MaterialCard
+                                Margin="5"
+                                Padding="0"
+                                Elevation="6" 
+                                BackgroundColor="White"
+                                HeightRequest="75">
+
+                                <Grid ColumnSpacing="0" Padding="0" >
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="3"/>
+                                        <ColumnDefinition Width="75"/>
+                                        <ColumnDefinition Width="*"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="auto"/>
+                                    </Grid.RowDefinitions>
+
+
+                                    <Frame
+                                        BackgroundColor="#40c7c0"
+                                        HorizontalOptions="FillAndExpand"
+                                        HeightRequest="30" 
+                                        Grid.Column="0"
+                                        Grid.Row="0">
+                                    </Frame>
+
+                                    <Image
+                                        Margin="5,3,5,3"
+                                        Source="man" 
+                                        WidthRequest="125"                       
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Grid.Column="1"
+                                        Grid.Row="0"/>
+
+                                    <StackLayout 
+                                        Orientation="Horizontal"
+                                        Grid.Column="2"
+                                        Grid.Row="0">
+
+                                        <ui:MaterialLabel                   
+                                        Text="{Binding nombre_Paciente, Mode=TwoWay}"
+                                        TypeScale="H6" 
+                                        FontSize="15"
+                                        TextColor="Black"
+                                        FontAttributes="Bold" 
+                                        LetterSpacing="0.15"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        />
+                                        <ui:MaterialLabel                   
+                                        Text="{Binding apellido_Paciente, Mode=TwoWay}"
+                                        TypeScale="H6" 
+                                        FontSize="15"
+                                        TextColor="Black"
+                                        FontAttributes="Bold" 
+                                        LetterSpacing="0.15"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        />
+                                    </StackLayout>
+
+                                    <StackLayout
+                                        Spacing="-1"
+                                        VerticalOptions="Center"
+                                        HorizontalOptions="StartAndExpand"
+                                        Orientation="Vertical"
+                                        Grid.Column="3"
+                                        Grid.Row="0">
+
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                            <ui:MaterialLabel
+                                        Text="Fecha:"
+                                        TypeScale="H6" 
+                                        FontSize="14"
+                                        TextColor="Black"
+                                        FontAttributes="None" 
+                                        LetterSpacing="0.15"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Grid.Column="2"
+                                        Grid.Row="0"/>
+
+                                            <ui:MaterialLabel
+                                        Text="{Binding fecha_Cita, Mode=TwoWay}"
+                                        TypeScale="Subtitle1" 
+                                        FontSize="14"
+                                        TextColor="Black"
+                                        FontAttributes="Bold"
+                                        LetterSpacing="0.15"
+                                        HorizontalOptions="Start"
+                                        VerticalOptions="Center"
+                                        Grid.Column="2"
+                                        Grid.Row="0"/>
+                                        </StackLayout>
+
+                                        <StackLayout Orientation="Horizontal" HorizontalOptions="Start">
+                                            <ui:MaterialLabel
+                                                Text="Hora:"
+                                                TypeScale="H6" 
+                                                FontSize="14"
+                                                TextColor="Black"
+                                                FontAttributes="None"  
+                                                LetterSpacing="0.15"
+                                                HorizontalOptions="Start"
+                                                VerticalOptions="Center"
+                                                Grid.Column="2"
+                                                Grid.Row="0"/>
+
+                                            <ui:MaterialLabel
+                                            Text="{Binding hora_Cita, Mode=TwoWay}"
+                                            TypeScale="Subtitle1" 
+                                            FontSize="14"
+                                            TextColor="Black"
+                                            FontAttributes="Bold"
+                                            LetterSpacing="0.15"
+                                            HorizontalOptions="Start"
+                                            VerticalOptions="Center"
+                                            Grid.Column="2"
+                                            Grid.Row="0"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Grid>
+                            </ui:MaterialCard>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

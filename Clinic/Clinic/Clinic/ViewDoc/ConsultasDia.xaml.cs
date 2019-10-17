@@ -1,4 +1,4 @@
-﻿using Clinic.ViewModels.ViewModelsDoc;
+﻿using Clinic.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,13 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace Clinic.ViewDoc
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DocProfilePage : ContentPage
+    public partial class ConsultasDia : ContentPage
     {
-        public DocProfilePage()
+        public ConsultasDia()
         {
             InitializeComponent();
-            BindingContext = new DocProfileViewModel();
-
+            BindingContext = new ConsultsViewModel();
         }
     }
 }

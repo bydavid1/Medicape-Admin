@@ -11,13 +11,12 @@ using Xamarin.Forms.Xaml;
 namespace Clinic.ViewDoc
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class DocProfilePage : ContentPage
+    public partial class ChangeProfile : ContentPage
     {
-        public DocProfilePage()
+        public ChangeProfile()
         {
             InitializeComponent();
-            BindingContext = new DocProfileViewModel();
-
+            BindingContext = new ChangeProfileViewModel();
         }
     }
 }

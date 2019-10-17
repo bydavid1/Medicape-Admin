@@ -50,7 +50,8 @@
                              LetterSpacing="0.15"/>
 
                             <ui:MaterialButton
-                            Clicked="MaterialButton_Clicked"
+                            Command="{Binding DocProfile, Mode=TwoWay}"
+                            IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
                             Margin="0,12,0,0"
                             BackgroundColor="White"
                             BorderColor="White"
@@ -84,8 +85,8 @@
 
                     <!--Eventos-->
                     <ui:MaterialCard
-                         Clicked="MaterialCard_Clicked"
-                         IsClickable="True"
+                         ClickCommand="{Binding PageTarea, Mode=TwoWay}"                       
+                         IsClickable="{Binding IsClickable, Mode=TwoWay}" 
                          WidthRequest="100"
                          HeightRequest="50"
                          Elevation="6"
@@ -102,9 +103,7 @@
                              Source="calendar3"
                              WidthRequest="35"
                              HorizontalOptions="Center"
-                             VerticalOptions="Center"
-                             >
-
+                             VerticalOptions="Center">
                             </Image>
 
                             <ui:MaterialLabel 
@@ -117,12 +116,12 @@
                              FontAttributes="None"
                              LetterSpacing="0.15"/>
 
-                       </StackLayout>
+                        </StackLayout>
                     </ui:MaterialCard>
                     <!--Horarios-->
                     <ui:MaterialCard
-                         Clicked="MaterialCard_Clicked1"
-                         IsClickable="True"
+                         ClickCommand="{Binding HorariosPage, Mode=TwoWay}"
+                         IsClickable="{Binding IsClickable, Mode=TwoWay}"                                               
                          WidthRequest="100"
                          HeightRequest="50"
                          Elevation="12"
@@ -295,6 +294,8 @@
 
                         <!--Solicitudes-->
                         <ui:MaterialCard
+                         ClickCommand="{Binding SolicitudesC, Mode=TwoWay}"
+                         IsClickable="{Binding IsClickable, Mode=TwoWay}"   
                          HorizontalOptions="FillAndExpand"
                          HeightRequest="35"                                                  
                          Grid.Column="0"
@@ -334,6 +335,8 @@
 
                         <!--Consultas-->
                         <ui:MaterialCard
+                         ClickCommand="{Binding ConsultasC, Mode=TwoWay}"
+                         IsClickable="{Binding IsClickable, Mode=TwoWay}"   
                          HorizontalOptions="FillAndExpand"
                          HeightRequest="35"                                                  
                          Grid.Column="0"
@@ -373,6 +376,8 @@
 
                         <!--Citas-->
                         <ui:MaterialCard
+                         ClickCommand="{Binding ProxCitas, Mode=TwoWay}"
+                         IsClickable="{Binding IsClickable, Mode=TwoWay}" 
                          HorizontalOptions="FillAndExpand"
                          HeightRequest="35"                                                  
                          Grid.Column="0"

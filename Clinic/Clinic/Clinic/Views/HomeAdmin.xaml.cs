@@ -1,5 +1,6 @@
 ﻿using Acr.UserDialogs;
 using Clinic.Clases;
+using Clinic.ViewModels;
 using Plugin.SecureStorage;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,7 @@ namespace Clinic.Views
         {
             InitializeComponent();
             UserDialogs.Instance.HideLoading();
+            BindingContext = new HomeViewModel();
         }
 
         void OnClick(object sender, EventArgs e)
