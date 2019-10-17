@@ -53,6 +53,13 @@ namespace Clinic.ViewModels
             get { return _listVisible; }
             set { SetValue(ref _listVisible, value); }
         }
+
+        private string _NumReg;
+        public string NumReg
+        {
+            get { return _NumReg; }
+            set { SetValue(ref _NumReg, value); }
+        }
         #endregion
 
         #region Constructor
@@ -70,30 +77,33 @@ namespace Clinic.ViewModels
             bool result = get.TestConnection();
             if (result == true)
             {
-                    var response2 = await functions.Read<Consultas>("/Api/consultas/read.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser"));
-                    if (!response2.IsSuccess)
-                    {
-                        IsVisible = false;
-                        NoResults = false;
-                        await loadingDialog.DismissAsync();
-                        control.ShowAlert(response2.Message, "Error", "Aceptar");
-                    }
-                    else if (response2.IsSuccess && response2.Result == null)
-                    {
-                        await loadingDialog.DismissAsync();
-                        IsVisible = false;
-                        NoResults = true;
-                        ListVisible = false;
-                    }
-                    else
-                    {
-                        IsVisible = false;
-                        NoResults = false;
-                        ListVisible = true;
-                        await loadingDialog.DismissAsync();
-                        var list = (List<Consultas>)response2.Result;
-                        Items = new ObservableCollection<Consultas>(list);
-                    }
+                var idemple = 2;
+                var response2 = await functions.Read<Consultas>("/Api/consultas/read.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser"));
+                if (!response2.IsSuccess)
+                {
+                    IsVisible = false;
+                    NoResults = false;
+                    await loadingDialog.DismissAsync();
+                    control.ShowAlert(response2.Message, "Error", "Aceptar");
+                }
+                else if (response2.IsSuccess && response2.Result == null)
+                {
+                    await loadingDialog.DismissAsync();
+                    IsVisible = false;
+                    NoResults = true;
+                    ListVisible = false;
+                }
+                else
+                {
+                    IsVisible = false;
+                    NoResults = false;
+                    ListVisible = true;
+                    await loadingDialog.DismissAsync();
+                    var list = (List<Consultas>)response2.Result;
+                    Items = new ObservableCollection<Consultas>(list);
+
+                    NumReg = Items.Count.ToString();
+                }
             }
             else
             {

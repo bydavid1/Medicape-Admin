@@ -64,6 +64,7 @@ namespace Clinic.ViewModels
             bool result = get.TestConnection();
             if (result == true)
             {
+
                 var response2 = await functions.Read<Citas>("/Api/citas/custom_read.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser"));
                 if (!response2.IsSuccess)
                 {
@@ -117,6 +118,7 @@ namespace Clinic.ViewModels
                 });
             }
         }
+
 
     }
 }
