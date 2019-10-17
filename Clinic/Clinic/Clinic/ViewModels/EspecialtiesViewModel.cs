@@ -168,6 +168,56 @@ namespace Clinic.ViewModels
             }
         }
 
+        public ICommand Add
+        {
+            get
+            {
+                return new RelayCommand(AddEspecialty);
+            }
+        }
+
+        private async void AddEspecialty()
+        {
+            var config = new MaterialInputDialogConfiguration()
+            {
+                CornerRadius = 8,
+                BackgroundColor = Color.FromHex("#2c3e50"),
+                InputTextColor = Color.White,
+                InputPlaceholderColor = Color.White.MultiplyAlpha(0.6),
+                TintColor = Color.White,
+                TitleTextColor = Color.White,
+                MessageTextColor = Color.FromHex("#DEFFFFFF")
+            };
+            var input = await MaterialDialog.Instance.InputAsync(title: "Nueva especialidad",
+                                                      message: "Por favor ingrese el nombre de la especialidad",
+                                                      inputPlaceholder: "Especialidad",
+                                                      confirmingText: "Crear",
+                                                      configuration: config);
+            if (!string.IsNullOrEmpty(input))
+            {
+                bool result = get.TestConnection();
+                if (result == true)
+                {
+                    Especialidades esp = new Especialidades
+                    {
+                        nombre = input,
+                        publico = 1
+                    };
+                    IsVisible = false;
+                    ListVisible = true;
+                    var response = await functions.Insert(esp, "/Api/especialidades/create.php");
+                    if (response.IsSuccess == false)
+                    {
+                        await MaterialDialog.Instance.SnackbarAsync(message: "No se pudo crear");
+                    }
+                    else
+                    {
+                        GetEspecialties();
+                    }
+                }
+            }
+        }
+
         private async void Update(Especialidades esp)
         {
             bool result = get.TestConnection();

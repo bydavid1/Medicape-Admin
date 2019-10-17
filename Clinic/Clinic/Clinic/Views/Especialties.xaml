@@ -5,6 +5,9 @@
              xmlns:custom="clr-namespace:Clinic"
              x:Class="Clinic.Views.Especialties"
              Title="Especialidades">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Agregar" Command="{Binding Add}" />
+    </ContentPage.ToolbarItems> 
     <ContentPage.Content>
         <StackLayout>
             <StackLayout Orientation="Horizontal" Padding="10" BackgroundColor="White">
