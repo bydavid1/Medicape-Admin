@@ -10,7 +10,7 @@
             <StackLayout Padding="15">
                 <StackLayout>
                     <Image Source="doctor" WidthRequest="125" HorizontalOptions="Center" VerticalOptions="Center" Margin="0,10,0,0"/>
-                    <material:MaterialLabel Text="MediCape" FontFamily="Arial" FontAttributes="Bold" FontSize="35" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    <material:MaterialLabel Text="Medicape" FontAttributes="Bold" FontSize="35" TextColor="White" HorizontalOptions="Center" VerticalOptions="Center" FontFamily="{StaticResource Niconne}"/>
                 </StackLayout>
                 <material:MaterialCard  CornerRadius="6" Elevation="4"  HorizontalOptions="FillAndExpand" Padding="0" Margin="0,10,0,0" VerticalOptions="Center" >
                     <StackLayout>
@@ -21,7 +21,7 @@
                         <StackLayout Padding="20">
                             <material:MaterialTextField  Placeholder="Username"  BackgroundColor="#eaeaea" InputType="Text"  TintColor="#15ccc8" FloatingPlaceholderEnabled="False" LeadingIcon="us" LeadingIconTintColor="#696969" PlaceholderColor="#c8c8c8" x:Name="user"/>
                             <material:MaterialTextField  Placeholder="Password"  BackgroundColor="#eaeaea" InputType="Password"  TintColor="#15ccc8" FloatingPlaceholderEnabled="False" LeadingIcon="lock" LeadingIconTintColor="#696969"  PlaceholderColor="#c8c8c8" x:Name="password" />
-
+                            <Label Text="Ingrese todos los datos" TextColor="Red" x:Name="message" HorizontalOptions="CenterAndExpand" IsVisible="False"/>
                             <Button Text="LOGIN" TextColor="White" FontAttributes="Bold" CornerRadius="23" HeightRequest="46" BackgroundColor="#15ccc8" HorizontalOptions="FillAndExpand" VerticalOptions="Center" Margin="25,0,25,0" Clicked="Button_Clicked"></Button>
 
                             <material:MaterialLabel Text="Forgot password?" TextDecorations="Underline" TextColor="#99000000" HorizontalOptions="Center" />

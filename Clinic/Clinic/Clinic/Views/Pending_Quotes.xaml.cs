@@ -27,8 +27,8 @@ namespace Clinic.Views
         public Pending_Quotes()
         {
             InitializeComponent();
-            getQuotes();
             baseurl = get.BaseUrl;
+            getQuotes();
         }
 
         private async void getQuotes()

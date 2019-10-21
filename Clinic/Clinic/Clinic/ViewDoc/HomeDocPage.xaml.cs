@@ -1,4 +1,5 @@
-﻿using Clinic.ViewModels.ViewModelsDoc;
+﻿using Acr.UserDialogs;
+using Clinic.ViewModels.ViewModelsDoc;
 using Clinic.Views;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ namespace Clinic.ViewDoc
         public HomeDocPage()
         {
             InitializeComponent();
+            UserDialogs.Instance.HideLoading();
             BindingContext = new HomeDocViewModel();
         }
 

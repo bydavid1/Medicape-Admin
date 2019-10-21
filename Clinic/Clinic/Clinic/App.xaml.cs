@@ -19,23 +19,31 @@ namespace Clinic
             Current.On<Xamarin.Forms.PlatformConfiguration.Android>().UseWindowSoftInputModeAdjust(WindowSoftInputModeAdjust.Resize);
             InitializeComponent();
             XF.Material.Forms.Material.Init(this);
+            try
+            {
 
-            var sessionToken = CrossSecureStorage.Current.GetValue("SessionActive");
-            if (sessionToken == null)
-            {
-                CrossSecureStorage.Current.SetValue("SessionActive", "false");
-                MainPage = new NavigationPage(new Login());
-            }
-            else
-            {
-                if (sessionToken == "false")
+                var sessionToken = CrossSecureStorage.Current.GetValue("SessionActive");
+                if (sessionToken == null)
                 {
+                    CrossSecureStorage.Current.SetValue("SessionActive", "false");
                     MainPage = new NavigationPage(new Login());
                 }
                 else
                 {
-                    MainPage = new NavigationPage(new LoadPage());
+                    if (sessionToken == "false")
+                    {
+                        MainPage = new NavigationPage(new Login());
+                    }
+                    else
+                    {
+                        MainPage = new NavigationPage(new LoadPage());
+                    }
                 }
+            }
+            catch (Exception ex)
+            {
+                MainPage.DisplayAlert("Error", "" + ex, "ok");
+                throw;
             }
         }
 
