@@ -423,7 +423,7 @@
 
 
 
-
+                <Button Text="Ver solicitudes de citas" HorizontalOptions="CenterAndExpand" Clicked="Button_Clicked"/>
             </StackLayout>
         </ScrollView>
     </ContentPage.Content>

@@ -1,4 +1,5 @@
 ﻿using Clinic.ViewModels.ViewModelsDoc;
+using Clinic.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace Clinic.ViewDoc
         private void MaterialCard_Clicked(object sender, EventArgs e)
         {
             Navigation.PushAsync(new TareasDoc());
+        }
+
+        private void Button_Clicked(object sender, EventArgs e)
+        {
+            Navigation.PushAsync(new Pending_Quotes());
         }
     }
 }

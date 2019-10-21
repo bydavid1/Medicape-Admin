@@ -13,7 +13,6 @@ namespace Clinic.Models
         public int idpaciente { get; set; }
         public string nombre { get; set; }
         public string apellido { get; set; }
-
         public int idempleado { get; set; }
     }
 }
