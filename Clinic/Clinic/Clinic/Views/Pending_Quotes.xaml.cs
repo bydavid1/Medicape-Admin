@@ -38,7 +38,7 @@ namespace Clinic.Views
 
                 control.ShowLoading("Obteniendo lista");
 
-                    string url = baseurl + "/Api/pending_quotes/read.php?idempleado=" + CrossSecureStorage.Current.GetValue("iduser");
+                    string url = baseurl + "/Api/pending_quotes/read.php?idempleado=5";
 
                     HttpClient client = new HttpClient();
                     HttpResponseMessage connect = await client.GetAsync(url);
